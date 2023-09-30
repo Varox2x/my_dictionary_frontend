@@ -1,16 +1,38 @@
 import './settings/css/reset.css'
-import * as S from './components/elements/global/elements';
-import LearnView from './components/views/LearnView';
+import { Route, Routes } from 'react-router-dom';
+import routerList from './routerList';
+import PrivateWrapper from './components/wrappers/PrivateWrapper';
 
 function App() {
   return (
-    <>
-      <S.Container>
-        <S.Wrapper>
-          <LearnView />
-        </S.Wrapper>
-      </S.Container>
-    </>
+    <Routes>
+      <Route path="/">
+        {Object.keys(routerList).map((key, index) => {
+          if (routerList[key].isPublic) {
+            return (
+              <Route
+                key={index}
+                path={routerList[key].url}
+                Component={routerList[key].component}
+              />
+            );
+          }
+        })}
+        <Route element={<PrivateWrapper />}>
+          {Object.keys(routerList).map((key, index) => {
+            if (!routerList[key].isPublic) {
+              return (
+                <Route
+                  key={index}
+                  path={routerList[key].url}
+                  Component={routerList[key].component}
+                />
+              );
+            }
+          })}
+        </Route>
+      </Route>
+    </Routes>
   );
 }
 
