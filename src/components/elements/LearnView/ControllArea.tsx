@@ -7,10 +7,8 @@ import { DIRECTION_ENUM, DirectionType } from "./types";
 const ControllArea = () => {
 
     const dispatch = useDispatchLearnView();
-    // const state = useLearnView()
 
     const handleRollCard = (direction: DirectionType) => {
-        console.log("click")
         dispatch({ type: ACTION_TYPES.ROLL_CARD, payload: direction })
     }
 

@@ -40,15 +40,18 @@ const Card = () => {
 
             }}
         >
-            <S.CardContainer $isrevert={state?.cardSide !== ENUM_CARD_SIDE.FRONT} onClick={() => revertCard()}>
+            <S.CardContainer $isrevert={state.cardSide !== ENUM_CARD_SIDE.FRONT} onClick={() => revertCard()}>
                 <S.FrontSide>
                     {state.wordsArray[state.currentIndex].name}
-                    <Stage>
+                    <Stage currentStage={state.currentFrontStage}>
                         {stagesComponents[ENUM_CARD_SIDE.FRONT]}
                     </Stage>
                 </S.FrontSide>
                 <S.BackSide>
                     {state.wordsArray[state.currentIndex].definition}
+                    <Stage currentStage={state.currentBackStage}>
+                        {stagesComponents[ENUM_CARD_SIDE.BACK]}
+                    </Stage>
                 </S.BackSide>
             </S.CardContainer>
         </motion.div>

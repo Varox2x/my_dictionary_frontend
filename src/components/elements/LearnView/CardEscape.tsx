@@ -18,18 +18,29 @@ const CardEscape = () => {
         }
     }
 
+    const calculatePreviousIndex = () => {
+        switch (state.enterDirection) {
+            case DIRECTION_ENUM.RIGHT:
+                return state.currentIndex + 1 == state.wordsArray.length ? 0 : state.currentIndex + 1
+            case DIRECTION_ENUM.LEFT:
+                return state.currentIndex - 1 < 0 ? state.wordsArray.length - 1 : state.currentIndex - 1
+            default:
+                return 0
+        }
+    }
+
     return (
         <motion.div
             key={state.currentIndex}
             animate={{ opacity: 0, x: calculateEscapePosition() }}
             initial={{ opacity: 1, x: 0 }}
         >
-            <S.CardContainer $isrevert={state?.previousCardSide !== ENUM_CARD_SIDE.FRONT} >
+            <S.CardContainer $isrevert={state.previousCardSide !== ENUM_CARD_SIDE.FRONT} >
                 <S.FrontSide>
-                    {state.wordsArray[state.currentIndex].name}
+                    {state.wordsArray[calculatePreviousIndex()].name}
                 </S.FrontSide>
                 <S.BackSide>
-                    {state.wordsArray[state.currentIndex].definition}
+                    {state.wordsArray[calculatePreviousIndex()].definition}
                 </S.BackSide>
             </S.CardContainer>
         </motion.div>

@@ -170,3 +170,12 @@ export const ActionMenuWrapper = styled.div`
 `;
 
 export const ActionMenuButton = styled.button``;
+
+export const ProgressBarWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items; center;
+`;

@@ -1,9 +1,9 @@
-import { CardSideType, DIRECTION_ENUM, DirectionType, ENUM_CARD_SIDE } from "../types";
+import { CardSideType, DIRECTION_ENUM, DirectionType, ENUM_CARD_SIDE, ENUM_STAGES_NAMES, StagesNamesType } from "../types";
 import { ACTION_TYPES } from "./actionTypes";
 
 export type ActionType = {
     type: ReducerActionType,
-    payload?: DirectionType | number
+    payload?: DirectionType | number | StagesNamesType
 }
 
 export type ReducerActionType = keyof typeof ACTION_TYPES
@@ -19,8 +19,8 @@ export type StateType = {
     enterDirection: DirectionType,
     currentIndex: number,
     previousCardSide: CardSideType,
-    currentFrontStage: number,
-    currentBackStage: number,
+    currentFrontStage: StagesNamesType,
+    currentBackStage: StagesNamesType,
 }
 
 export const INITIAL_STATE: StateType = {
@@ -42,16 +42,32 @@ export const INITIAL_STATE: StateType = {
         {
             name: "Telefon",
             definition: "Phone"
+        },
+        {
+            name: "Kotek",
+            definition: "Kitten"
+        },
+        {
+            name: "Piesek",
+            definition: "Puppy"
+        },
+        {
+            name: "Samolot",
+            definition: "Airplane"
+        },
+        {
+            name: "Telewizor",
+            definition: "Television"
         }
     ],
     currentIndex: 1,
-    currentFrontStage: 0,
-    currentBackStage: 0,
+    currentFrontStage: ENUM_STAGES_NAMES.STAGE_DISABLE,
+    currentBackStage: ENUM_STAGES_NAMES.STAGE_DISABLE,
     enterDirection: DIRECTION_ENUM.LEFT,
 }
 
 const rollCard = (direction: DirectionType, state: StateType) => {
-    state = { ...state, cardSide: ENUM_CARD_SIDE.FRONT, previousCardSide: state.cardSide, currentFrontStage: 0, currentBackStage: 0 }
+    state = { ...state, cardSide: ENUM_CARD_SIDE.FRONT, previousCardSide: state.cardSide, currentFrontStage: ENUM_STAGES_NAMES.DEFAULT, currentBackStage: ENUM_STAGES_NAMES.DEFAULT }
     switch (direction) {
         case DIRECTION_ENUM.RIGHT:
             return { ...state, currentIndex: state.currentIndex + 1 > state.wordsArray.length - 1 ? 0 : state.currentIndex + 1, enterDirection: DIRECTION_ENUM.LEFT }
@@ -62,10 +78,24 @@ const rollCard = (direction: DirectionType, state: StateType) => {
     }
 }
 
+const shuffleCards = (state: StateType) => {
+    const randomSort = () => Math.random() - 0.5;
+
+    const shuffledArray = [...state.wordsArray];
+
+    shuffledArray.sort(randomSort);
+
+    state = { ...state, wordsArray: shuffledArray }
+    return state;
+}
+
 export const learnViewReducer = (state: StateType, action: ActionType): StateType => {
     switch (action.type) {
         case ACTION_TYPES.REVERT_CARD:
-            return { ...state, cardSide: state.cardSide === ENUM_CARD_SIDE.BACK ? ENUM_CARD_SIDE.FRONT : ENUM_CARD_SIDE.BACK };
+            state = { ...state, cardSide: state.cardSide === ENUM_CARD_SIDE.BACK ? ENUM_CARD_SIDE.FRONT : ENUM_CARD_SIDE.BACK }
+            return state;
+        case ACTION_TYPES.SHUFFLE:
+            return shuffleCards(state)
         case ACTION_TYPES.ROLL_CARD:
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.ROLL_CARD} action`)
@@ -75,10 +105,21 @@ export const learnViewReducer = (state: StateType, action: ActionType): StateTyp
             }
             return rollCard(action.payload as DirectionType, state)
         case ACTION_TYPES.CHANGE_FRONT_STAGE:
-            if (action.payload == null && action.payload == undefined) {
-                throw new Error(`action.payload wrong in ${ACTION_TYPES.ROLL_CARD} action`)
+            if (!action.payload) {
+                throw new Error(`action.payload missing in ${ACTION_TYPES.CHANGE_FRONT_STAGE} action`)
             }
-            return { ...state, currentFrontStage: action.payload as number }
+            if (!Object.values(ENUM_STAGES_NAMES).includes(action.payload as StagesNamesType)) {
+                throw new Error(`action.payload wrong in ${ACTION_TYPES.CHANGE_FRONT_STAGE} action`)
+            }
+            return { ...state, currentFrontStage: action.payload as StagesNamesType }
+        case ACTION_TYPES.CHANGE_BACK_STAGE:
+            if (!action.payload) {
+                throw new Error(`action.payload missing in ${ACTION_TYPES.CHANGE_BACK_STAGE} action`)
+            }
+            if (!Object.values(ENUM_STAGES_NAMES).includes(action.payload as StagesNamesType)) {
+                throw new Error(`action.payload wrong in ${ACTION_TYPES.CHANGE_BACK_STAGE} action`)
+            }
+            return { ...state, currentBackStage: action.payload as StagesNamesType }
         default:
             return state;
     }
