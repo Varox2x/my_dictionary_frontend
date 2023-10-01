@@ -1,4 +1,4 @@
-import React from 'react'
+import Sidebar from "../elements/Sidebar/Sidebar";
 import * as S from "../elements/global/elements"
 
 type Props = {
@@ -7,13 +7,12 @@ type Props = {
 
 const PageWrapper = ({ children }: Props) => {
     return (
-        <div>
-            <S.Container>
-                <S.Wrapper>
-                    {children}
-                </S.Wrapper>
-            </S.Container>
-        </div>
+        <S.Container>
+            <Sidebar />
+            <S.Wrapper>
+                {children}
+            </S.Wrapper>
+        </S.Container>
     )
 }
 

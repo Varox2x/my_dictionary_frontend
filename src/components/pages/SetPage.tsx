@@ -1,8 +1,8 @@
-import React from 'react'
+import LearnView from "../views/LearnView"
 
 const SetPage = () => {
     return (
-        <div>SetPage</div>
+        <LearnView />
     )
 }
 

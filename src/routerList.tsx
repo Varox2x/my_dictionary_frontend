@@ -3,6 +3,7 @@ import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import SetPage from "./components/pages/SetPage";
 import HomeUserPage from "./components/pages/HomeUserPage";
+import SettingsPage from "./components/pages/SettingsPage";
 
 export type RouterListElementType = {
   url: string;
@@ -33,6 +34,11 @@ const routerList: RouterList = {
   HomeUserPage: {
     url: "home",
     component: HomeUserPage,
+    isPublic: false,
+  },
+  SettingsPage: {
+    url: "settings",
+    component: SettingsPage,
     isPublic: false,
   },
 };
