@@ -1,7 +1,11 @@
+import * as S from '../elements/EditView/elements'
+
 
 const EditView = () => {
     return (
-        <div>EditView</div>
+        <S.Wrapper>
+
+        </S.Wrapper>
     )
 }
 
