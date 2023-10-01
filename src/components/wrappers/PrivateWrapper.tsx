@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
+import { StoreProvider } from "../../store/StoreProvider";
 
 const PrivateWrapper = () => {
   useEffect(() => {
@@ -8,9 +9,11 @@ const PrivateWrapper = () => {
   }, []);
 
   return (
-    <PageWrapper>
-      <Outlet />
-    </PageWrapper>
+    <StoreProvider>
+      <PageWrapper>
+        <Outlet />
+      </PageWrapper>
+    </StoreProvider>
   );
 };
 

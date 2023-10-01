@@ -1,20 +1,17 @@
-import { useState } from 'react';
 import { Sidebar as ProTypesSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import * as S from "./elements"
 import { Link } from 'react-router-dom';
 import routerList from '../../../routerList';
+import { MODE_ENUM } from '../../../global/types';
+import { useDispatchStore } from '../../../store/StoreProvider';
+import { ACTION_TYPES } from '../../../store/actionTypes';
 
-export const MODE_ENUM = {
-    LEARN: 'LEARN',
-    EDIT: 'EDIT',
-} as const;
 
-export type ModeType = keyof typeof MODE_ENUM;
 
 
 const Sidebar = () => {
 
-    const [currentMode, setCurrentMode] = useState<ModeType>(MODE_ENUM.LEARN)
+    const dispatch = useDispatchStore()
 
     return (
         <ProTypesSidebar
@@ -25,8 +22,8 @@ const Sidebar = () => {
                 </S.MenuTitle>
             </S.MenuTitleWrapper>
             <Menu>
-                <MenuItem component={<Link to={`/${routerList.SetPage.url}`} />}> Learn</MenuItem>
-                <MenuItem component={<Link to={`/${routerList.SetPage.url}`} />}> Edit</MenuItem>
+                <MenuItem onClick={() => dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.LEARN })} component={<Link to={`/${routerList.SetPage.url}`} />}> Learn</MenuItem>
+                <MenuItem onClick={() => dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.EDIT })} component={<Link to={`/${routerList.SetPage.url}`} />}> Edit</MenuItem>
             </Menu>
             <S.MenuTitleWrapper>
                 <S.MenuTitle>
