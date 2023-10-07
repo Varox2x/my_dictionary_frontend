@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import { StoreProvider } from "../../store/StoreProvider";
+import AuthWrapper from "./AuthWrapper";
 
 const PrivateWrapper = () => {
   useEffect(() => {
@@ -9,11 +10,13 @@ const PrivateWrapper = () => {
   }, []);
 
   return (
-    <StoreProvider>
-      <PageWrapper>
-        <Outlet />
-      </PageWrapper>
-    </StoreProvider>
+    <AuthWrapper>
+      <StoreProvider>
+        <PageWrapper>
+          <Outlet />
+        </PageWrapper>
+      </StoreProvider>
+    </AuthWrapper>
   );
 };
 

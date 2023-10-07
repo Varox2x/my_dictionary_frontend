@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { login } from '../../api/authApi';
 import { LoginBodyType } from '../../global/types';
+import { useNavigate } from 'react-router-dom';
+import routerList from '../../routerList';
 
 const LoginPage = () => {
-
+    const navigate = useNavigate();
     const handleLogin: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void = (e) => {
         e.preventDefault();
         login(formData).then((r) => {
             if (r) {
                 console.log("login success");
+                navigate(`/${routerList.HomeUserPage.url}`)
             } else {
-                console.log("wring data");
+                console.log("wrong data");
             }
         });
     };
