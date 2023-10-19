@@ -6,6 +6,9 @@ type Props = {
 };
 
 const PageWrapper = ({ children }: Props) => {
+
+
+
     return (
         <S.Container>
             <Sidebar />

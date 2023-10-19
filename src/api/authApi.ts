@@ -13,7 +13,7 @@ export const getRefreshAccessTokensLogin = async (
       ...body,
     })
     .then((r) => {
-      if (r.status === STATUS._200 && r.data) {
+      if (r.status === STATUS._200 && r?.data?.access_token) {
         return r.data;
       } else {
         const error = new Error();

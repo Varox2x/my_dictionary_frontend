@@ -2,9 +2,12 @@ import { Sidebar as ProTypesSidebar, Menu, MenuItem, SubMenu } from 'react-pro-s
 import * as S from "./elements"
 import { Link } from 'react-router-dom';
 import routerList from '../../../routerList';
-import { MODE_ENUM } from '../../../global/types';
+import { MODE_ENUM, Set } from '../../../global/types';
 import { useDispatchStore } from '../../../store/StoreProvider';
 import { ACTION_TYPES } from '../../../store/actionTypes';
+import { useGet, useGetInfinite } from '../../../api/hooks/useGet';
+import { getCurrentUserSets } from '../../../api/setApi';
+import { useEffect, useState } from 'react';
 
 
 
@@ -12,6 +15,29 @@ import { ACTION_TYPES } from '../../../store/actionTypes';
 const Sidebar = () => {
 
     const dispatch = useDispatchStore()
+    const [page, setPage] = useState<number>(1)
+    const { data, isLoading, isError, error, isFetching, isPreviousData, hasNextPage, fetchNextPage } = useGetInfinite<Set[]>(getCurrentUserSets);
+
+
+    useEffect(() => {
+        console.log("data")
+        console.log(data)
+
+        console.log("isLoading")
+        console.log(isLoading)
+
+        console.log("isError")
+        console.log(isError)
+
+        console.log("error")
+        console.log(error)
+
+        console.log("isFetching")
+        console.log(isFetching)
+
+        console.log("hasNextPage")
+        console.log(hasNextPage)
+    }, [page])
 
     return (
         <ProTypesSidebar
@@ -32,8 +58,12 @@ const Sidebar = () => {
             </S.MenuTitleWrapper>
             <Menu>
                 <SubMenu label="My sets">
-                    <MenuItem> set number one </MenuItem>
-                    <MenuItem> set two </MenuItem>
+                    {!isLoading && data?.pages.map((page) =>
+                        page.data.map((set: Set, index: number) => (
+                            <MenuItem key={index}>{set.name}</MenuItem>
+                        ))
+                    )}
+                    {hasNextPage && <MenuItem onClick={async () => await fetchNextPage()} key={"more"}>more...</MenuItem>}
                 </SubMenu>
                 <SubMenu label="Watching sets">
                     <MenuItem> Pie charts </MenuItem>

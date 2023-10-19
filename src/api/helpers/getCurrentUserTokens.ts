@@ -1,7 +1,7 @@
-import { Tokens } from "../types";
+import { Tokens } from '../types';
 
 const getCurrentUserTokens = (): Tokens | false => {
-  const tokensJson = localStorage.getItem("tokens");
+  const tokensJson = localStorage.getItem('tokens');
   if (tokensJson) {
     return JSON.parse(tokensJson);
   }
