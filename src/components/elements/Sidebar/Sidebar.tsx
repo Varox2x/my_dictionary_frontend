@@ -5,39 +5,28 @@ import routerList from '../../../routerList';
 import { MODE_ENUM, Set } from '../../../global/types';
 import { useDispatchStore } from '../../../store/StoreProvider';
 import { ACTION_TYPES } from '../../../store/actionTypes';
-import { useGet, useGetInfinite } from '../../../api/hooks/useGet';
+import { useGetInfinite } from '../../../api/hooks/useGet';
 import { getCurrentUserSets } from '../../../api/setApi';
-import { useEffect, useState } from 'react';
+import { QueryData } from '../../../global/types';
 
+const flatQueryDataToArray = (queryData: QueryData): Set[] => {
+    let setArray: Set[] = []
+    queryData.pages.forEach((responseData) => {
+        if (!responseData.data || !Array.isArray(responseData.data)) return
+        responseData.data.forEach(set => {
+            if (!setArray.some(item => item.id === set.id)) setArray = [...setArray, set]
+        });
+    })
+    return setArray
+}
 
 
 
 const Sidebar = () => {
 
     const dispatch = useDispatchStore()
-    const [page, setPage] = useState<number>(1)
-    const { data, isLoading, isError, error, isFetching, isPreviousData, hasNextPage, fetchNextPage } = useGetInfinite<Set[]>(getCurrentUserSets);
+    const { data, isLoading, hasNextPage, fetchNextPage } = useGetInfinite<Set[]>(getCurrentUserSets);
 
-
-    useEffect(() => {
-        console.log("data")
-        console.log(data)
-
-        console.log("isLoading")
-        console.log(isLoading)
-
-        console.log("isError")
-        console.log(isError)
-
-        console.log("error")
-        console.log(error)
-
-        console.log("isFetching")
-        console.log(isFetching)
-
-        console.log("hasNextPage")
-        console.log(hasNextPage)
-    }, [page])
 
     return (
         <ProTypesSidebar
@@ -57,13 +46,13 @@ const Sidebar = () => {
                 </S.MenuTitle>
             </S.MenuTitleWrapper>
             <Menu>
+                <MenuItem component={<Link to={`/${routerList.CreateNewSetPage.url}`} />}> Create new set</MenuItem>
                 <SubMenu label="My sets">
-                    {!isLoading && data?.pages.map((page) =>
-                        page.data.map((set: Set, index: number) => (
-                            <MenuItem key={index}>{set.name}</MenuItem>
-                        ))
+                    {!isLoading && data && flatQueryDataToArray(data).map((set) => {
+                        return < MenuItem key={set.id} > {set.name}</MenuItem>
+                    }
                     )}
-                    {hasNextPage && <MenuItem onClick={async () => await fetchNextPage()} key={"more"}>more...</MenuItem>}
+                    {hasNextPage && <MenuItem onMouseEnter={async () => await fetchNextPage()} key={"more"}>more...</MenuItem>}
                 </SubMenu>
                 <SubMenu label="Watching sets">
                     <MenuItem> Pie charts </MenuItem>
@@ -77,7 +66,7 @@ const Sidebar = () => {
                 <MenuItem component={<Link to={`/${routerList.SettingsPage.url}`} />}> Settings </MenuItem>
                 <MenuItem component={<Link to={`/${routerList.HomeUserPage.url}`} />}> Home </MenuItem>
             </Menu>
-        </ProTypesSidebar>
+        </ProTypesSidebar >
     )
 }
 

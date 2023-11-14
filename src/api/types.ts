@@ -11,10 +11,3 @@ export interface ILoginResponse {
   status: STATUS;
   tokens: Tokens;
 }
-
-export type ResponseDataType<T> = {
-  limit: number;
-  page_count: number;
-  current_page: number;
-  data: T;
-};

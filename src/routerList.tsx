@@ -4,6 +4,7 @@ import RegisterPage from "./components/pages/RegisterPage";
 import SetPage from "./components/pages/SetPage";
 import HomeUserPage from "./components/pages/HomeUserPage";
 import SettingsPage from "./components/pages/SettingsPage";
+import CreateNewSetPage from "./components/pages/CreateNewSetPage";
 
 export type RouterListElementType = {
   url: string;
@@ -39,6 +40,11 @@ const routerList: RouterList = {
   SettingsPage: {
     url: "settings",
     component: SettingsPage,
+    isPublic: false,
+  },
+  CreateNewSetPage: {
+    url: "newSet",
+    component: CreateNewSetPage,
     isPublic: false,
   },
 };

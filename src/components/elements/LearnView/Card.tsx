@@ -48,7 +48,7 @@ const Card = () => {
                     </Stage>
                 </S.FrontSide>
                 <S.BackSide>
-                    {state.wordsArray[state.currentIndex].definition}
+                    {state.wordsArray[state.currentIndex].definitions}
                     <Stage currentStage={state.currentBackStage}>
                         {stagesComponents[ENUM_CARD_SIDE.BACK]}
                     </Stage>

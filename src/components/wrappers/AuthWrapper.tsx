@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import getCurrentUserTokens from "../../api/helpers/getCurrentUserTokens";
 import { Navigate } from "react-router-dom";
 import { AUTH_ENUM, AuthType } from "../../global/types";
 import authHeader from "../../api/helpers/authHeader";

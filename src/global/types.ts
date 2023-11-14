@@ -16,10 +16,19 @@ export const AUTH_ENUM = {
 
 export type WordType = {
   id: number;
-  definition: string[];
-  name: string[];
-  userWordLvl: number | null;
+  definitions: string[];
+  names: string[];
+  // userWordLvl: number | null;
+  exampleSentence: ExampleSentenceType;
 };
+
+export type ExampleSentenceType = (string | null)[];
+
+export type UpdateWordType = {
+  id: number;
+} & Partial<WordType>;
+
+export type CreateWordType = Partial<WordType>;
 
 export type Set = {
   id: number;
@@ -27,6 +36,27 @@ export type Set = {
   access: {
     role: number;
   };
+};
+
+export type ResponseDataType<T> = {
+  limit: number;
+  page_count: number;
+  current_page: number;
+  data: T;
+};
+
+export type QueryData = {
+  pageParams: undefined | number | string | unknown;
+  pages: ResponseDataType<Set[]>[];
+};
+
+export type ListElementProps = WordType & {
+  setChanges: (changes: Partial<WordType>) => void;
+};
+
+export type CreateWordApiArgsType = {
+  data: CreateWordType;
+  setId: number;
 };
 
 export type AuthType = keyof typeof AUTH_ENUM;

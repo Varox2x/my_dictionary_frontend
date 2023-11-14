@@ -10,7 +10,7 @@ export type ReducerActionType = keyof typeof ACTION_TYPES
 
 export type WordType = {
     name: string,
-    definition: string
+    definitions: string
 }
 
 export type StateType = {
@@ -29,35 +29,35 @@ export const INITIAL_STATE: StateType = {
     wordsArray: [
         {
             name: "Kot",
-            definition: "Cat"
+            definitions: "Cat"
         },
         {
             name: "Pies",
-            definition: "Dog"
+            definitions: "Dog"
         },
         {
             name: "Samochód",
-            definition: "Car"
+            definitions: "Car"
         },
         {
             name: "Telefon",
-            definition: "Phone"
+            definitions: "Phone"
         },
         {
             name: "Kotek",
-            definition: "Kitten"
+            definitions: "Kitten"
         },
         {
             name: "Piesek",
-            definition: "Puppy"
+            definitions: "Puppy"
         },
         {
             name: "Samolot",
-            definition: "Airplane"
+            definitions: "Airplane"
         },
         {
             name: "Telewizor",
-            definition: "Television"
+            definitions: "Television"
         }
     ],
     currentIndex: 1,

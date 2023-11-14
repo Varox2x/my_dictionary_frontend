@@ -40,7 +40,7 @@ const CardEscape = () => {
                     {state.wordsArray[calculatePreviousIndex()].name}
                 </S.FrontSide>
                 <S.BackSide>
-                    {state.wordsArray[calculatePreviousIndex()].definition}
+                    {state.wordsArray[calculatePreviousIndex()].definitions}
                 </S.BackSide>
             </S.CardContainer>
         </motion.div>

@@ -1,15 +1,16 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { ResponseDataType } from '../types';
+import { ResponseDataType } from '../../global/types';
 
-export const useGet = <T>(
-  fn: (page: number) => Promise<ResponseDataType<T>>,
+export const useGetSetWords = <T>(
+  fn: (page: number, id: number) => Promise<ResponseDataType<T>>,
   page: number,
+  id: number,
 ) => {
   const query = useQuery<ResponseDataType<T>, AxiosError>(
-    ['sets', page],
+    ['setswords', page],
     async () => {
-      return await fn(page)
+      return await fn(id, page)
         .then((r: ResponseDataType<T>) => {
           return r;
         })

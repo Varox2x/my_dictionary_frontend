@@ -26,7 +26,7 @@ function replaceHalfWithUnderscore(word: string) {
 const HintStage = () => {
 
     const state = useLearnView()
-    const hiddenWord = useMemo(() => replaceHalfWithUnderscore(state.wordsArray[state.currentIndex].definition), [state.wordsArray[state.currentIndex].definition]);
+    const hiddenWord = useMemo(() => replaceHalfWithUnderscore(state.wordsArray[state.currentIndex].definitions), [state.wordsArray[state.currentIndex].definitions]);
 
     return (
         <div>{hiddenWord}</div>
