@@ -5,6 +5,8 @@ import { ACTION_TYPES } from './Store/actionTypes';
 import { DIRECTION_ENUM, ENUM_CARD_SIDE } from './types';
 import Stage from './Stage';
 import { stagesComponents } from './stages/stagesComponents';
+import BackSide from './card/BackSide';
+import FrontSide from './card/FrontSide';
 
 
 const Card = () => {
@@ -41,18 +43,8 @@ const Card = () => {
             }}
         >
             <S.CardContainer $isrevert={state.cardSide !== ENUM_CARD_SIDE.FRONT} onClick={() => revertCard()}>
-                <S.FrontSide>
-                    {state.wordsArray[state.currentIndex].name}
-                    <Stage currentStage={state.currentFrontStage}>
-                        {stagesComponents[ENUM_CARD_SIDE.FRONT]}
-                    </Stage>
-                </S.FrontSide>
-                <S.BackSide>
-                    {state.wordsArray[state.currentIndex].definitions}
-                    <Stage currentStage={state.currentBackStage}>
-                        {stagesComponents[ENUM_CARD_SIDE.BACK]}
-                    </Stage>
-                </S.BackSide>
+                <FrontSide />
+                <BackSide />
             </S.CardContainer>
         </motion.div>
     )

@@ -37,7 +37,7 @@ const CardEscape = () => {
         >
             <S.CardContainer $isrevert={state.previousCardSide !== ENUM_CARD_SIDE.FRONT} >
                 <S.FrontSide>
-                    {state.wordsArray[calculatePreviousIndex()].name}
+                    {state.wordsArray[calculatePreviousIndex()].names}
                 </S.FrontSide>
                 <S.BackSide>
                     {state.wordsArray[calculatePreviousIndex()].definitions}

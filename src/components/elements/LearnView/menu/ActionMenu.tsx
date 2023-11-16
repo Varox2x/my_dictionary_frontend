@@ -12,6 +12,10 @@ const ActionMenu = () => {
         dispatch({ type: ACTION_TYPES.CHANGE_FRONT_STAGE, payload: stageName })
     }
 
+    const handleExampleButton = () => {
+        dispatch({ type: ACTION_TYPES.CHANGE_BACK_STAGE, payload: ENUM_STAGES_NAMES.EXAMPLE })
+    }
+
     const handleHintButton = () => {
         if (state.currentBackStage !== ENUM_STAGES_NAMES.HINT) {
             dispatch({ type: ACTION_TYPES.REVERT_CARD })
@@ -32,10 +36,17 @@ const ActionMenu = () => {
         return true
     }
 
+    const isExampleSentence = () => {
+        if (state.wordsArray[state.currentIndex].exampleSentence && state.wordsArray[state.currentIndex].exampleSentence.length > 0) {
+            return false
+        }
+        return true
+    }
+
     return (
         <S.ActionMenuWrapper>
             <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} onClick={() => handleButton(ENUM_STAGES_NAMES.INPUT)}>text</S.ActionMenuButton>
-            <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} onClick={() => handleButton(ENUM_STAGES_NAMES.EXAMPLE)}>example</S.ActionMenuButton>
+            <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.BACK) || isExampleSentence()} onClick={() => handleExampleButton()}>example</S.ActionMenuButton>
             <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} onClick={() => handleButton(ENUM_STAGES_NAMES.DEFAULT)}>hide</S.ActionMenuButton>
             <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} onClick={() => handleHintButton()}>hint {state.currentBackStage == ENUM_STAGES_NAMES.HINT ? "active" : "no active"}</S.ActionMenuButton>
             <S.ActionMenuButton onClick={() => handleShuffleButton()}>shuffle</S.ActionMenuButton>

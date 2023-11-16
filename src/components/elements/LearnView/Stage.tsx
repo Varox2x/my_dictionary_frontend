@@ -12,6 +12,10 @@ const Stage = ({ children, currentStage }: Props) => {
 
 
     function findIndexByName(): number {
+        console.log("currentStage")
+        console.log(currentStage)
+        console.log("children")
+        console.log(children)
         if (currentStage == ENUM_STAGES_NAMES.DEFAULT) return 0
         for (let i = 0; i < children.length; i++) {
             if (children[i].name === currentStage) {

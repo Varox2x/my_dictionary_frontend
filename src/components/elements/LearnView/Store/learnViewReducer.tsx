@@ -1,17 +1,15 @@
+import { WordType } from "../../../../global/types";
 import { CardSideType, DIRECTION_ENUM, DirectionType, ENUM_CARD_SIDE, ENUM_STAGES_NAMES, StagesNamesType } from "../types";
 import { ACTION_TYPES } from "./actionTypes";
 
 export type ActionType = {
     type: ReducerActionType,
-    payload?: DirectionType | number | StagesNamesType
+    payload?: DirectionType | number | StagesNamesType | WordType[]
 }
 
 export type ReducerActionType = keyof typeof ACTION_TYPES
 
-export type WordType = {
-    name: string,
-    definitions: string
-}
+
 
 export type StateType = {
     cardSide: CardSideType,
@@ -28,39 +26,13 @@ export const INITIAL_STATE: StateType = {
     previousCardSide: ENUM_CARD_SIDE.FRONT,
     wordsArray: [
         {
-            name: "Kot",
-            definitions: "Cat"
+            names: ["Kot", "Kotek"],
+            definitions: ["Cat"],
+            id: 1,
+            exampleSentence: ["a"]
         },
-        {
-            name: "Pies",
-            definitions: "Dog"
-        },
-        {
-            name: "Samochód",
-            definitions: "Car"
-        },
-        {
-            name: "Telefon",
-            definitions: "Phone"
-        },
-        {
-            name: "Kotek",
-            definitions: "Kitten"
-        },
-        {
-            name: "Piesek",
-            definitions: "Puppy"
-        },
-        {
-            name: "Samolot",
-            definitions: "Airplane"
-        },
-        {
-            name: "Telewizor",
-            definitions: "Television"
-        }
     ],
-    currentIndex: 1,
+    currentIndex: 0,
     currentFrontStage: ENUM_STAGES_NAMES.STAGE_DISABLE,
     currentBackStage: ENUM_STAGES_NAMES.STAGE_DISABLE,
     enterDirection: DIRECTION_ENUM.LEFT,
@@ -100,9 +72,6 @@ export const learnViewReducer = (state: StateType, action: ActionType): StateTyp
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.ROLL_CARD} action`)
             }
-            if (!(action.payload in DIRECTION_ENUM)) {
-                throw new Error(`invalid payload in ${ACTION_TYPES.ROLL_CARD} action`)
-            }
             return rollCard(action.payload as DirectionType, state)
         case ACTION_TYPES.CHANGE_FRONT_STAGE:
             if (!action.payload) {
@@ -120,6 +89,11 @@ export const learnViewReducer = (state: StateType, action: ActionType): StateTyp
                 throw new Error(`action.payload wrong in ${ACTION_TYPES.CHANGE_BACK_STAGE} action`)
             }
             return { ...state, currentBackStage: action.payload as StagesNamesType }
+        case ACTION_TYPES.SET_WORDS:
+            if (!action.payload) {
+                throw new Error(`action.payload missing in ${ACTION_TYPES.SET_WORDS} action`)
+            }
+            return { ...state, wordsArray: action.payload as WordType[] }
         default:
             return state;
     }
