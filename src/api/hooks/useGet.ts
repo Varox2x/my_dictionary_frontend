@@ -8,7 +8,7 @@ export const useGetSetWords = <T>(
   id: number,
 ) => {
   const query = useQuery<ResponseDataType<T>, AxiosError>(
-    ['setswords', page],
+    ['setswords', id],
     async () => {
       return await fn(id, page)
         .then((r: ResponseDataType<T>) => {

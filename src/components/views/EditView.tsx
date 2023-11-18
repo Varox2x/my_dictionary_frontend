@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import * as S from '../elements/EditView/elements'
 import { getSetWords, updateWordsBulk } from '../../api/setApi'
-import { useGetSetWords } from '../../api/hooks/useGet'
-import { UpdateWordType, WordType } from '../../global/types'
+import { CreateWordApiArgsType, ResponseDataType, UpdateBulkWordApiArgsType, UpdateWordType, WordType } from '../../global/types'
 import List from '../elements/EditView/List'
 import ListElement from '../elements/EditView/listElement/ListElement'
 import { useDispatchEditView, useEditView } from '../elements/EditView/Store/EditViewProvider'
@@ -10,14 +9,36 @@ import { ACTION_TYPES } from '../elements/EditView/Store/actionTypes'
 import { ENUM_WORD_RESOURCE } from '../elements/EditView/types'
 import CreateWordElement from '../elements/EditView/createWord/CreateWord'
 import Modal from '../elements/global/Modal'
+import { useGetSetWords } from '../../api/hooks/useGet'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
 
+type Props = {
+    setId: number
+}
 
-
-const EditView = () => {
+const EditView = ({ setId }: Props) => {
     const state = useEditView()
     const dispatch = useDispatchEditView();
-    const { data, isLoading, dataUpdatedAt } = useGetSetWords<WordType[]>(getSetWords, 1, 87)
+    const queryClient = useQueryClient()
     const [displayCreateWordPopup, setDisplayCreateWordPopup] = useState<boolean>(false)
+    const { data, isLoading, dataUpdatedAt } = useGetSetWords<WordType[]>(getSetWords, 1, setId)
+
+    const {
+        mutate,
+    } = useMutation<AxiosResponse, Error, UpdateBulkWordApiArgsType>({
+        mutationFn: updateWordsBulk,
+        onSuccess: () => {
+            queryClient.setQueryData<ResponseDataType<WordType[]>>(
+                ['setswords', setId],
+                (data: ResponseDataType<WordType[]> | undefined) => {
+                    if (!data) return undefined
+                    data.data = state.words
+                    return data
+                }
+            )
+        },
+    })
 
     useEffect(() => {
         if (data?.data) {
@@ -42,11 +63,8 @@ const EditView = () => {
                 if (isNewValue) return diff = [...diff, wordDiff]
             }
         })
-        console.log(diff)
         if (diff.length > 0) {
-            updateWordsBulk(diff, 87).then(r => {
-                console.log(r)
-            })
+            mutate({ data: diff, setId })
         }
     }
 
@@ -56,7 +74,6 @@ const EditView = () => {
             {!isLoading && state.words && <List<WordType> items={state.words} itemComponent={ListElement} />}
             <button onClick={() => handleSave()} >SAVE</button>
             <button onClick={() => setDisplayCreateWordPopup(prev => !prev)} >Create New Word</button>
-            {/* {displayCreateWordPopup && <CreateWordElement />} */}
             <Modal shouldShow={displayCreateWordPopup} onRequestClose={() => setDisplayCreateWordPopup(false)} ><CreateWordElement /></Modal>
         </S.Wrapper>
 

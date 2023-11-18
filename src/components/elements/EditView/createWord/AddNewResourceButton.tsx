@@ -10,7 +10,6 @@ const AddNewResourceButton = ({ wordResource, setData }: Props) => {
 
     const handleClick = () => {
         setData(prev => {
-            console.log(prev)
             return {
                 ...prev,
                 [wordResource]: [...prev[wordResource], ""]

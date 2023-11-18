@@ -3,6 +3,7 @@ import {
   CreateWordApiArgsType,
   CreateWordType,
   ResponseDataType,
+  UpdateBulkWordApiArgsType,
   UpdateWordType,
   WordType,
 } from '../global/types';
@@ -27,10 +28,10 @@ export const getSetWords = async (
   return axiosInstance.get(`${config.API_URL}/sets/${setId}?page=${page}`);
 };
 
-export const updateWordsBulk = async (
-  data: UpdateWordType[],
-  setId: number,
-): Promise<AxiosResponse> => {
+export const updateWordsBulk = async ({
+  data,
+  setId,
+}: UpdateBulkWordApiArgsType): Promise<AxiosResponse> => {
   return axiosInstance.patch(`${config.API_URL}/sets/${setId}/words`, { data });
 };
 
@@ -43,6 +44,6 @@ export const createWord = async ({
   });
 };
 
-export const deleteWord = async (wordId: number): void => {
+export const deleteWord = async (wordId: number): Promise<void> => {
   return axiosInstance.delete(`${config.API_URL}/sets/words/${wordId}`);
 };

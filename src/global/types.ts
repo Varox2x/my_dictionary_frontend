@@ -59,5 +59,10 @@ export type CreateWordApiArgsType = {
   setId: number;
 };
 
+export type UpdateBulkWordApiArgsType = {
+  data: UpdateWordType[];
+  setId: number;
+};
+
 export type AuthType = keyof typeof AUTH_ENUM;
 export type ModeType = keyof typeof MODE_ENUM;

@@ -28,7 +28,7 @@ const routerList: RouterList = {
     isPublic: true,
   },
   SetPage: {
-    url: "set",
+    url: "set/:id",
     component: SetPage,
     isPublic: false,
   },

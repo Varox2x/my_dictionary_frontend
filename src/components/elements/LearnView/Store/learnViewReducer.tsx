@@ -25,12 +25,6 @@ export const INITIAL_STATE: StateType = {
     cardSide: ENUM_CARD_SIDE.FRONT,
     previousCardSide: ENUM_CARD_SIDE.FRONT,
     wordsArray: [
-        {
-            names: ["Kot", "Kotek"],
-            definitions: ["Cat"],
-            id: 1,
-            exampleSentence: ["a"]
-        },
     ],
     currentIndex: 0,
     currentFrontStage: ENUM_STAGES_NAMES.STAGE_DISABLE,

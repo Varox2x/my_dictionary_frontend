@@ -5,6 +5,7 @@ import SingleResourceRow from "./SingleResourceRow"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { createWord } from "../../../../api/setApi"
 import { CreateWordApiArgsType, ResponseDataType, WordType } from "../../../../global/types"
+import { useParams } from "react-router-dom"
 
 export type NewWordType = {
     names: string[],
@@ -20,15 +21,16 @@ const CreateWord = () => {
 
     const [data, setData] = useState<NewWordType>({ names: [""], definitions: [""], exampleSentence: [""] })
     const queryClient = useQueryClient()
+    const { id: setId } = useParams();
 
     const {
         mutate
     } = useMutation<WordType, Error, CreateWordApiArgsType>({
         mutationFn: createWord,
-        mutationKey: ['setswords', 1],
+        mutationKey: ['setswords', Number(setId)],
         onSuccess: (newData: WordType) => {
             queryClient.setQueryData<ResponseDataType<WordType[]>>(
-                ['setswords', 1],
+                ['setswords', Number(setId)],
                 (data: ResponseDataType<WordType[]> | undefined) => {
                     if (!data) return undefined
                     data.data = [...data.data, newData]
@@ -43,10 +45,9 @@ const CreateWord = () => {
         const resourcesToCheck = [...Object.values(ENUM_WORD_RESOURCE)]
         resourcesToCheck.forEach(resource => {
             const singleResource = [...data[resource].filter(el => el != '')]
-            console.log(singleResource)
             formattedData[resource] = singleResource
         })
-        mutate({ data: formattedData, setId: 87 })
+        mutate({ data: formattedData, setId: Number(setId) })
         setData({ names: [""], definitions: [""], exampleSentence: [""] })
     }
 

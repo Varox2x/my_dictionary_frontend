@@ -8,7 +8,6 @@ const FrontSide = () => {
 
     const state = useLearnView()
 
-
     return (
         <S.FrontSide>
             {state.wordsArray[state.currentIndex].names.map((el, index) => {

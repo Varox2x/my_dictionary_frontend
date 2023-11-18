@@ -14,7 +14,7 @@ const ExampleSentenceStage = () => {
         <div>
             <ul>
                 {state.wordsArray[state.currentIndex].exampleSentence.map((el, index) => {
-                    return <li>{el}</li>
+                    return <li key={index}>{el}</li>
                 })}
             </ul>
         </div>

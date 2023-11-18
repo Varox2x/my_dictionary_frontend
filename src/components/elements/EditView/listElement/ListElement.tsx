@@ -10,6 +10,7 @@ import { ENUM_WORD_RESOURCE } from "../types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { deleteWord } from "../../../../api/setApi";
+import { useParams } from "react-router-dom";
 
 type Props = WordType
 
@@ -19,6 +20,7 @@ const ListElement: React.FunctionComponent<Props> = ({
     names,
     exampleSentence
 }) => {
+    const { id: setId } = useParams();
 
     const [showDetails, setShowDetails] = useState<boolean>(false)
     const dispatch = useDispatchEditView();
@@ -27,10 +29,10 @@ const ListElement: React.FunctionComponent<Props> = ({
         mutate
     } = useMutation<AxiosResponse, Error, number>({
         mutationFn: deleteWord,
-        mutationKey: ['setswords', 1],
+        mutationKey: ['setswords', Number(setId)],
         onSuccess: () => {
             queryClient.setQueryData<ResponseDataType<WordType[]>>(
-                ['setswords', 1],
+                ['setswords', Number(setId)],
                 (data: ResponseDataType<WordType[]> | undefined) => {
                     if (!data) return undefined
                     data.data = [...data.data.filter(el => el.id != id)]
