@@ -1,4 +1,4 @@
-import { WordResoureType } from "../types"
+import { WordResoureType } from "../../types"
 import { NewWordType } from "./CreateWord"
 
 type Props = {

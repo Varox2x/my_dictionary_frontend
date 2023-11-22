@@ -1,10 +1,10 @@
 import { useState } from "react"
-import * as S from "../elements"
-import { ENUM_WORD_RESOURCE } from "../types"
+import * as S from "../../elements"
+import { ENUM_WORD_RESOURCE } from "../../types"
 import SingleResourceRow from "./SingleResourceRow"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { createWord } from "../../../../api/setApi"
-import { CreateWordApiArgsType, ResponseDataType, WordType } from "../../../../global/types"
+import { createWord } from "../../../../../api/setApi"
+import { CreateWordApiArgsType, ResponseDataType, WordType } from "../../../../../global/types"
 import { useParams } from "react-router-dom"
 
 export type NewWordType = {

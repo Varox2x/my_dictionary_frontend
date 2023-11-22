@@ -1,7 +1,7 @@
 import React from 'react'
-import { WordResoureType } from '../types'
+import { WordResoureType } from '../../types'
 import AddNewResourceButton from './AddNewResourceButton'
-import * as S from "../elements"
+import * as S from "../../elements"
 import { NewWordType } from './CreateWord'
 
 type Props = {

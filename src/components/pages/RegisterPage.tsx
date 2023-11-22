@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { LoginBodyType } from '../../global/types';
 import { register } from '../../api/authApi';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
 
     const handleRegister: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void = (e) => {
         e.preventDefault();
         register(formData).then((r) => {
             if (r) {
+                navigate('/home')
                 console.log("login success");
             } else {
                 console.log("wring data");

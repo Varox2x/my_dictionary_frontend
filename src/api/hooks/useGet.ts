@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { ResponseDataType } from '../../global/types';
+import { ResponseDataType, RoleType } from '../../global/types';
+import { getSetAccesses } from '../setApi';
 
 export const useGetSetWords = <T>(
   fn: (page: number, id: number) => Promise<ResponseDataType<T>>,
@@ -27,12 +28,13 @@ export const useGetSetWords = <T>(
 };
 
 export const useGetInfinite = <T>(
-  fn: (page: number) => Promise<ResponseDataType<T>>,
+  fn: (page: number, role: RoleType) => Promise<ResponseDataType<T>>,
+  role: RoleType,
 ) => {
   const query = useInfiniteQuery<ResponseDataType<T>, AxiosError>(
-    ['sets'],
+    ['sets', role],
     async ({ pageParam = 1 }) => {
-      return await fn(pageParam)
+      return await fn(pageParam, role)
         .then((r: ResponseDataType<T>) => {
           return r;
         })
@@ -49,5 +51,20 @@ export const useGetInfinite = <T>(
     },
   );
 
+  return { ...query };
+};
+
+export const useGetSetAccesses = (
+  page: number,
+  role: RoleType,
+  setId: number,
+) => {
+  const query = useQuery(
+    ['accesses', role, page],
+    async () => getSetAccesses(role, page, setId),
+    {
+      keepPreviousData: true,
+    },
+  );
   return { ...query };
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createSet } from '../../api/setApi'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Set } from '../../global/types'
+import { ROLE_ENUM, Set } from '../../global/types'
 import { QueryData } from '../../global/types'
 
 
@@ -17,7 +17,7 @@ const CreateNewSetPage = () => {
         mutationFn: createSet,
         onSuccess: (newData: Set) => {
             queryClient.setQueryData<QueryData>(
-                ['sets'],
+                ['sets', ROLE_ENUM.OWNER],
                 (data: QueryData | undefined) => {
                     if (!data) return undefined
                     if (data?.pages.length == 0) return data

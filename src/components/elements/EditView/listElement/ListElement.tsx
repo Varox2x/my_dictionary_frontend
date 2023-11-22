@@ -8,7 +8,6 @@ import ExampleSentenceElement from "./ExampleSentenceElement";
 import ExposedRow from "./ExposedRow";
 import { ENUM_WORD_RESOURCE } from "../types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
 import { deleteWord } from "../../../../api/setApi";
 import { useParams } from "react-router-dom";
 
@@ -27,7 +26,7 @@ const ListElement: React.FunctionComponent<Props> = ({
     const queryClient = useQueryClient()
     const {
         mutate
-    } = useMutation<AxiosResponse, Error, number>({
+    } = useMutation<void, Error, number>({
         mutationFn: deleteWord,
         mutationKey: ['setswords', Number(setId)],
         onSuccess: () => {

@@ -2,13 +2,15 @@ import { Sidebar as ProTypesSidebar, Menu, MenuItem, SubMenu } from 'react-pro-s
 import * as S from "./elements"
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import routerList from '../../../routerList';
-import { MODE_ENUM, Set } from '../../../global/types';
+import { MODE_ENUM, ROLE_ENUM, Set } from '../../../global/types';
 import { useDispatchStore } from '../../../store/StoreProvider';
 import { ACTION_TYPES } from '../../../store/actionTypes';
 import { useGetInfinite } from '../../../api/hooks/useGet';
 import { getCurrentUserSets } from '../../../api/setApi';
 import { QueryData } from '../../../global/types';
 import { useEffect, useState } from 'react';
+import SetsList from './SetsList';
+import useHasPermission from '../../../global/hooks/useHasPermission';
 
 const flatQueryDataToArray = (queryData: QueryData): Set[] => {
     let setArray: Set[] = []
@@ -25,16 +27,15 @@ const flatQueryDataToArray = (queryData: QueryData): Set[] => {
 
 const Sidebar = () => {
 
-    const navigate = useNavigate();
     const dispatch = useDispatchStore()
-    const { data, isLoading, hasNextPage, fetchNextPage } = useGetInfinite<Set[]>(getCurrentUserSets);
     const [modeDisabled, setModeDisabled] = useState<boolean>(true)
-    const { id } = useParams();
+    const { id: setId } = useParams();
+    const { editable } = useHasPermission(Number(setId))
 
     useEffect(() => {
-        if (id) setModeDisabled(false)
-        if (!id) setModeDisabled(true)
-    }, [id])
+        if (setId) setModeDisabled(false)
+        if (!setId) setModeDisabled(true)
+    }, [setId])
 
     return (
         <ProTypesSidebar
@@ -46,7 +47,7 @@ const Sidebar = () => {
             </S.MenuTitleWrapper>
             <Menu>
                 <MenuItem disabled={modeDisabled} onClick={() => dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.LEARN })} > Learn</MenuItem>
-                <MenuItem disabled={modeDisabled} onClick={() => dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.EDIT })} > Edit</MenuItem>
+                <MenuItem disabled={modeDisabled || !editable} onClick={() => dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.EDIT })} > Edit</MenuItem>
             </Menu>
             <S.MenuTitleWrapper>
                 <S.MenuTitle>
@@ -55,17 +56,9 @@ const Sidebar = () => {
             </S.MenuTitleWrapper>
             <Menu>
                 <MenuItem component={<Link to={`/${routerList.CreateNewSetPage.url}`} />}> Create new set</MenuItem>
-                <SubMenu label="My sets">
-                    {!isLoading && data && flatQueryDataToArray(data).map((set) => {
-                        return < MenuItem onClick={() => navigate(`set/${set.id}`)} key={set.id}   > {set.name}</MenuItem>
-                    }
-                    )}
-                    {hasNextPage && <MenuItem onMouseEnter={async () => await fetchNextPage()} key={"more"}>more...</MenuItem>}
-                </SubMenu>
-                <SubMenu label="Watching sets">
-                    <MenuItem> zestaw kogos innego </MenuItem>
-                    <MenuItem> zestaw kogos innego </MenuItem>
-                </SubMenu>
+                <SetsList labelName='Your Sets' role={ROLE_ENUM.OWNER} />
+                <SetsList labelName='Editable Sets' role={ROLE_ENUM.EDITABLE} />
+                <SetsList labelName='Sets Only To Learn' role={ROLE_ENUM.READ_ONLY} />
                 <S.MenuTitleWrapper>
                     <S.MenuTitle>
                         User

@@ -3,6 +3,15 @@ export const MODE_ENUM = {
   EDIT: 'EDIT',
 } as const;
 
+export const ROLE_ENUM = {
+  OWNER: 1,
+  READ_ONLY: 2,
+  EDITABLE: 3,
+} as const;
+
+type RoleKeyType = keyof typeof ROLE_ENUM;
+export type RoleType = (typeof ROLE_ENUM)[RoleKeyType];
+
 export type LoginBodyType = {
   email: string;
   password: string;
@@ -38,6 +47,14 @@ export type Set = {
   };
 };
 
+export type AccessType = {
+  role: RoleKeyType;
+  user: {
+    id: number;
+    email: string;
+  };
+};
+
 export type ResponseDataType<T> = {
   limit: number;
   page_count: number;
@@ -62,6 +79,17 @@ export type CreateWordApiArgsType = {
 export type UpdateBulkWordApiArgsType = {
   data: UpdateWordType[];
   setId: number;
+};
+
+export type DeleteSetAccessesApiArgsType = {
+  setId: number;
+  userId: number;
+};
+
+export type CrreateSetAccessesApiArgsType = {
+  setId: number;
+  email: string;
+  role: RoleType;
 };
 
 export type AuthType = keyof typeof AUTH_ENUM;

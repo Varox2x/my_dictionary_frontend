@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react'
 import * as S from '../elements/EditView/elements'
 import { getSetWords, updateWordsBulk } from '../../api/setApi'
-import { CreateWordApiArgsType, ResponseDataType, UpdateBulkWordApiArgsType, UpdateWordType, WordType } from '../../global/types'
+import { ResponseDataType, UpdateBulkWordApiArgsType, UpdateWordType, WordType } from '../../global/types'
 import List from '../elements/EditView/List'
 import ListElement from '../elements/EditView/listElement/ListElement'
 import { useDispatchEditView, useEditView } from '../elements/EditView/Store/EditViewProvider'
 import { ACTION_TYPES } from '../elements/EditView/Store/actionTypes'
 import { ENUM_WORD_RESOURCE } from '../elements/EditView/types'
-import CreateWordElement from '../elements/EditView/createWord/CreateWord'
+import CreateWordElement from '../elements/EditView/modalContent/createWord/CreateWord'
 import Modal from '../elements/global/Modal'
 import { useGetSetWords } from '../../api/hooks/useGet'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
+import { EditWordPopupType, ENUM_EDIT_VIEW_POPUP } from '../elements/EditView/types'
+import SetSettings from '../elements/EditView/modalContent/setSettings/SetSettings'
+import useHasPermission from '../../global/hooks/useHasPermission'
 
 type Props = {
     setId: number
@@ -21,8 +24,10 @@ const EditView = ({ setId }: Props) => {
     const state = useEditView()
     const dispatch = useDispatchEditView();
     const queryClient = useQueryClient()
-    const [displayCreateWordPopup, setDisplayCreateWordPopup] = useState<boolean>(false)
+    const [activePopup, setActivePopup] = useState<EditWordPopupType>(ENUM_EDIT_VIEW_POPUP.NONE)
     const { data, isLoading, dataUpdatedAt } = useGetSetWords<WordType[]>(getSetWords, 1, setId)
+    const { removable } = useHasPermission(Number(setId))
+
 
     const {
         mutate,
@@ -71,10 +76,12 @@ const EditView = ({ setId }: Props) => {
 
     return (
         <S.Wrapper>
-            {!isLoading && state.words && <List<WordType> items={state.words} itemComponent={ListElement} />}
+            {!isLoading && state.words && <List<WordType > items={state.words} itemComponent={ListElement} />}
             <button onClick={() => handleSave()} >SAVE</button>
-            <button onClick={() => setDisplayCreateWordPopup(prev => !prev)} >Create New Word</button>
-            <Modal shouldShow={displayCreateWordPopup} onRequestClose={() => setDisplayCreateWordPopup(false)} ><CreateWordElement /></Modal>
+            <button onClick={() => setActivePopup(ENUM_EDIT_VIEW_POPUP.CREATE_WORD)} >Create New Word</button>
+            <button disabled={!removable} onClick={() => setActivePopup(ENUM_EDIT_VIEW_POPUP.SET_SETTINGS)} >Set's settings</button>
+            <Modal shouldShow={activePopup === ENUM_EDIT_VIEW_POPUP.CREATE_WORD} onRequestClose={() => setActivePopup(ENUM_EDIT_VIEW_POPUP.NONE)} ><CreateWordElement /></Modal>
+            <Modal shouldShow={activePopup === ENUM_EDIT_VIEW_POPUP.SET_SETTINGS} onRequestClose={() => setActivePopup(ENUM_EDIT_VIEW_POPUP.NONE)} ><SetSettings setId={setId} /></Modal>
         </S.Wrapper>
 
     );
