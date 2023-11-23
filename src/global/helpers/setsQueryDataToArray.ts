@@ -1,7 +1,7 @@
-import { QueryData, Set } from '../types';
+import { QueryData, SetType } from '../types';
 
-const setsQueryDataToArray = (queryData: QueryData): Set[] => {
-  let setArray: Set[] = [];
+const setsQueryDataToArray = (queryData: QueryData): SetType[] => {
+  let setArray: SetType[] = [];
   if (!queryData) return [];
   queryData.pages.forEach((responseData) => {
     if (!responseData.data || !Array.isArray(responseData.data)) return;

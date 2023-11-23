@@ -1,26 +1,26 @@
 import config from '../config';
 import {
   AccessType,
-  CreateSetAccessesApiArgsType,
   CreateWordApiArgsType,
+  CrreateSetAccessesApiArgsType,
   DeleteSetAccessesApiArgsType,
   ResponseDataType,
   RoleType,
   UpdateBulkWordApiArgsType,
   WordType,
 } from '../global/types';
-import { Set } from '../global/types';
+import { SetType } from '../global/types';
 import axiosInstance from './axiosInstance';
 import { AxiosResponse } from 'axios';
 
 export const getCurrentUserSets = async (
   page: number,
   role: number,
-): Promise<ResponseDataType<Set[]>> => {
+): Promise<ResponseDataType<SetType[]>> => {
   return axiosInstance.get(`${config.API_URL}/sets?role=${role}&page=${page}`);
 };
 
-export const createSet = async (name: string): Promise<Set> => {
+export const createSet = async (name: string): Promise<SetType> => {
   return axiosInstance.post(`${config.API_URL}/sets`, { name });
 };
 
@@ -59,7 +59,7 @@ export const createSetAccess = async ({
   setId,
   email,
   role,
-}: CreateSetAccessesApiArgsType): Promise<AccessType> => {
+}: CrreateSetAccessesApiArgsType): Promise<AccessType> => {
   return axiosInstance.post(`${config.API_URL}/accesses/${setId}`, {
     email,
     role,

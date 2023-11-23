@@ -1,5 +1,5 @@
 import { MenuItem, SubMenu } from "react-pro-sidebar"
-import { RoleType, Set } from "../../../global/types"
+import { RoleType, SetType } from "../../../global/types"
 import { getCurrentUserSets } from "../../../api/setApi"
 import { useNavigate } from "react-router-dom"
 import setsQueryDataToArray from "../../../global/helpers/setsQueryDataToArray"
@@ -17,7 +17,7 @@ const SetsList = ({
     labelName
 }: Props) => {
     const navigate = useNavigate();
-    const { data, isLoading, hasNextPage, fetchNextPage } = useGetInfinite<Set[]>(getCurrentUserSets, role);
+    const { data, isLoading, hasNextPage, fetchNextPage } = useGetInfinite<SetType[]>(getCurrentUserSets, role);
 
 
     return (

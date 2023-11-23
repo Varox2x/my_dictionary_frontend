@@ -39,7 +39,7 @@ export type UpdateWordType = {
 
 export type CreateWordType = Partial<WordType>;
 
-export type Set = {
+export type SetType = {
   id: number;
   name: string;
   access: {
@@ -64,7 +64,7 @@ export type ResponseDataType<T> = {
 
 export type QueryData = {
   pageParams: undefined | number | string | unknown;
-  pages: ResponseDataType<Set[]>[];
+  pages: ResponseDataType<SetType[]>[];
 };
 
 export type ListElementProps = WordType & {
