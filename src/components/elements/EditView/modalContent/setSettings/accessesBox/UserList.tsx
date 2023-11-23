@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import { useGetSetAccesses } from "../../../../../../api/hooks/useGet"
 import { ROLE_ENUM, RoleType } from "../../../../../../global/types"
 import ListElement from "./ListElement"
-import Pagination from "./Pagination"
+import { useGetSetAccesses } from "../../../../../../api/hooks/queries/useGetSetAccesses"
 
 type Props = {
     role: RoleType,

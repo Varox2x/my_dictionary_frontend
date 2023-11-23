@@ -1,28 +1,13 @@
-import { Sidebar as ProTypesSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Sidebar as ProTypesSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import * as S from "./elements"
-import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import routerList from '../../../routerList';
-import { MODE_ENUM, ROLE_ENUM, Set } from '../../../global/types';
+import { MODE_ENUM, ROLE_ENUM } from '../../../global/types';
 import { useDispatchStore } from '../../../store/StoreProvider';
 import { ACTION_TYPES } from '../../../store/actionTypes';
-import { useGetInfinite } from '../../../api/hooks/useGet';
-import { getCurrentUserSets } from '../../../api/setApi';
-import { QueryData } from '../../../global/types';
 import { useEffect, useState } from 'react';
 import SetsList from './SetsList';
 import useHasPermission from '../../../global/hooks/useHasPermission';
-
-const flatQueryDataToArray = (queryData: QueryData): Set[] => {
-    let setArray: Set[] = []
-    queryData.pages.forEach((responseData) => {
-        if (!responseData.data || !Array.isArray(responseData.data)) return
-        responseData.data.forEach(set => {
-            if (!setArray.some(item => item.id === set.id)) setArray = [...setArray, set]
-        });
-    })
-    return setArray
-}
-
 
 
 const Sidebar = () => {

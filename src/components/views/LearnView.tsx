@@ -10,7 +10,7 @@ import { useDispatchLearnView, useLearnView } from '../elements/LearnView/Store/
 import { ACTION_TYPES } from '../elements/LearnView/Store/actionTypes'
 import { WordType } from '../../global/types'
 import { getSetWords } from '../../api/setApi'
-import { useGetSetWords } from '../../api/hooks/useGet'
+import { useGetSetWords } from '../../api/hooks/queries/useGetSetWords'
 
 type Props = {
     setId: number

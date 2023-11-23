@@ -1,9 +1,9 @@
 import { MenuItem, SubMenu } from "react-pro-sidebar"
-import { QueryData, RoleType, Set } from "../../../global/types"
-import { useGetInfinite } from "../../../api/hooks/useGet"
+import { RoleType, Set } from "../../../global/types"
 import { getCurrentUserSets } from "../../../api/setApi"
 import { useNavigate } from "react-router-dom"
 import setsQueryDataToArray from "../../../global/helpers/setsQueryDataToArray"
+import { useGetInfinite } from "../../../api/hooks/queries/useGetInfinite"
 
 
 

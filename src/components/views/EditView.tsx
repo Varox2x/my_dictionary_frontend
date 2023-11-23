@@ -9,11 +9,11 @@ import { ACTION_TYPES } from '../elements/EditView/Store/actionTypes'
 import { ENUM_WORD_RESOURCE } from '../elements/EditView/types'
 import CreateWordElement from '../elements/EditView/modalContent/createWord/CreateWord'
 import Modal from '../elements/global/Modal'
-import { useGetSetWords } from '../../api/hooks/useGet'
 import { EditWordPopupType, ENUM_EDIT_VIEW_POPUP } from '../elements/EditView/types'
 import SetSettings from '../elements/EditView/modalContent/setSettings/SetSettings'
 import useHasPermission from '../../global/hooks/useHasPermission'
 import { useUpdateWordsBulk } from '../../api/hooks/mutations/useUpdateWordsBulk'
+import { useGetSetWords } from '../../api/hooks/queries/useGetSetWords'
 
 type Props = {
     setId: number
