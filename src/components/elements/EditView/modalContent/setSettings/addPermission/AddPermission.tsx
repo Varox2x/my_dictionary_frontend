@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
-import { createSetAccess } from "../../../../../../api/setApi"
-import { AccessType, CrreateSetAccessesApiArgsType, ROLE_ENUM, ResponseDataType, RoleType } from "../../../../../../global/types"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { ROLE_ENUM, RoleType } from "../../../../../../global/types"
+import { useCreateSetAccess } from "../../../../../../api/hooks/mutations/useCreateSetAccess"
 
 type Props = {
     setId: number,
@@ -10,18 +9,11 @@ type Props = {
 const AddPermission = ({ setId }: Props) => {
 
     const [email, setEmail] = useState<string>("")
-
-    const queryClient = useQueryClient()
     const [selectedRole, setSelectedRole] = useState<RoleType | null>(null)
 
     const {
         mutate
-    } = useMutation<AccessType, Error, CrreateSetAccessesApiArgsType>({
-        mutationFn: createSetAccess,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['accesses'] })
-        },
-    })
+    } = useCreateSetAccess()
 
     useEffect(() => {
         if (selectedRole) {

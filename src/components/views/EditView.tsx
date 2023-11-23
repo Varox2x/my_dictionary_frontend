@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import * as S from '../elements/EditView/elements'
-import { getSetWords, updateWordsBulk } from '../../api/setApi'
-import { ResponseDataType, UpdateBulkWordApiArgsType, UpdateWordType, WordType } from '../../global/types'
+import { getSetWords } from '../../api/setApi'
+import { UpdateWordType, WordType } from '../../global/types'
 import List from '../elements/EditView/List'
 import ListElement from '../elements/EditView/listElement/ListElement'
 import { useDispatchEditView, useEditView } from '../elements/EditView/Store/EditViewProvider'
@@ -10,11 +10,10 @@ import { ENUM_WORD_RESOURCE } from '../elements/EditView/types'
 import CreateWordElement from '../elements/EditView/modalContent/createWord/CreateWord'
 import Modal from '../elements/global/Modal'
 import { useGetSetWords } from '../../api/hooks/useGet'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
 import { EditWordPopupType, ENUM_EDIT_VIEW_POPUP } from '../elements/EditView/types'
 import SetSettings from '../elements/EditView/modalContent/setSettings/SetSettings'
 import useHasPermission from '../../global/hooks/useHasPermission'
+import { useUpdateWordsBulk } from '../../api/hooks/mutations/useUpdateWordsBulk'
 
 type Props = {
     setId: number
@@ -23,7 +22,6 @@ type Props = {
 const EditView = ({ setId }: Props) => {
     const state = useEditView()
     const dispatch = useDispatchEditView();
-    const queryClient = useQueryClient()
     const [activePopup, setActivePopup] = useState<EditWordPopupType>(ENUM_EDIT_VIEW_POPUP.NONE)
     const { data, isLoading, dataUpdatedAt } = useGetSetWords<WordType[]>(getSetWords, 1, setId)
     const { removable } = useHasPermission(Number(setId))
@@ -31,19 +29,7 @@ const EditView = ({ setId }: Props) => {
 
     const {
         mutate,
-    } = useMutation<AxiosResponse, Error, UpdateBulkWordApiArgsType>({
-        mutationFn: updateWordsBulk,
-        onSuccess: () => {
-            queryClient.setQueryData<ResponseDataType<WordType[]>>(
-                ['setswords', setId],
-                (data: ResponseDataType<WordType[]> | undefined) => {
-                    if (!data) return undefined
-                    data.data = state.words
-                    return data
-                }
-            )
-        },
-    })
+    } = useUpdateWordsBulk({ stateWords: state.words, setId: Number(setId) })
 
     useEffect(() => {
         if (data?.data) {

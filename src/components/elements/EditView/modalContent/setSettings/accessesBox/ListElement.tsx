@@ -1,6 +1,5 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteSetAccesses } from "../../../../../../api/setApi";
-import { AccessType, DeleteSetAccessesApiArgsType, ResponseDataType, RoleType } from "../../../../../../global/types";
+import { RoleType } from "../../../../../../global/types";
+import { useDeleteSetAccess } from "../../../../../../api/hooks/mutations/useDeleteSetAccess";
 
 type Props = {
   user: {
@@ -14,25 +13,9 @@ type Props = {
 
 
 const ListElement = ({ user, setId, role, page }: Props) => {
-
-  const queryClient = useQueryClient()
-
   const {
     mutate
-  } = useMutation<void, Error, DeleteSetAccessesApiArgsType>({
-    mutationFn: deleteSetAccesses,
-    mutationKey: ['setswords', Number(setId)],
-    onSuccess: () => {
-      queryClient.setQueryData(
-        ['accesses', role, page],
-        (data: ResponseDataType<AccessType[]> | undefined) => {
-          if (!data) return undefined
-          data.data = [...data.data.filter(el => el.user.id != user.id)]
-          return data
-        }
-      )
-    },
-  })
+  } = useDeleteSetAccess({ userId: user.id, setId: Number(setId), page, role })
 
   const handleDelete = () => {
     mutate({ setId, userId: user.id })

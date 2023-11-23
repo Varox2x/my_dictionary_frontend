@@ -1,15 +1,14 @@
 
 import React, { useState } from "react";
-import { ResponseDataType, WordType } from "../../../../global/types"
+import { WordType } from "../../../../global/types"
 import * as S from "../elements"
 import { useDispatchEditView } from "../Store/EditViewProvider";
 import { ACTION_TYPES } from "../Store/actionTypes";
 import ExampleSentenceElement from "./ExampleSentenceElement";
 import ExposedRow from "./ExposedRow";
 import { ENUM_WORD_RESOURCE } from "../types";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteWord } from "../../../../api/setApi";
 import { useParams } from "react-router-dom";
+import { useDeleteWord } from "../../../../api/hooks/mutations/useDeleteWord";
 
 type Props = WordType
 
@@ -23,23 +22,9 @@ const ListElement: React.FunctionComponent<Props> = ({
 
     const [showDetails, setShowDetails] = useState<boolean>(false)
     const dispatch = useDispatchEditView();
-    const queryClient = useQueryClient()
     const {
         mutate
-    } = useMutation<void, Error, number>({
-        mutationFn: deleteWord,
-        mutationKey: ['setswords', Number(setId)],
-        onSuccess: () => {
-            queryClient.setQueryData<ResponseDataType<WordType[]>>(
-                ['setswords', Number(setId)],
-                (data: ResponseDataType<WordType[]> | undefined) => {
-                    if (!data) return undefined
-                    data.data = [...data.data.filter(el => el.id != id)]
-                    return data
-                }
-            )
-        },
-    })
+    } = useDeleteWord({ id, setId: Number(setId) })
 
     const handleCreateExampleSentence = () => {
         dispatch({
