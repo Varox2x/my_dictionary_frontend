@@ -31,7 +31,7 @@ export type WordType = {
   exampleSentence: ExampleSentenceType;
 };
 
-export type ExampleSentenceType = (string | null)[];
+export type ExampleSentenceType = string[];
 
 export type UpdateWordType = {
   id: number;

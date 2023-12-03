@@ -9,9 +9,9 @@ export const Wrapper = styled.div`
     width: 100%;
     margin: auto;
     max-width: 1000px;
-    padding: 0 25px;
+    padding: 0;
     @media only screen and (min-width: ${breakpoints.sm}px){
-        padding: 0;
+
     }
     border: 2px solid red;
 `

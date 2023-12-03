@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   position: relative;
   border: 2px solid pink;
   overflow: auto;
+  padding-top: 70px;
 `;
 
 export const SingleElementWrapper = styled.li<{ $height?: boolean }>`
@@ -58,6 +59,7 @@ export const ResourceWordWrapper = styled.div`
   align-items: center;
   flex-direction: row;
   width: 50%;
+  border: 1px solid purple;
 `;
 
 export const Input = styled.input<{ $width: string }>`

@@ -1,10 +1,11 @@
 import { useMemo } from "react";
 import { useLearnView } from "../Store/LearnViewProvider";
+import DefaultView from "../card/DefaultView";
 
 
 
 
-function replaceHalfWithUnderscore(word: string) {
+const replaceHalfWithUnderscore = (word: string) => {
     if (typeof word !== 'string' || word.length === 0) {
         return word;
     }
@@ -23,13 +24,22 @@ function replaceHalfWithUnderscore(word: string) {
     return wordArray.join('');
 }
 
+const formatData = (array: string[]) => {
+    let newData: string[] = []
+    array.forEach(el => {
+        newData = [...newData, replaceHalfWithUnderscore(el)]
+    })
+
+    return newData
+}
+
 const HintStage = () => {
 
     const state = useLearnView()
-    const hiddenWord = useMemo(() => replaceHalfWithUnderscore(state.wordsArray[state.currentIndex].definitions[0]), [state.wordsArray[state.currentIndex].definitions[0]]);
+    const hiddenWords = useMemo(() => formatData(state.wordsArray[state.currentIndex].definitions), [state.wordsArray[state.currentIndex].definitions]);
 
     return (
-        <div>{hiddenWord}</div>
+        <DefaultView data={hiddenWords} />
     )
 }
 

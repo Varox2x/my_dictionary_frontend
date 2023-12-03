@@ -11,6 +11,7 @@ import { ACTION_TYPES } from '../elements/LearnView/Store/actionTypes'
 import { WordType } from '../../global/types'
 import { getSetWords } from '../../api/setApi'
 import { useGetSetWords } from '../../api/hooks/queries/useGetSetWords'
+import SetActionMenu from '../elements/LearnView/menu/SetActionMenu'
 
 type Props = {
     setId: number
@@ -41,6 +42,7 @@ const LearnView = ({ setId }: Props) => {
         <S.Wrapper>
             <ProgressBar />
             <ActionMenu />
+            <SetActionMenu />
             <CardSpaceContainer>
                 <CardEscape />
             </CardSpaceContainer>

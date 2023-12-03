@@ -2,6 +2,10 @@ import { useDispatchLearnView, useLearnView } from "../Store/LearnViewProvider"
 import { ACTION_TYPES } from "../Store/actionTypes"
 import * as S from "../elements"
 import { CardSideType, ENUM_CARD_SIDE, ENUM_STAGES_NAMES, StagesNamesType } from "../types"
+import IdeaIcon from "../../../../assets/learnMenuBarIcons/idea.png"
+import TextIcon from "../../../../assets/learnMenuBarIcons/text.png"
+import WritingIcon from "../../../../assets/learnMenuBarIcons/writing.png"
+import ActionMenuButton from "./ActionMenuButton"
 
 const ActionMenu = () => {
 
@@ -25,9 +29,7 @@ const ActionMenu = () => {
         }
     }
 
-    const handleShuffleButton = () => {
-        dispatch({ type: ACTION_TYPES.SHUFFLE })
-    }
+
 
     const buttonAccessibility = (requiredCardSide: CardSideType) => {
         if (state.cardSide === requiredCardSide) {
@@ -44,12 +46,10 @@ const ActionMenu = () => {
     }
 
     return (
-        <S.ActionMenuWrapper>
-            <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} onClick={() => handleButton(ENUM_STAGES_NAMES.INPUT)}>text</S.ActionMenuButton>
-            <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.BACK) || isExampleSentence()} onClick={() => handleExampleButton()}>example</S.ActionMenuButton>
-            <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} onClick={() => handleButton(ENUM_STAGES_NAMES.DEFAULT)}>hide</S.ActionMenuButton>
-            <S.ActionMenuButton disabled={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} onClick={() => handleHintButton()}>hint {state.currentBackStage == ENUM_STAGES_NAMES.HINT ? "active" : "no active"}</S.ActionMenuButton>
-            <S.ActionMenuButton onClick={() => handleShuffleButton()}>shuffle</S.ActionMenuButton>
+        <S.ActionMenuWrapper side="right">
+            <ActionMenuButton isDisable={false} stageName={ENUM_STAGES_NAMES.HINT} onClick={() => handleHintButton()} icon={IdeaIcon} />
+            <ActionMenuButton isDisable={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} stageName={ENUM_STAGES_NAMES.INPUT} onClick={() => handleButton(ENUM_STAGES_NAMES.INPUT)} icon={TextIcon} />
+            <ActionMenuButton isDisable={buttonAccessibility(ENUM_CARD_SIDE.BACK) || isExampleSentence()} stageName={ENUM_STAGES_NAMES.EXAMPLE} onClick={() => handleExampleButton()} icon={WritingIcon} />
         </S.ActionMenuWrapper>
     )
 }

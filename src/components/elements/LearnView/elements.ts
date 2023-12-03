@@ -51,6 +51,21 @@ export const FrontSide = styled.div`
   overflow: hidden;
 `;
 
+export const DefaultStageList = styled.ul`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 70px 0;
+`;
+
+export const DefaultStageListElement = styled.li``;
+
+export const SingleText = styled.p`
+  text-align: left;
+`;
+
 export const BackSide = styled.div`
   width: 100%;
   height: 100%;
@@ -80,6 +95,7 @@ export const CardSpaceContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `;
 
 export const ControllerAreaContainer = styled.div`
@@ -158,15 +174,17 @@ export const SingleStageWrapper = styled.div`
   backdrop-filter: blur(3px);
 `;
 
-export const ActionMenuWrapper = styled.div`
+export const ActionMenuWrapper = styled.div<{
+  side: string;
+}>`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   position: absolute;
-  top: 10%;
-  right: 10%;
+  ${(props) => props.side}: 10%;
   z-index: 50;
+  top: 10%;
 `;
 
 export const ActionMenuButton = styled.button``;
@@ -178,4 +196,24 @@ export const ProgressBarWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items; center;
+`;
+
+export const InputStageWrapper = styled.div<{
+  background: string;
+}>`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${(props) => props.background};
+  transition: 500ms;
+`;
+
+export const Input = styled.input`
+  width: 70%;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid blue;
+  text-align: center;
 `;

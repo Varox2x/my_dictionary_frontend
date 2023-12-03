@@ -1,4 +1,5 @@
 import './settings/css/reset.css'
+import './settings/css/hamburgerMenuLogo.css'
 import { Route, Routes } from 'react-router-dom';
 import routerList from './routerList';
 import PrivateWrapper from './components/wrappers/PrivateWrapper';

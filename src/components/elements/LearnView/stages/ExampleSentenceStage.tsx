@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLearnView } from '../Store/LearnViewProvider'
+import Slider from './exampleSentenceStage/Slider'
 
 const ExampleSentenceStage = () => {
 
@@ -9,16 +10,7 @@ const ExampleSentenceStage = () => {
         return null
     }
 
-
-    return (
-        <div>
-            <ul>
-                {state.wordsArray[state.currentIndex].exampleSentence.map((el, index) => {
-                    return <li key={index}>{el}</li>
-                })}
-            </ul>
-        </div>
-    )
+    return <Slider data={state.wordsArray[state.currentIndex].exampleSentence} />
 }
 
 export default ExampleSentenceStage

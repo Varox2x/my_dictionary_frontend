@@ -3,6 +3,7 @@ import { useLearnView } from '../Store/LearnViewProvider';
 import { stagesComponents } from '../stages/stagesComponents';
 import { ENUM_CARD_SIDE } from '../types';
 import Stage from '../Stage';
+import DefaultView from './DefaultView';
 
 const FrontSide = () => {
 
@@ -10,9 +11,7 @@ const FrontSide = () => {
 
     return (
         <S.FrontSide>
-            {state.wordsArray[state.currentIndex].names.map((el, index) => {
-                return el + ' '
-            })}
+            <DefaultView data={state.wordsArray[state.currentIndex].names} />
             <Stage currentStage={state.currentFrontStage}>
                 {stagesComponents[ENUM_CARD_SIDE.FRONT]}
             </Stage>

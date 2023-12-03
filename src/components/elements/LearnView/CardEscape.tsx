@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import * as S from './elements';
 import { useLearnView } from './Store/LearnViewProvider';
 import { DIRECTION_ENUM, ENUM_CARD_SIDE } from './types';
+import DefaultView from './card/DefaultView';
 
 const CardEscape = () => {
 
@@ -37,10 +38,11 @@ const CardEscape = () => {
         >
             <S.CardContainer $isrevert={state.previousCardSide !== ENUM_CARD_SIDE.FRONT} >
                 <S.FrontSide>
-                    {state.wordsArray[calculatePreviousIndex()].names}
+                    <DefaultView data={state.wordsArray[calculatePreviousIndex()].names} />
                 </S.FrontSide>
                 <S.BackSide>
-                    {state.wordsArray[calculatePreviousIndex()].definitions}
+                    <DefaultView data={state.wordsArray[calculatePreviousIndex()].definitions} />
+
                 </S.BackSide>
             </S.CardContainer>
         </motion.div>
