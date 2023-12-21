@@ -1,22 +1,22 @@
-import { UpdateWordType, WordType } from "../../../../global/types";
+import { CurrentlyEditingWordType, UpdateWordType, WordType } from "../../../../global/types";
 import { CreateWordResourceType, DeleteWordResourceType, ENUM_WORD_RESOURCE, UpdateWordResourceType } from "../types";
 import { ACTION_TYPES } from "./actionTypes";
 
 export type ActionType = {
     type: ReducerActionType,
-    payload?: UpdateWordType | WordType[] | UpdateWordResourceType
+    payload?: UpdateWordType | WordType[] | UpdateWordResourceType | CurrentlyEditingWordType
 }
 
 export type ReducerActionType = keyof typeof ACTION_TYPES
 
-
-
 export type StateType = {
     words: WordType[],
+    currentlyEditingWord: CurrentlyEditingWordType
 }
 
 export const INITIAL_STATE: StateType = {
-    words: []
+    words: [],
+    currentlyEditingWord: false
 }
 
 const updateWord = (state: StateType, updateData: UpdateWordType): WordType[] => {
@@ -102,9 +102,14 @@ export const editViewReducer = (state: StateType, action: ActionType): StateType
             return { ...state, words: createWordResource({ ...action.payload as CreateWordResourceType, state }) };
         case ACTION_TYPES.DELETE_WORD_RESOURCE:
             if (!action.payload) {
-                throw new Error(`action.payload missing in ${ACTION_TYPES.CREATE_WORD_RESOURCE} action`)
+                throw new Error(`action.payload missing in ${ACTION_TYPES.DELETE_WORD_RESOURCE} action`)
             }
             return { ...state, words: deleteWordResource({ ...action.payload as DeleteWordResourceType, state }) };
+        case ACTION_TYPES.SET_CURRENTLY_EDITING_WORD:
+            if (!action.payload) {
+                throw new Error(`action.payload missing in ${ACTION_TYPES.SET_CURRENTLY_EDITING_WORD} action`)
+            }
+            return { ...state, currentlyEditingWord: action.payload as CurrentlyEditingWordType };
         default:
             return state;
     }

@@ -30,6 +30,7 @@ export type WordType = {
   // userWordLvl: number | null;
   exampleSentence: ExampleSentenceType;
 };
+export type CurrentlyEditingWordType = number | false;
 
 export type ExampleSentenceType = string[];
 
