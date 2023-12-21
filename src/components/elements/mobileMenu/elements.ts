@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div<{
-  isActive: boolean;
+  $isActive: boolean;
 }>`
   position: fixed;
   top: 0;
   bottom: 0;
   color: blue;
   font-size: 20px;
-  left: ${(props) => (props.isActive ? '0' : '-100%')};
+  left: ${(props) => (props.$isActive ? '0' : '-100%')};
   transition: 850ms;
   z-index: 9999;
   border: 2px solid purple;

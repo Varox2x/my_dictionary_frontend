@@ -25,7 +25,7 @@ const MobileMenu = () => {
     }
 
     return (
-        <S.Container isActive={state.isMobileMenuOpen} >
+        <S.Container $isActive={state.isMobileMenuOpen} >
             <S.Wrapper>
                 <S.Nav>
                     <S.Menu>

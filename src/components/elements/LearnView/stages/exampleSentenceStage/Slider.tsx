@@ -36,8 +36,8 @@ const Slider = ({ data }: Props) => {
                 })}
             </S.SliderContainer>
             {data.length > 0 && <S.ArrowWrapper>
-                <S.ArrowLeft visible={currentIndex == 0} disabled={currentIndex == 0} onClick={(e) => handleArrow(e, ENUM_SIDE.LEFT)}  >{"<"}</S.ArrowLeft>
-                <S.ArrowRight visible={currentIndex == data.length - 1} disabled={currentIndex == data.length - 1} onClick={(e) => handleArrow(e, ENUM_SIDE.RIGHT)}>{">"}</S.ArrowRight>
+                <S.ArrowLeft $visible={currentIndex == 0} disabled={currentIndex == 0} onClick={(e) => handleArrow(e, ENUM_SIDE.LEFT)}  >{"<"}</S.ArrowLeft>
+                <S.ArrowRight $visible={currentIndex == data.length - 1} disabled={currentIndex == data.length - 1} onClick={(e) => handleArrow(e, ENUM_SIDE.RIGHT)}>{">"}</S.ArrowRight>
             </S.ArrowWrapper>}
         </>
 

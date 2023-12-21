@@ -14,6 +14,7 @@ import SetSettings from '../elements/EditView/modalContent/setSettings/SetSettin
 import useHasPermission from '../../global/hooks/useHasPermission'
 import { useUpdateWordsBulk } from '../../api/hooks/mutations/useUpdateWordsBulk'
 import { useGetSetWords } from '../../api/hooks/queries/useGetSetWords'
+import MobileListElement from '../elements/EditView/moblieListEmenet/MobileListElement'
 
 type Props = {
     setId: number
@@ -62,7 +63,7 @@ const EditView = ({ setId }: Props) => {
 
     return (
         <S.Wrapper>
-            {!isLoading && state.words && <List<WordType > items={state.words} itemComponent={ListElement} />}
+            {!isLoading && state.words && <List<WordType > items={state.words} itemComponent={MobileListElement} />}
             <button onClick={() => handleSave()} >SAVE</button>
             <button onClick={() => setActivePopup(ENUM_EDIT_VIEW_POPUP.CREATE_WORD)} >Create New Word</button>
             <button disabled={!removable} onClick={() => setActivePopup(ENUM_EDIT_VIEW_POPUP.SET_SETTINGS)} >Set's settings</button>

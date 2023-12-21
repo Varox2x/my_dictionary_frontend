@@ -41,7 +41,7 @@ const ActionMenuButton = ({ icon, onClick, stageName, isDisable }: Props) => {
         <div style={{ position: 'relative' }}>
             {/* <S.FiltrMask isActive={!isDisable} /> */}
             <S.Button disabled={isDisable} onClick={(e) => handleClick(e)}>
-                <S.Icon isDisable={isDisable} isActive={isActive()} src={icon} />
+                <S.Icon $isDisable={isDisable} $isActive={isActive()} src={icon} />
             </S.Button>
         </div>
 

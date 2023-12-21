@@ -39,15 +39,15 @@ export const ArrowWrapper = styled.div`
 `;
 
 export const ArrowLeft = styled.button<{
-  visible: boolean;
+  $visible: boolean;
 }>`
   z-index: 555;
-  opacity: ${(props) => (props.visible ? '0' : '100%')};
+  opacity: ${(props) => (props.$visible ? '0' : '100%')};
 `;
 
 export const ArrowRight = styled.button<{
-  visible: boolean;
+  $visible: boolean;
 }>`
   z-index: 555;
-  opacity: ${(props) => (props.visible ? '0' : '100%')};
+  opacity: ${(props) => (props.$visible ? '0' : '100%')};
 `;

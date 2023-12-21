@@ -13,8 +13,8 @@ const ExtendedMenu = ({ children, currentIndex, isMenuExtanded }: Props) => {
     const currentChild = Children.toArray(children)[currentIndex]
 
     return (
-        <S.Container isActive={isMenuExtanded}>
-            <S.Wrapper isActive={isMenuExtanded}>
+        <S.Container $isActive={isMenuExtanded}>
+            <S.Wrapper $isActive={isMenuExtanded}>
                 {currentChild}
             </S.Wrapper>
         </S.Container>

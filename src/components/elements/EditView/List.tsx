@@ -8,9 +8,6 @@ type Props<T> = {
 
 const List = <T,>({ items, itemComponent: ItemComponent }: Props<T>) => {
 
-
-
-
     return (
         <S.List>
             {items.map((item, i) => {
