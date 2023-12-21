@@ -1,14 +1,15 @@
-import { useQuery } from "@tanstack/react-query"
-import { QueryData, ROLE_ENUM, RoleType } from "../types"
+import { QueryData, ROLE_ENUM, RoleType, SetType } from "../types"
 import setsQueryDataToArray from "../helpers/setsQueryDataToArray"
+import { useGetInfinite } from "../../api/hooks/queries/useGetInfinite";
+import { getCurrentUserSets } from "../../api/setApi";
 
 const useHasPermission = (setId: number) => {
 
     let removable: boolean, editable: boolean;
 
-    const { data: ownSets } = useQuery(["sets", ROLE_ENUM.OWNER])
-    const { data: editableSets } = useQuery(["sets", ROLE_ENUM.EDITABLE])
-    const { data: readOnlybleSets } = useQuery(["sets", ROLE_ENUM.READ_ONLY])
+    const { data: ownSets } = useGetInfinite<SetType[]>(getCurrentUserSets, ROLE_ENUM.OWNER);
+    const { data: editableSets } = useGetInfinite<SetType[]>(getCurrentUserSets, ROLE_ENUM.EDITABLE);
+    const { data: readOnlybleSets } = useGetInfinite<SetType[]>(getCurrentUserSets, ROLE_ENUM.READ_ONLY);
 
     let role: RoleType = ROLE_ENUM.READ_ONLY
 

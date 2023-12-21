@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
       return getRefreshAccessTokensByRefresh()
         .then((r) => {
           originalRequest.headers.Authorization = `Bearer ${r.access_token}`;
-          return axios(originalRequest);
+          return axios(originalRequest).then((r) => r.data);
         })
         .catch((err: AxiosError) => {
           if (err?.message === 'Wrong authorize data') {
