@@ -6,7 +6,7 @@ import { WordResoureType } from '../types';
 type Props = {
     wordResource: WordResoureType,
     wordId: number,
-    editComponent: React.FunctionComponent<{ value: string, setValue: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void, handleDelete: () => void }>,
+    editComponent: React.FunctionComponent<{ value: string, setValue: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void, handleDelete: () => void, isCurrentlyEditing: boolean }>,
 }
 
 const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
@@ -36,7 +36,7 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
                             newValue: e.target.value
                         }
                     })
-                }
+                }, isCurrentlyEditing: state.currentlyEditingWord == wordId
             }
         })
     }
@@ -61,7 +61,7 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
 
         return (
             <>
-                <List<{ value: string, setValue: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void, handleDelete: () => void }> itemComponent={editComponent} items={items} />
+                <List<{ value: string, setValue: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void, handleDelete: () => void, isCurrentlyEditing: boolean }> itemComponent={editComponent} items={items} />
                 <button style={{ marginTop: "10px" }} onClick={(e) => handleButton(e)} >+</button>
             </>
         )

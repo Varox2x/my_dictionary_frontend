@@ -1,4 +1,4 @@
-import * as S from "./elements"
+import * as S from "../elements"
 
 type Props = {
     value: string,

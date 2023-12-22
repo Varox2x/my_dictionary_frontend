@@ -106,7 +106,7 @@ export const editViewReducer = (state: StateType, action: ActionType): StateType
             }
             return { ...state, words: deleteWordResource({ ...action.payload as DeleteWordResourceType, state }) };
         case ACTION_TYPES.SET_CURRENTLY_EDITING_WORD:
-            if (!action.payload) {
+            if (!action.payload && action.payload !== false) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.SET_CURRENTLY_EDITING_WORD} action`)
             }
             return { ...state, currentlyEditingWord: action.payload as CurrentlyEditingWordType };

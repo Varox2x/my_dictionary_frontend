@@ -1,6 +1,6 @@
 import { ENUM_WORD_RESOURCE } from "../types"
 import ResourceField from "./ResourceField"
-import SingleTextArea from "./SingleTextArea"
+import SingleTextArea from "./inputs/SingleTextArea"
 import * as S from "./elements"
 
 type Props = {
