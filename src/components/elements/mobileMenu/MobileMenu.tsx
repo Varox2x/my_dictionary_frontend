@@ -12,7 +12,7 @@ const MobileMenu = () => {
 
     const [isMenuExtanded, setIsMenuExtanded] = useState<boolean>(false)
     const [role, setRole] = useState<RoleType>(ROLE_ENUM.OWNER)
-    const [currentIndex, setCurrentIndex] = useState(0)
+    const [currentIndex,] = useState(0)
 
     const dispatch = useDispatchStore()
     const state = useStore()
@@ -33,10 +33,16 @@ const MobileMenu = () => {
                             Mode
                         </S.UnderMenuTitle>
                         <S.UnderMenu>
-                            <S.MenuElement onClick={() => dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.LEARN })} >
+                            <S.MenuElement onClick={() => {
+                                dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.LEARN })
+                                dispatch({ type: ACTION_TYPES.CLOSE_MOBILE_MENU })
+                            }} >
                                 Learn
                             </S.MenuElement>
-                            <S.MenuElement onClick={() => dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.EDIT })} >
+                            <S.MenuElement onClick={() => {
+                                dispatch({ type: ACTION_TYPES.CLOSE_MOBILE_MENU })
+                                dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.EDIT })
+                            }} >
                                 Edit
                             </S.MenuElement>
                         </S.UnderMenu>

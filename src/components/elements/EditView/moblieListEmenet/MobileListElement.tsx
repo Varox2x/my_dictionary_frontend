@@ -6,6 +6,8 @@ import { ENUM_WORD_RESOURCE } from '../types'
 import SingleTextArea from './inputs/SingleTextArea'
 import { useDispatchEditView, useEditView } from '../Store/EditViewProvider'
 import { ACTION_TYPES } from '../Store/actionTypes'
+import { MdExpandMore } from "react-icons/md";
+import IconContainer from "../../../../global/hoc/IconContainer"
 
 type Props = WordType
 
@@ -33,8 +35,9 @@ const MobileListElement = ({
 
     return (
         <S.SingleElementWrapper onClick={() => handleShowButton(id)} $isOpen={state.currentlyEditingWord == id}>
+            {state.currentlyEditingWord != id && <IconContainer icon={MdExpandMore} style={{ position: 'absolute', right: "10px", top: '15px' }} />}
             <S.WordsFieldWrapper>
-                <S.Column>
+                <S.Column $isBorder={true} $isOpen={state.currentlyEditingWord == id}>
                     <ResourceField editComponent={SingleInput} wordId={id} wordResource={ENUM_WORD_RESOURCE.NAMES} />
                 </S.Column>
                 <S.Column>

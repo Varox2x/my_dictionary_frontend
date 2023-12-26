@@ -1,12 +1,15 @@
+import { useRef } from 'react';
 import List from '../List';
 import { useDispatchEditView, useEditView } from '../Store/EditViewProvider';
 import { ACTION_TYPES } from '../Store/actionTypes';
 import { WordResoureType } from '../types';
+import AddResourceButton from './buttons/AddResourceButton';
+import { EditComponentType } from './types';
 
 type Props = {
     wordResource: WordResoureType,
     wordId: number,
-    editComponent: React.FunctionComponent<{ value: string, setValue: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void, handleDelete: () => void, isCurrentlyEditing: boolean }>,
+    editComponent: React.FunctionComponent<EditComponentType>,
 }
 
 const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
@@ -15,6 +18,7 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
     const dispatch = useDispatchEditView();
 
     const resourceData = state.words.find(el => el.id === wordId);
+    const resourceRef = useRef<(HTMLInputElement | HTMLTextAreaElement)[]>([]);
 
     const converter = (data: string[]) => {
         return data.map((el, index) => {
@@ -36,23 +40,23 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
                             newValue: e.target.value
                         }
                     })
-                }, isCurrentlyEditing: state.currentlyEditingWord == wordId
+                }, isCurrentlyEditing: state.currentlyEditingWord == wordId,
+                resourceRef,
+                index: index
             }
         })
     }
 
-    const createResource = async () => {
+    const handleAddResourceButton = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.stopPropagation()
         await dispatch({
             type: ACTION_TYPES.CREATE_WORD_RESOURCE, payload: {
                 id: wordId,
                 wordResourceType: wordResource,
             }
         })
-    }
-
-    const handleButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.stopPropagation()
-        createResource()
+        const lastResource = resourceRef.current[resourceRef.current.length - 1];
+        lastResource.focus();
     }
 
     if (resourceData) {
@@ -61,8 +65,8 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
 
         return (
             <>
-                <List<{ value: string, setValue: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void, handleDelete: () => void, isCurrentlyEditing: boolean }> itemComponent={editComponent} items={items} />
-                <button style={{ marginTop: "10px" }} onClick={(e) => handleButton(e)} >+</button>
+                <List<EditComponentType> itemComponent={editComponent} items={items} />
+                <AddResourceButton onClick={(e) => handleAddResourceButton(e)} />
             </>
         )
     }

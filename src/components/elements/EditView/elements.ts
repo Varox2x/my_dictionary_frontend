@@ -6,9 +6,10 @@ export const Wrapper = styled.div`
   margin: auto;
   height: 100vh;
   position: relative;
-  border: 2px solid pink;
   overflow: auto;
   padding-top: 70px;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 
 export const SingleElementWrapper = styled.li<{ $height?: boolean }>`

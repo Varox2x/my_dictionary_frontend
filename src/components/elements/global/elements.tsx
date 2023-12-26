@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
     @media only screen and (min-width: ${breakpoints.sm}px){
 
     }
-    border: 2px solid red;
 `
 
 export const ModalContainer = styled.div`

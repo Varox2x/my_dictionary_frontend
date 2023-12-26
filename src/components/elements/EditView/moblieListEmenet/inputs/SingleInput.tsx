@@ -1,13 +1,10 @@
+import DeleteButton from "../buttons/DeleteButton"
 import * as S from "../elements"
+import { SingleInputProps } from "../types"
 
-type Props = {
-    value: string,
-    setValue: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    handleDelete: () => void,
-    isCurrentlyEditing: boolean
-}
+type Props = SingleInputProps
 
-const SingleInput = ({ value, setValue, handleDelete, isCurrentlyEditing }: Props) => {
+const SingleInput = ({ value, setValue, handleDelete, isCurrentlyEditing, index, resourceRef }: Props) => {
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         // e.stopPropagation()
@@ -21,10 +18,14 @@ const SingleInput = ({ value, setValue, handleDelete, isCurrentlyEditing }: Prop
 
     return (
         <S.Wrapper>
-            <input value={value} onClick={(e) => {
+            <S.SingleInput ref={(el) => {
+                if (resourceRef.current) {
+                    resourceRef.current[index] = el as HTMLInputElement
+                }
+            }} disabled={!isCurrentlyEditing} value={value} onClick={(e) => {
                 if (isCurrentlyEditing) { e.stopPropagation() }
-            }} onChange={(e) => handleInput(e)} style={{ width: '80%' }} />
-            {isCurrentlyEditing && <button disabled={!isCurrentlyEditing} onClick={(e) => handleButton(e)} >x</button>}
+            }} onChange={(e) => handleInput(e)} />
+            {isCurrentlyEditing && <DeleteButton disabled={!isCurrentlyEditing} onClick={(e) => handleButton(e)} />}
         </S.Wrapper>
     )
 }
