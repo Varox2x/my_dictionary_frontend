@@ -92,6 +92,12 @@ export type CrreateSetAccessesApiArgsType = {
   email: string;
   role: RoleType;
 };
+export const ENUM_POPUP = {
+  CREATE_WORD: 'CREATE_WORD',
+  SET_SETTINGS: 'SET_SETTINGS',
+  NONE: 'NONE',
+} as const;
 
 export type AuthType = keyof typeof AUTH_ENUM;
 export type ModeType = keyof typeof MODE_ENUM;
+export type PopupType = keyof typeof ENUM_POPUP;

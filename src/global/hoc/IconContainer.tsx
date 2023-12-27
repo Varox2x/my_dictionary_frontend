@@ -9,13 +9,14 @@ type StyleProps = {
 
 type Props = {
     icon: React.FunctionComponent,
-    style?: StyleProps
+    style?: StyleProps,
+    color?: string
 };
 
-const IconContainer = ({ icon: Icon, style }: Props) => {
+const IconContainer = ({ icon: Icon, style, color }: Props) => {
     return (
         <div style={style}>
-            <Icon style={{ color: 'white', fontSize: '20px' }} />
+            <Icon style={{ color: color || 'white', fontSize: '20px' }} />
         </div>
     )
 }

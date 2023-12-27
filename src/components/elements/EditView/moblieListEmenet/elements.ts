@@ -39,7 +39,7 @@ export const Column = styled.div<{ $isOpen?: boolean; $isBorder?: boolean }>`
     content: '';
     position: absolute;
     width: 1px;
-    background: #cbccd6;
+    background: #ffffff;
     right: 0;
     top: 10px;
 
