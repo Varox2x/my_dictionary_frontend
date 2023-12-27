@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { ROLE_ENUM, RoleType } from "../../../../../../global/types"
 import ListElement from "./ListElement"
 import { useGetSetAccesses } from "../../../../../../api/hooks/queries/useGetSetAccesses"
+import * as S from './elements'
 
 type Props = {
     role: RoleType,
@@ -28,11 +29,11 @@ const UserList = ({ role, setId }: Props) => {
 
     return (
         <>
-            <ul>
+            <S.List>
                 {data.data.map((element, index) => {
                     return <ListElement key={index} user={element.user} setId={setId} role={role} page={currentPage[role]} />
                 })}
-            </ul>
+            </S.List>
             {/* <Pagination currentPage={currentPage[role]} setCurrentPage={(page: number) => setCurrentPage({ ...currentPage, [role]: page })} /> */}
         </>
 

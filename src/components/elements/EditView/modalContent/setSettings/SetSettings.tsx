@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import AccessesBox from "./accessesBox/AccessesBox"
 import AddPermission from "./addPermission/AddPermission"
 import { useDeleteSet } from "../../../../../api/hooks/mutations/useDeleteSet"
+import * as S from "../../../global/elements"
 
 type Props = {
     setId: number
@@ -25,10 +26,10 @@ const SetSettings = ({ setId }: Props) => {
 
     return (
         <>
-            <div>SetSettings</div>
-            <button onClick={() => handleDelete()} >DELETE SET</button>
+            <S.ModalTitle>SetSettings</S.ModalTitle>
             <AddPermission setId={setId} />
             <AccessesBox />
+            <S.DeleteSetButton onClick={() => handleDelete()} >DELETE SET</S.DeleteSetButton>
         </>
     )
 }

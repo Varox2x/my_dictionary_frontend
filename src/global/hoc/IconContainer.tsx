@@ -15,7 +15,7 @@ type Props = {
 
 const IconContainer = ({ icon: Icon, style, color }: Props) => {
     return (
-        <div style={style}>
+        <div style={{ ...style, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
             <Icon style={{ color: color || 'white', fontSize: '20px' }} />
         </div>
     )

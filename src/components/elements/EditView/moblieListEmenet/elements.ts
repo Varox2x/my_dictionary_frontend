@@ -22,6 +22,10 @@ export const SingleElementWrapper = styled.li<{ $isOpen?: boolean }>`
     rgba(255, 255, 255, 0) -341.94%,
     #14101d 95.11%
   );
+
+  -webkit-box-shadow: 0px 7px 14px 0px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0px 7px 14px 0px rgba(66, 68, 90, 1);
+  box-shadow: 0px 7px 14px 0px rgba(66, 68, 90, 1);
 `;
 
 export const WordsFieldWrapper = styled.div`
@@ -42,7 +46,7 @@ export const Column = styled.div<{ $isOpen?: boolean; $isBorder?: boolean }>`
     background: #ffffff;
     right: 0;
     top: 10px;
-
+    opacity: 0.3;
     ${(props) => (props.$isOpen ? 'bottom: 1px' : 'height: 30px')};
     display: ${(props) => (props.$isBorder ? 'block' : 'none')};
   }

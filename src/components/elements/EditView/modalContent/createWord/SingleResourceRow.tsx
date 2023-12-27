@@ -21,6 +21,7 @@ const SingleResourceRow = ({ data, setData, wordResource, isTextArea }: Props) =
 
     return (
         <S.Row>
+            {wordResource}
             {data[wordResource].map((el, index) => {
                 if (isTextArea) {
                     return <textarea key={index} name={wordResource} value={el} onChange={(e) => handleType(e, index)} />

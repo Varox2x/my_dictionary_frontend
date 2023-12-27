@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   margin: auto;
   height: 100vh;
   position: relative;
-  border: 2px solid green;
 `;
 
 export const CardContainer = styled.div<{
@@ -22,11 +21,14 @@ export const CardContainer = styled.div<{
   transform: rotateX(${(props) => (props.$isrevert ? '180deg' : '0')});
   perspective: 600px;
 
-  border: 2px solid green;
   @media only screen and (min-width: ${breakpoints.sm}px) {
     height: 300px;
     width: 500px;
   }
+  -webkit-box-shadow: 0px ${(props) => (props.$isrevert ? '-' : '')}18px 62px -8px
+    rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0px ${(props) => (props.$isrevert ? '-' : '')}18px 62px -8px rgba(66, 68, 90, 1);
+  box-shadow: 0px ${(props) => (props.$isrevert ? '-' : '')}18px 62px -8px rgba(66, 68, 90, 1);
 `;
 
 export const FrontSide = styled.div`
@@ -91,11 +93,9 @@ export const CardSpaceContainer = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  border: 2px solid orange;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 `;
 
 export const ControllerAreaContainer = styled.div`
