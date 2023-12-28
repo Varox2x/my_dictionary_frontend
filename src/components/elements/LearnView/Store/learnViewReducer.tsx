@@ -87,7 +87,7 @@ export const learnViewReducer = (state: StateType, action: ActionType): StateTyp
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.SET_WORDS} action`)
             }
-            return { ...state, wordsArray: action.payload as WordType[] }
+            return { ...state, wordsArray: action.payload as WordType[], currentIndex: 0 }
         default:
             return state;
     }
