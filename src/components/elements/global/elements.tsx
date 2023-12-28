@@ -19,7 +19,7 @@ export const ModalContainer = styled.div`
     position: fixed;
     left: 10%;
     right: 10%;
-    top: 30%;
+    top: 20%;
 `
 
 export const ModalWrapper = styled.div`

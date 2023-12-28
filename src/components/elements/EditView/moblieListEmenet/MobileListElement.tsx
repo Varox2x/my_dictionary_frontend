@@ -8,6 +8,8 @@ import { useDispatchEditView, useEditView } from '../Store/EditViewProvider'
 import { ACTION_TYPES } from '../Store/actionTypes'
 import { MdExpandMore } from "react-icons/md";
 import IconContainer from "../../../../global/hoc/IconContainer"
+import { useDeleteWord } from "../../../../api/hooks/mutations/useDeleteWord"
+import { useParams } from "react-router-dom"
 
 type Props = WordType
 
@@ -19,6 +21,7 @@ const MobileListElement = ({
     // const [isOpen, setIsOpen] = useState(false)
     const dispatch = useDispatchEditView();
     const state = useEditView()
+    const { id: setId } = useParams();
 
     const handleShowButton = (id: number) => {
         if (state.currentlyEditingWord == id) {
@@ -32,6 +35,9 @@ const MobileListElement = ({
         }
 
     }
+    const {
+        mutate
+    } = useDeleteWord({ id, setId: Number(setId) })
 
     return (
         <S.SingleElementWrapper onClick={() => handleShowButton(id)} $isOpen={state.currentlyEditingWord == id}>
@@ -47,6 +53,7 @@ const MobileListElement = ({
             <S.ExampleSentencesFieldWrapper>
                 <ResourceField editComponent={SingleTextArea} wordId={id} wordResource={ENUM_WORD_RESOURCE.EXAMPLE_SENTENCE} />
             </S.ExampleSentencesFieldWrapper>
+            <S.DeleteButton onClick={() => mutate(id)} >DELETE</S.DeleteButton>
         </S.SingleElementWrapper>
     )
 }

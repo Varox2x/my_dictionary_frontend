@@ -39,6 +39,8 @@ export const Column = styled.div<{ $isOpen?: boolean; $isBorder?: boolean }>`
   flex-direction: column;
   position: relative;
   transition: 600ms;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   &:after {
     content: '';
     position: absolute;
@@ -47,8 +49,18 @@ export const Column = styled.div<{ $isOpen?: boolean; $isBorder?: boolean }>`
     right: 0;
     top: 10px;
     opacity: 0.3;
-    ${(props) => (props.$isOpen ? 'bottom: 1px' : 'height: 30px')};
+    ${(props) => (props.$isOpen ? 'bottom: 15px' : 'height: 30px')};
     display: ${(props) => (props.$isBorder ? 'block' : 'none')};
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    background: #ffffff;
+    right: 15px;
+    left: 15px;
+    bottom: 0;
+    opacity: 0.3;
   }
 `;
 
@@ -65,6 +77,16 @@ export const ExampleSentencesFieldWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
+`;
+
+export const DeleteButton = styled.button`
+  padding: 10px 20px;
+  margin: 20px 0;
+  border: 2px solid #33bbcf;
+  border-radius: 10px;
+  color: #33bbcf;
+  background: transparent;
 `;
 
 export const SingleTextAreWrapper = styled.div`

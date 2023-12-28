@@ -1,36 +1,67 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { WordResoureType } from '../../types'
 import AddNewResourceButton from './AddNewResourceButton'
-import * as S from "../../elements"
+import * as S from "./elements"
 import { NewWordType } from './CreateWord'
+import SingleInput from './inputs/SingleInput'
+import SingleTextAre from './inputs/SingleTextAre'
 
 type Props = {
     wordResource: WordResoureType,
     data: NewWordType,
     setData: React.Dispatch<React.SetStateAction<NewWordType>>,
-    isTextArea?: boolean
+    isTextArea?: boolean,
 }
 
 const SingleResourceRow = ({ data, setData, wordResource, isTextArea }: Props) => {
 
-    const handleType = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const resourceRef = useRef<(HTMLInputElement | HTMLTextAreaElement)[]>([]);
+
+
+    const handleType = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, index: number) => {
         const arrayCopy = [...data[wordResource]]
         arrayCopy[index] = e.target.value
-        setData({ ...data, [e.target.name]: arrayCopy })
+        setData({ ...data, [wordResource]: arrayCopy })
+        resourceRef.current[index].value = e.target.value
+    }
+    const handleDelete = (index: number) => {
+        const arrayCopy = [...data[wordResource]]
+        arrayCopy.splice(index, 1)
+        setData({ ...data, [wordResource]: arrayCopy })
+    }
+
+    const isAddNewResourceAvaible = (): boolean => {
+        return !data[wordResource].includes("")
+    }
+
+    const handleAddNewResourceButton = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.stopPropagation()
+        if (isAddNewResourceAvaible()) {
+            await setData(prev => {
+                return {
+                    ...prev,
+                    [wordResource]: [...prev[wordResource], ""]
+                }
+            })
+            const lastResource = resourceRef.current[resourceRef.current.length - 1];
+            lastResource.focus();
+        }
     }
 
     return (
-        <S.Row>
-            {wordResource}
-            {data[wordResource].map((el, index) => {
+        <>
+            <S.ResourceTitle>
+                {wordResource}
+            </S.ResourceTitle>
+            {data[wordResource].map((_el, index) => {
                 if (isTextArea) {
-                    return <textarea key={index} name={wordResource} value={el} onChange={(e) => handleType(e, index)} />
+                    return <SingleTextAre resourceRef={resourceRef} index={index} key={index} onChange={(e) => handleType(e, index)} handleDelete={() => handleDelete(index)} />
                 }
-                return <input key={index} name={wordResource} value={el} onChange={(e) => handleType(e, index)} />
+                return <SingleInput index={index} resourceRef={resourceRef} key={index} onChange={(e) => handleType(e, index)} handleDelete={() => handleDelete(index)} />
 
             })}
-            <AddNewResourceButton setData={setData} wordResource={wordResource} />
-        </S.Row>
+            <AddNewResourceButton isVisible={isAddNewResourceAvaible()} onClick={handleAddNewResourceButton} />
+        </>
     )
 }
 

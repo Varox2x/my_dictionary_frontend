@@ -1,5 +1,5 @@
 import { useState } from "react"
-import * as S from "../../elements"
+import * as S from "./elements"
 import { ENUM_WORD_RESOURCE } from "../../types"
 import SingleResourceRow from "./SingleResourceRow"
 import { useParams } from "react-router-dom"
@@ -35,10 +35,16 @@ const CreateWord = () => {
 
     return (
         <S.CreateWordWrapper>
-            <SingleResourceRow data={data} setData={setData} wordResource={ENUM_WORD_RESOURCE.NAMES} />
-            <SingleResourceRow data={data} setData={setData} wordResource={ENUM_WORD_RESOURCE.DEFINITIONS} />
-            <SingleResourceRow data={data} setData={setData} wordResource={ENUM_WORD_RESOURCE.EXAMPLE_SENTENCE} isTextArea={true} />
-            <button onClick={() => handleAddWord()} > DODAJ</button>
+            <S.Column>
+                <SingleResourceRow data={data} setData={setData} wordResource={ENUM_WORD_RESOURCE.NAMES} />
+            </S.Column>
+            <S.Column>
+                <SingleResourceRow data={data} setData={setData} wordResource={ENUM_WORD_RESOURCE.DEFINITIONS} />
+            </S.Column>
+            <S.Row>
+                <SingleResourceRow data={data} setData={setData} wordResource={ENUM_WORD_RESOURCE.EXAMPLE_SENTENCE} isTextArea={true} />
+            </S.Row>
+            <S.AddButton onClick={() => handleAddWord()} > DODAJ</S.AddButton>
         </S.CreateWordWrapper >
     )
 }

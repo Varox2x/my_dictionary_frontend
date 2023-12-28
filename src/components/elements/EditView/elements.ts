@@ -6,10 +6,11 @@ export const Wrapper = styled.div`
   margin: auto;
   height: 100vh;
   position: relative;
-  overflow: auto;
+  overflow-y: scroll;
   padding-top: 70px;
   padding-left: 10px;
   padding-right: 10px;
+  scrollbar-width: thin;
 `;
 
 export const SingleElementWrapper = styled.li<{ $height?: boolean }>`

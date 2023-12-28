@@ -1,25 +1,22 @@
+import IconContainer from "../../../../../global/hoc/IconContainer";
 import { WordResoureType } from "../../types"
 import { NewWordType } from "./CreateWord"
+import { IoIosAddCircle } from "react-icons/io";
 
 type Props = {
-    wordResource: WordResoureType,
-    setData: React.Dispatch<React.SetStateAction<NewWordType>>,
+    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+    isVisible: boolean
 }
 
-const AddNewResourceButton = ({ wordResource, setData }: Props) => {
+const AddNewResourceButton = ({ onClick, isVisible }: Props) => {
 
-    const handleClick = () => {
-        setData(prev => {
-            return {
-                ...prev,
-                [wordResource]: [...prev[wordResource], ""]
-            }
-        })
-    }
 
     return (
-        <button onClick={handleClick} >+</button>
+        <button style={{ background: 'transparent', border: 'none', marginTop: '10px' }} onClick={(e) => onClick(e)} >
+            <IconContainer color={isVisible ? "black" : "white"} icon={IoIosAddCircle} />
+        </button>
     )
 }
 
 export default AddNewResourceButton
+

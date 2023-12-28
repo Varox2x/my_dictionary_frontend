@@ -59,6 +59,12 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
         lastResource.focus();
     }
 
+    const isAddNewResourceAvaible = (): boolean => {
+        // return !data[wordResource].includes("")
+        if (resourceData && resourceData[wordResource].includes("")) return false
+        return true
+    }
+
     if (resourceData) {
         const resourceArray = resourceData[wordResource] as string[];
         const items = converter(resourceArray);
@@ -66,7 +72,7 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
         return (
             <>
                 <List<EditComponentType> itemComponent={editComponent} items={items} />
-                <AddResourceButton onClick={(e) => handleAddResourceButton(e)} />
+                <AddResourceButton isVisible={isAddNewResourceAvaible()} onClick={(e) => handleAddResourceButton(e)} />
             </>
         )
     }
