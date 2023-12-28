@@ -10,11 +10,13 @@ type Props = {
     ) => void,
     resourceRef: RefObject<(HTMLInputElement | HTMLTextAreaElement)[]>,
     index: number,
-    handleDelete: () => void
+    handleDelete: () => void,
+    value: string
+
 
 }
 
-const SingleTextAre = ({ onChange, resourceRef, index, handleDelete }: Props) => {
+const SingleTextAre = ({ onChange, resourceRef, index, handleDelete, value }: Props) => {
 
     const handleDeleteButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation()
@@ -24,7 +26,7 @@ const SingleTextAre = ({ onChange, resourceRef, index, handleDelete }: Props) =>
 
     return (
         <S.Wrapper>
-            <S.TextArea placeholder=' ' ref={(el) => {
+            <S.TextArea value={value} placeholder=' ' ref={(el) => {
                 if (resourceRef.current) {
                     resourceRef.current[index] = el as HTMLTextAreaElement
                 }

@@ -22,7 +22,7 @@ const SingleResourceRow = ({ data, setData, wordResource, isTextArea }: Props) =
         const arrayCopy = [...data[wordResource]]
         arrayCopy[index] = e.target.value
         setData({ ...data, [wordResource]: arrayCopy })
-        resourceRef.current[index].value = e.target.value
+        // resourceRef.current[index].value = e.target.value
     }
     const handleDelete = (index: number) => {
         const arrayCopy = [...data[wordResource]]
@@ -53,11 +53,11 @@ const SingleResourceRow = ({ data, setData, wordResource, isTextArea }: Props) =
             <S.ResourceTitle>
                 {wordResource}
             </S.ResourceTitle>
-            {data[wordResource].map((_el, index) => {
+            {data[wordResource].map((el, index) => {
                 if (isTextArea) {
-                    return <SingleTextAre resourceRef={resourceRef} index={index} key={index} onChange={(e) => handleType(e, index)} handleDelete={() => handleDelete(index)} />
+                    return <SingleTextAre value={el} resourceRef={resourceRef} index={index} key={index} onChange={(e) => handleType(e, index)} handleDelete={() => handleDelete(index)} />
                 }
-                return <SingleInput index={index} resourceRef={resourceRef} key={index} onChange={(e) => handleType(e, index)} handleDelete={() => handleDelete(index)} />
+                return <SingleInput value={el} index={index} resourceRef={resourceRef} key={index} onChange={(e) => handleType(e, index)} handleDelete={() => handleDelete(index)} />
 
             })}
             <AddNewResourceButton isVisible={isAddNewResourceAvaible()} onClick={handleAddNewResourceButton} />

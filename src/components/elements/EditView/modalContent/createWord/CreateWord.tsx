@@ -44,7 +44,7 @@ const CreateWord = () => {
             <S.Row>
                 <SingleResourceRow data={data} setData={setData} wordResource={ENUM_WORD_RESOURCE.EXAMPLE_SENTENCE} isTextArea={true} />
             </S.Row>
-            <S.AddButton onClick={() => handleAddWord()} > DODAJ</S.AddButton>
+            <S.AddButton onClick={() => handleAddWord()} > ADD</S.AddButton>
         </S.CreateWordWrapper >
     )
 }

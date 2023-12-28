@@ -10,10 +10,11 @@ type Props = {
     ) => void,
     resourceRef: RefObject<(HTMLInputElement | HTMLTextAreaElement)[]>,
     index: number,
-    handleDelete: () => void
+    handleDelete: () => void,
+    value: string
 }
 
-const SingleInput = ({ onChange, resourceRef, index, handleDelete }: Props) => {
+const SingleInput = ({ onChange, resourceRef, index, handleDelete, value }: Props) => {
 
     const handleDeleteButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation()
@@ -22,7 +23,7 @@ const SingleInput = ({ onChange, resourceRef, index, handleDelete }: Props) => {
 
     return (
         <S.Wrapper>
-            <S.Input placeholder=' ' ref={(el) => {
+            <S.Input value={value} placeholder=' ' ref={(el) => {
                 if (resourceRef.current) {
                     resourceRef.current[index] = el as HTMLInputElement
                 }
