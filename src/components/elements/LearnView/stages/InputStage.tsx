@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useLearnView } from "../Store/LearnViewProvider"
 import * as S from '../elements';
+import { CiCircleCheck } from "react-icons/ci";
+import IconContainer from "../../../../global/hoc/IconContainer";
 
 const ENUM_USER_RESPONSE = {
     NOT_PROVIDE: 'NOT_PROVIDE',
@@ -47,7 +49,9 @@ const InputStage = () => {
     return (
         <S.InputStageWrapper background={userResponse == ENUM_USER_RESPONSE.NOT_PROVIDE ? "transparent" : userResponse == ENUM_USER_RESPONSE.CORRECT ? "rgba(4, 245, 11, 0.46)" : "rgba(255, 0, 66, 1)"} >
             <S.Input type="text" value={inputData} onClick={(e) => handleInputClick(e)} onChange={(e) => handleInputType(e)} />
-            <button onClick={(e) => handleCheck(e)}>Check</button>
+            <S.CheckButton onClick={(e) => handleCheck(e)}>
+                <IconContainer size={40} icon={CiCircleCheck} />
+            </S.CheckButton>
         </S.InputStageWrapper>
     )
 }

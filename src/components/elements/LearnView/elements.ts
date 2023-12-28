@@ -221,4 +221,10 @@ export const Input = styled.input`
   background: transparent;
   border-bottom: 2px solid blue;
   text-align: center;
+  color: white;
+`;
+
+export const CheckButton = styled.button`
+  background: transparent;
+  border: none;
 `;

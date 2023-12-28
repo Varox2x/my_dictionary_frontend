@@ -43,6 +43,8 @@ export const ArrowLeft = styled.button<{
 }>`
   z-index: 555;
   opacity: ${(props) => (props.$visible ? '0' : '100%')};
+  background: transparent;
+  border: none;
 `;
 
 export const ArrowRight = styled.button<{
@@ -50,4 +52,6 @@ export const ArrowRight = styled.button<{
 }>`
   z-index: 555;
   opacity: ${(props) => (props.$visible ? '0' : '100%')};
+  background: transparent;
+  border: none;
 `;

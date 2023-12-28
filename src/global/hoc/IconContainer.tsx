@@ -10,13 +10,14 @@ type StyleProps = {
 type Props = {
     icon: React.FunctionComponent,
     style?: StyleProps,
-    color?: string
+    color?: string,
+    size?: number
 };
 
-const IconContainer = ({ icon: Icon, style, color }: Props) => {
+const IconContainer = ({ icon: Icon, style, color, size }: Props) => {
     return (
         <div style={{ ...style, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-            <Icon style={{ color: color || 'white', fontSize: '20px' }} />
+            <Icon style={{ color: color || 'white', fontSize: `${size}px` || '20px' }} />
         </div>
     )
 }
