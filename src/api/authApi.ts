@@ -34,14 +34,17 @@ export const getRefreshAccessTokensRegister = async (
       ...body,
     })
     .then((r) => {
-      if (r.status === STATUS._200 && r.data) {
+      if ((r.status === STATUS._200 || r.status === STATUS._201) && r.data) {
         return r.data;
       } else {
         const error = new Error();
         throw error;
       }
     })
-    .catch(() => {
+    .catch((err) => {
+      if (err.response?.data?.message) {
+        throw { message: err.response?.data?.message };
+      }
       const error = new Error('Wrong authorize data');
       throw error;
     });
@@ -87,8 +90,8 @@ export const register = (body: LoginBodyType): Promise<boolean> => {
       localStorage.setItem('tokens', JSON.stringify(r));
       return true;
     })
-    .catch(() => {
-      return false;
+    .catch((r) => {
+      throw r;
     });
 };
 

@@ -5,6 +5,7 @@ export type Tokens = {
 
 export enum STATUS {
   _200 = 200,
+  _201 = 201,
 }
 
 export interface ILoginResponse {
