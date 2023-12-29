@@ -4,14 +4,20 @@ import AuthBackground from '../../../assets/global/AuthBackground.jpg';
 
 export const Container = styled.div`
     width: 100%;
+  overflow: hidden;
+
 `
 
 export const Wrapper = styled.div`
     width: 100%;
-    margin: auto;
     max-width: 1000px;
     padding: 0;
-    @media only screen and (min-width: ${breakpoints.sm}px){
+    margin-left: 250px;
+    @media only screen and (min-width: 1500px){
+        margin: auto;
+    }
+    @media only screen and (max-width: 1200px){
+         margin: auto;
 
     }
 `

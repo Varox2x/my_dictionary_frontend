@@ -17,7 +17,7 @@ export type StateType = {
 
 export const INITIAL_STATE: StateType = {
     currentMode: MODE_ENUM.LEARN,
-    isMobileMenuOpen: true,
+    isMobileMenuOpen: false,
     activePopup: ENUM_POPUP.NONE
 }
 

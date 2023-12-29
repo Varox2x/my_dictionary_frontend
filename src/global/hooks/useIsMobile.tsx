@@ -22,5 +22,5 @@ export const useIsMobile = (): boolean => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    return windowDimensions.width <= breakpoints.sm;
+    return windowDimensions.width <= breakpoints.lg;
 }

@@ -6,11 +6,6 @@ export const Wrapper = styled.div`
   margin: auto;
   height: 100vh;
   position: relative;
-
-  overflow: hidden;
-  @media only screen and (min-width: ${breakpoints.lg}px) {
-    overflow: visible;
-  }
 `;
 
 export const CardContainer = styled.div<{

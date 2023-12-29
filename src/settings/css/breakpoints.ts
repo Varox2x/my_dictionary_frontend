@@ -1,8 +1,7 @@
 const breakpoints = {
-    sm: 768,
-    md: 960,
-    lg: 1240
-}
+  sm: 768,
+  md: 960,
+  lg: 1200,
+};
 
-export default breakpoints
-
+export default breakpoints;
