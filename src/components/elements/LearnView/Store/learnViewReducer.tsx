@@ -74,6 +74,8 @@ export const learnViewReducer = (state: StateType, action: ActionType): StateTyp
             if (!Object.values(ENUM_STAGES_NAMES).includes(action.payload as StagesNamesType)) {
                 throw new Error(`action.payload wrong in ${ACTION_TYPES.CHANGE_FRONT_STAGE} action`)
             }
+            console.log("setting stage")
+            console.log(action.payload)
             return { ...state, currentFrontStage: action.payload as StagesNamesType }
         case ACTION_TYPES.CHANGE_BACK_STAGE:
             if (!action.payload) {

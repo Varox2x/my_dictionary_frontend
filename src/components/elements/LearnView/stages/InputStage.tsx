@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useLearnView } from "../Store/LearnViewProvider"
 import * as S from '../elements';
 import { CiCircleCheck } from "react-icons/ci";
@@ -19,6 +19,7 @@ const InputStage = () => {
 
     const [inputData, setInputData] = useState<string>("")
     const [userResponse, setUserResponse] = useState<UserResponseType>(ENUM_USER_RESPONSE.NOT_PROVIDE)
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const validateWord = () => {
         if (state.wordsArray[state.currentIndex].definitions) {
@@ -33,6 +34,7 @@ const InputStage = () => {
 
     const handleInputType = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.stopPropagation();
+        e.preventDefault()
         setInputData(e.currentTarget.value)
         setUserResponse(ENUM_USER_RESPONSE.NOT_PROVIDE)
     }
@@ -41,15 +43,26 @@ const InputStage = () => {
         e.stopPropagation();
     }
 
-    const handleCheck = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleCheck = (e: React.FormEvent<HTMLFormElement>) => {
         e.stopPropagation();
+        e.preventDefault();
         validateWord()
     }
 
+    useEffect(() => {
+        if (inputRef.current) {
+            setTimeout(() => {
+                if (inputRef.current) {
+                    inputRef.current.focus()
+                }
+            }, 500);
+        }
+    }, []);
+
     return (
-        <S.InputStageWrapper background={userResponse == ENUM_USER_RESPONSE.NOT_PROVIDE ? "transparent" : userResponse == ENUM_USER_RESPONSE.CORRECT ? "rgba(4, 245, 11, 0.46)" : "rgba(255, 0, 66, 1)"} >
-            <S.Input type="text" value={inputData} onClick={(e) => handleInputClick(e)} onChange={(e) => handleInputType(e)} />
-            <S.CheckButton onClick={(e) => handleCheck(e)}>
+        <S.InputStageWrapper onSubmit={(e) => handleCheck(e)} background={userResponse == ENUM_USER_RESPONSE.NOT_PROVIDE ? "transparent" : userResponse == ENUM_USER_RESPONSE.CORRECT ? "rgba(4, 245, 11, 0.46)" : "rgba(255, 0, 66, 1)"} >
+            <S.Input ref={inputRef} type="text" value={inputData} onClick={(e) => handleInputClick(e)} onChange={(e) => handleInputType(e)} />
+            <S.CheckButton onClick={(e) => e.stopPropagation()} type="submit">
                 <IconContainer size={40} icon={CiCircleCheck} />
             </S.CheckButton>
         </S.InputStageWrapper>

@@ -2,8 +2,6 @@ import * as S from './elements'
 import { useDispatchLearnView, useLearnView } from '../Store/LearnViewProvider'
 import { ENUM_CARD_SIDE, ENUM_STAGES_NAMES, StagesNamesType } from '../types'
 import { ACTION_TYPES } from '../Store/actionTypes'
-import { relative } from 'path'
-
 
 type Props = {
     icon: string,

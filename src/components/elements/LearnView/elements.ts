@@ -198,7 +198,7 @@ export const ProgressBarWrapper = styled.div`
   align-items; center;
 `;
 
-export const InputStageWrapper = styled.div<{
+export const InputStageWrapper = styled.form<{
   background: string;
 }>`
   width: 100%;
