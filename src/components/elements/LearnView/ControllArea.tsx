@@ -39,13 +39,17 @@ const ControllArea = () => {
     }, [dispatch, handleRollCard, state.cardSide, state.currentFrontStage])
 
     useEffect(() => {
-        const currentRef = controllAreRef.current;
+        if (controllAreRef.current) {
+            controllAreRef.current.focus()
+        }
+    }, [])
 
+    useEffect(() => {
+        const currentRef = controllAreRef.current;
         if (currentRef) {
             currentRef.tabIndex = 0;
             currentRef.addEventListener('keydown', handleKeyPress);
         }
-
         return () => {
             if (currentRef) {
                 currentRef.removeEventListener('keydown', handleKeyPress);
