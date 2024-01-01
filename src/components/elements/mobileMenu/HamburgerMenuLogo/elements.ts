@@ -5,5 +5,4 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   z-index: 9999;
-  border: 2px solid red;
 `;

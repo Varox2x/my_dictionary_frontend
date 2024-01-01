@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div<{
   $isActive: boolean;
@@ -11,7 +12,6 @@ export const Container = styled.div<{
   left: ${(props) => (props.$isActive ? '0' : '-100%')};
   transition: 850ms;
   z-index: 9999;
-  border: 2px solid purple;
   width: 100vw;
 `;
 
@@ -36,17 +36,46 @@ export const Menu = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 20px;
+  padding-right: 20px;
 `;
 
 export const UnderMenuTitle = styled.p`
   margin-bottom: 20px;
+  color: #ffffff;
+  opacity: 0.3;
 `;
 
-export const UnderMenu = styled.ul`
-  margin-bottom: 35px;
-  margin-left: 20px;
+export const UnderMenu = styled.ul``;
+
+export const PageLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  padding: 50px 0;
+  color: #ffffff;
 `;
 
 export const MenuElement = styled.li`
-  margin-bottom: 15px;
+  padding: 20px 0;
+  position: relative;
+  &:after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ffffff;
+    opacity: 0.3;
+  }
+`;
+
+export const MenuElementTitle = styled.p`
+  color: #ffffff;
+  text-align: center;
+`;
+
+export const PageTitle = styled.p`
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
 `;

@@ -37,30 +37,38 @@ const MobileMenu = () => {
                                 dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.LEARN })
                                 dispatch({ type: ACTION_TYPES.CLOSE_MOBILE_MENU })
                             }} >
-                                Learn
+                                <S.MenuElementTitle>
+                                    Learn
+                                </S.MenuElementTitle>
                             </S.MenuElement>
                             <S.MenuElement onClick={() => {
                                 dispatch({ type: ACTION_TYPES.CLOSE_MOBILE_MENU })
                                 dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.EDIT })
                             }} >
-                                Edit
+                                <S.MenuElementTitle>
+                                    Edit
+                                </S.MenuElementTitle>
                             </S.MenuElement>
                         </S.UnderMenu>
-                        <S.UnderMenuTitle>
-                            <Link to={`/${routerList.CreateNewSetPage.url}`} >New Set</Link>
-                        </S.UnderMenuTitle>
+                        <S.PageLink to={`/${routerList.CreateNewSetPage.url}`} ><S.PageTitle>Create New Set</S.PageTitle></S.PageLink>
                         <S.UnderMenuTitle>
                             Sets
                         </S.UnderMenuTitle>
                         <S.UnderMenu>
                             <S.MenuElement onClick={() => handleShowSetList(ROLE_ENUM.OWNER)}>
-                                Owner
+                                <S.MenuElementTitle>
+                                    Owner
+                                </S.MenuElementTitle>
                             </S.MenuElement>
                             <S.MenuElement onClick={() => handleShowSetList(ROLE_ENUM.EDITABLE)}>
-                                Edit
+                                <S.MenuElementTitle>
+                                    Edit
+                                </S.MenuElementTitle>
                             </S.MenuElement>
                             <S.MenuElement onClick={() => handleShowSetList(ROLE_ENUM.READ_ONLY)}>
-                                Learn
+                                <S.MenuElementTitle>
+                                    Learn
+                                </S.MenuElementTitle>
                             </S.MenuElement>
                         </S.UnderMenu>
                     </S.Menu>
