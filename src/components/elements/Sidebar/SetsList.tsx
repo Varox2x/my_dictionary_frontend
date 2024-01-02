@@ -21,7 +21,7 @@ const SetsList = ({
 
 
     return (
-        <SubMenu style={{ color: 'rgb(139, 161, 183)', backgroundColor: 'rgb(11, 41, 72)' }} label={labelName}>
+        <SubMenu style={{ color: 'rgb(139, 161, 183)' }} label={labelName}>
             <Menu menuItemStyles={{
                 button: ({ level, disabled }) => {
                     if (level === 0 || level === 1)
