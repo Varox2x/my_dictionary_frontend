@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import breakpoints from '../../../settings/css/breakpoints';
 
 export const Container = styled.div`
   width: 100%;
@@ -13,12 +12,14 @@ export const List = styled.ul`
   padding-top: 80px;
 `;
 
-export const ListElement = styled.li`
+export const ListElement = styled.li<{
+  $isActive: boolean;
+}>`
   margin: 20px 0;
   margin-left: 45px;
   text-align: left;
   text-decoration: none;
-  color: #ffffff;
+  color: ${(props) => (props.$isActive ? '#33bbcf' : '#ffffff')};
   position: relative;
   &:after {
     position: absolute;

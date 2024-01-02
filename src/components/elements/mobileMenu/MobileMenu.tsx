@@ -15,7 +15,7 @@ const MobileMenu = () => {
     const [currentIndex,] = useState(0)
 
     const dispatch = useDispatchStore()
-    const state = useStore()
+    const { isMobileMenuOpen, currentMode } = useStore()
 
 
 
@@ -25,7 +25,7 @@ const MobileMenu = () => {
     }
 
     return (
-        <S.Container $isActive={state.isMobileMenuOpen} >
+        <S.Container $isActive={isMobileMenuOpen} >
             <S.Wrapper>
                 <S.Nav>
                     <S.Menu>
@@ -37,7 +37,7 @@ const MobileMenu = () => {
                                 dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.LEARN })
                                 dispatch({ type: ACTION_TYPES.CLOSE_MOBILE_MENU })
                             }} >
-                                <S.MenuElementTitle>
+                                <S.MenuElementTitle $isActive={currentMode == MODE_ENUM.LEARN}>
                                     Learn
                                 </S.MenuElementTitle>
                             </S.MenuElement>
@@ -45,7 +45,7 @@ const MobileMenu = () => {
                                 dispatch({ type: ACTION_TYPES.CLOSE_MOBILE_MENU })
                                 dispatch({ type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.EDIT })
                             }} >
-                                <S.MenuElementTitle>
+                                <S.MenuElementTitle $isActive={currentMode == MODE_ENUM.EDIT}>
                                     Edit
                                 </S.MenuElementTitle>
                             </S.MenuElement>
@@ -56,24 +56,24 @@ const MobileMenu = () => {
                         </S.UnderMenuTitle>
                         <S.UnderMenu>
                             <S.MenuElement onClick={() => handleShowSetList(ROLE_ENUM.OWNER)}>
-                                <S.MenuElementTitle>
+                                <S.MenuElementTitle $isActive={role == ROLE_ENUM.OWNER}>
                                     Owner
                                 </S.MenuElementTitle>
                             </S.MenuElement>
                             <S.MenuElement onClick={() => handleShowSetList(ROLE_ENUM.EDITABLE)}>
-                                <S.MenuElementTitle>
+                                <S.MenuElementTitle $isActive={role == ROLE_ENUM.EDITABLE}>
                                     Edit
                                 </S.MenuElementTitle>
                             </S.MenuElement>
                             <S.MenuElement onClick={() => handleShowSetList(ROLE_ENUM.READ_ONLY)}>
-                                <S.MenuElementTitle>
+                                <S.MenuElementTitle $isActive={role == ROLE_ENUM.READ_ONLY}>
                                     Learn
                                 </S.MenuElementTitle>
                             </S.MenuElement>
                         </S.UnderMenu>
                     </S.Menu>
                 </S.Nav>
-                <ExtendedMenu isMenuExtanded={isMenuExtanded && state.isMobileMenuOpen} currentIndex={currentIndex}>
+                <ExtendedMenu isMenuExtanded={isMenuExtanded && isMobileMenuOpen} currentIndex={currentIndex}>
                     <SetsView role={role} />
                 </ExtendedMenu>
             </S.Wrapper>

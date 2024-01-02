@@ -69,8 +69,11 @@ export const MenuElement = styled.li`
   }
 `;
 
-export const MenuElementTitle = styled.p`
+export const MenuElementTitle = styled.p<{
+  $isActive: boolean;
+}>`
   color: #ffffff;
+  color: ${(props) => (props.$isActive ? '#33bbcf' : '#ffffff')};
   text-align: center;
 `;
 
