@@ -1,6 +1,9 @@
 import styled from 'styled-components';
-import breakpoints from '../../../settings/css/breakpoints';
 
-export const MenuTitle = styled.p``;
+export const MenuTitle = styled.p`
+  padding-left: 20px;
+  color: #506a85;
+  margin-top: 40px;
+`;
 
 export const MenuTitleWrapper = styled.div``;
