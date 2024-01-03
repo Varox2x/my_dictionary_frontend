@@ -2,10 +2,10 @@ import { useDispatchLearnView, useLearnView } from "../Store/LearnViewProvider"
 import { ACTION_TYPES } from "../Store/actionTypes"
 import * as S from "../elements"
 import { CardSideType, ENUM_CARD_SIDE, ENUM_STAGES_NAMES, StagesNamesType } from "../types"
-import IdeaIcon from "../../../../assets/learnMenuBarIcons/idea.png"
-import TextIcon from "../../../../assets/learnMenuBarIcons/text.png"
-import WritingIcon from "../../../../assets/learnMenuBarIcons/writing.png"
 import ActionMenuButton from "./ActionMenuButton"
+import { FaRegLightbulb } from "react-icons/fa";
+import { CiCircleCheck } from "react-icons/ci";
+import { CiTextAlignCenter } from "react-icons/ci";
 
 const ActionMenu = () => {
 
@@ -47,9 +47,9 @@ const ActionMenu = () => {
 
     return (
         <S.ActionMenuWrapper side="right">
-            <ActionMenuButton isDisable={false} stageName={ENUM_STAGES_NAMES.HINT} onClick={() => handleHintButton()} icon={IdeaIcon} />
-            <ActionMenuButton isDisable={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} stageName={ENUM_STAGES_NAMES.INPUT} onClick={() => handleButton(ENUM_STAGES_NAMES.INPUT)} icon={TextIcon} />
-            <ActionMenuButton isDisable={buttonAccessibility(ENUM_CARD_SIDE.BACK) || isExampleSentence()} stageName={ENUM_STAGES_NAMES.EXAMPLE} onClick={() => handleExampleButton()} icon={WritingIcon} />
+            <ActionMenuButton isDisable={false} stageName={ENUM_STAGES_NAMES.HINT} onClick={() => handleHintButton()} icon={FaRegLightbulb} />
+            <ActionMenuButton isDisable={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} stageName={ENUM_STAGES_NAMES.INPUT} onClick={() => handleButton(ENUM_STAGES_NAMES.INPUT)} icon={CiCircleCheck} />
+            <ActionMenuButton isDisable={buttonAccessibility(ENUM_CARD_SIDE.BACK) || isExampleSentence()} stageName={ENUM_STAGES_NAMES.EXAMPLE} onClick={() => handleExampleButton()} icon={CiTextAlignCenter} />
         </S.ActionMenuWrapper>
     )
 }

@@ -1,19 +1,23 @@
 import * as S from '../elements';
 
 type Props = {
-    data: string[]
+    data: string[],
+    isrevert: boolean
 }
 
-const DefaultView = ({ data }: Props) => {
+const DefaultView = ({ data, isrevert }: Props) => {
     return (
         <S.DefaultStageList>
-            {data.map((el, index) => {
-                return (
-                    <S.DefaultStageListElement key={index} >
-                        <S.SingleText>{el}</S.SingleText>
-                    </S.DefaultStageListElement>
-                )
-            })}
+            <S.DefaultStageListElement  >
+                <S.SingleText $isrevert={isrevert}>
+                    {data.map((el) => {
+                        return (
+                            <>{el}{"    "}</>
+                        )
+                    })}
+                </S.SingleText>
+            </S.DefaultStageListElement>
+
         </S.DefaultStageList>
     )
 }

@@ -11,7 +11,7 @@ const BackSide = () => {
 
     return (
         <S.BackSide>
-            <DefaultView data={state.wordsArray[state.currentIndex].definitions} />
+            <DefaultView isrevert={true} data={state.wordsArray[state.currentIndex].definitions} />
             <Stage currentStage={state.currentBackStage}>
                 {stagesComponents[ENUM_CARD_SIDE.BACK]}
             </Stage>

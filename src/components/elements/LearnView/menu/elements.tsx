@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import breakpoints from '../../../settings/css/breakpoints'
 
 export const Icon = styled.img<{
     $isActive: boolean,
@@ -16,6 +15,7 @@ export const Icon = styled.img<{
 export const Button = styled.button`
     background: transparent;
     border: none;
+
 `
 
 export const FiltrMask = styled.div<{

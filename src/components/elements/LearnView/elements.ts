@@ -38,11 +38,12 @@ export const FrontSide = styled.div`
   backface-visibility: hidden;
 
   background-color: #3498db;
+  background-color: #48cae4;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  color: #fff;
+  color: #030507;
 
   box-shadow:
     0 0.125em 0.3125em rgba(0, 0, 0, 0.25),
@@ -51,6 +52,8 @@ export const FrontSide = styled.div`
   border-radius: 10px;
 
   overflow: hidden;
+
+  cursor: pointer;
 `;
 
 export const DefaultStageList = styled.ul`
@@ -64,8 +67,12 @@ export const DefaultStageList = styled.ul`
 
 export const DefaultStageListElement = styled.li``;
 
-export const SingleText = styled.p`
+export const SingleText = styled.p<{
+  $isrevert: boolean;
+}>`
   text-align: left;
+  color: #ffffff;
+  color: ${(props) => (props.$isrevert ? '#ffffff' : '#030507')};
 `;
 
 export const BackSide = styled.div`
@@ -74,17 +81,19 @@ export const BackSide = styled.div`
   position: absolute;
   backface-visibility: hidden;
 
-  background-color: #e74c3c;
+  background-color: #480ca8;
   transform: rotateX(180deg);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  color: #fff;
+  color: ##ffffff;
 
   border-radius: 10px;
 
   overflow: hidden;
+
+  cursor: pointer;
 `;
 
 export const CardSpaceContainer = styled.div`
@@ -216,7 +225,7 @@ export const Input = styled.input`
   background: transparent;
   border-bottom: 2px solid blue;
   text-align: center;
-  color: white;
+  color: #030507;
 `;
 
 export const CheckButton = styled.button`

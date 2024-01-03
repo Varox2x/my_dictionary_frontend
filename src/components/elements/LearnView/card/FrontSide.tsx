@@ -19,7 +19,7 @@ const FrontSide = () => {
 
     return (
         <S.FrontSide>
-            <DefaultView data={state.wordsArray[state.currentIndex].names} />
+            <DefaultView isrevert={false} data={state.wordsArray[state.currentIndex].names} />
             {stagesAvaible && <Stage currentStage={state.currentFrontStage}>
                 {stagesComponents[ENUM_CARD_SIDE.FRONT]}
             </Stage>}

@@ -63,7 +63,7 @@ const InputStage = () => {
         <S.InputStageWrapper onSubmit={(e) => handleCheck(e)} background={userResponse == ENUM_USER_RESPONSE.NOT_PROVIDE ? "transparent" : userResponse == ENUM_USER_RESPONSE.CORRECT ? "rgba(4, 245, 11, 0.46)" : "rgba(255, 0, 66, 1)"} >
             <S.Input ref={inputRef} type="text" value={inputData} onClick={(e) => handleInputClick(e)} onChange={(e) => handleInputType(e)} />
             <S.CheckButton onClick={(e) => e.stopPropagation()} type="submit">
-                <IconContainer size={40} icon={CiCircleCheck} />
+                <IconContainer color="#030507" size={40} icon={CiCircleCheck} />
             </S.CheckButton>
         </S.InputStageWrapper>
     )

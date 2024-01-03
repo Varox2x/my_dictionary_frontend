@@ -38,10 +38,10 @@ const CardEscape = () => {
         >
             <S.CardContainer $isrevert={state.previousCardSide !== ENUM_CARD_SIDE.FRONT} >
                 <S.FrontSide>
-                    <DefaultView data={state.wordsArray[calculatePreviousIndex()].names} />
+                    <DefaultView isrevert={false} data={state.wordsArray[calculatePreviousIndex()].names} />
                 </S.FrontSide>
                 <S.BackSide>
-                    <DefaultView data={state.wordsArray[calculatePreviousIndex()].definitions} />
+                    <DefaultView isrevert={true} data={state.wordsArray[calculatePreviousIndex()].definitions} />
 
                 </S.BackSide>
             </S.CardContainer>

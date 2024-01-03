@@ -2,7 +2,7 @@ import * as S from "../elements"
 import ActionMenuButton from "./ActionMenuButton"
 import { useDispatchLearnView } from "../Store/LearnViewProvider"
 import { ACTION_TYPES } from "../Store/actionTypes"
-import ArrowIcon from "../../../../assets/learnMenuBarIcons/arrow.png"
+import { FaShuffle } from "react-icons/fa6";
 
 const SetActionMenu = () => {
     const dispatch = useDispatchLearnView()
@@ -13,7 +13,7 @@ const SetActionMenu = () => {
 
     return (
         <S.ActionMenuWrapper side="left">
-            <ActionMenuButton isDisable={false} onClick={handleShuffleButton} icon={ArrowIcon} />
+            <ActionMenuButton isDisable={false} onClick={handleShuffleButton} icon={FaShuffle} />
         </S.ActionMenuWrapper>
     )
 }

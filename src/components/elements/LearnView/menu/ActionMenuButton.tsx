@@ -2,12 +2,13 @@ import * as S from './elements'
 import { useDispatchLearnView, useLearnView } from '../Store/LearnViewProvider'
 import { ENUM_CARD_SIDE, ENUM_STAGES_NAMES, StagesNamesType } from '../types'
 import { ACTION_TYPES } from '../Store/actionTypes'
+import IconContainer from '../../../../global/hoc/IconContainer';
 
 type Props = {
-    icon: string,
     onClick: () => void,
-    stageName?: StagesNamesType
-    isDisable: boolean
+    stageName?: StagesNamesType,
+    isDisable: boolean,
+    icon: React.FunctionComponent,
 }
 
 
@@ -37,9 +38,9 @@ const ActionMenuButton = ({ icon, onClick, stageName, isDisable }: Props) => {
 
     return (
         <div style={{ position: 'relative' }}>
-            {/* <S.FiltrMask isActive={!isDisable} /> */}
             <S.Button disabled={isDisable} onClick={(e) => handleClick(e)}>
-                <S.Icon $isDisable={isDisable} $isActive={isActive()} src={icon} />
+                <IconContainer size={40} color={isDisable ? 'white' : isActive() ? 'rgba(54, 2, 100, 1)' : 'rgba(0, 0, 0, 0.19)'} icon={icon} />
+                {/* <S.Icon $isDisable={isDisable} $isActive={isActive()} src={icon} /> */}
             </S.Button>
         </div>
 
