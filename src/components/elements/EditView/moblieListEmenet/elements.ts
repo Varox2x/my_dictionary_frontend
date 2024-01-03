@@ -23,6 +23,14 @@ export const SingleElementWrapper = styled.li<{ $isOpen?: boolean }>`
     #14101d 95.11%
   );
 
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(165, 118, 214, 1) 0%,
+    rgba(100, 18, 185, 1) 100%
+  );
+
   -webkit-box-shadow: 0px 7px 14px 0px rgba(66, 68, 90, 1);
   -moz-box-shadow: 0px 7px 14px 0px rgba(66, 68, 90, 1);
   box-shadow: 0px 7px 14px 0px rgba(66, 68, 90, 1);

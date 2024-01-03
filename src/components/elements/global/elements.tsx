@@ -18,7 +18,6 @@ export const Wrapper = styled.div`
     }
     @media only screen and (max-width: 1200px){
          margin: auto;
-
     }
 `
 
