@@ -125,7 +125,7 @@ export const ControllAreaLeftSide = styled.div`
   position: absolute;
   top: 20%;
   left: 0;
-  bottom: 20%;
+  bottom: 0;
   width: 50%;
 
   z-index: 1;
@@ -135,7 +135,7 @@ export const ControllAreaRightSide = styled.div`
   position: absolute;
   top: 20%;
   right: 0;
-  bottom: 20%;
+  bottom: 0;
   width: 50%;
 
   z-index: 1;

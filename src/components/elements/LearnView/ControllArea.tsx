@@ -62,7 +62,7 @@ const ControllArea = () => {
         <S.ControllerAreaContainer ref={controllAreRef}>
             <S.ControllerAreaWrapper>
                 <S.ControllAreaTopSide />
-                <S.ControllAreaBottomSide />
+                {/* <S.ControllAreaBottomSide /> */}
                 <S.ControllAreaLeftSide onClick={() => handleRollCard(DIRECTION_ENUM.LEFT)} />
                 <S.ControllAreaRightSide onClick={() => handleRollCard(DIRECTION_ENUM.RIGHT)} />
             </S.ControllerAreaWrapper>
