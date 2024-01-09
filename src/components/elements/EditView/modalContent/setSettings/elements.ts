@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import breakpoints from '../../../settings/css/breakpoints';
 
 export const Container = styled.div`
   width: 100%;
@@ -12,4 +11,4 @@ export const Container = styled.div`
   padding-right: 10px;
 `;
 
-// export const 
+// export const

@@ -11,7 +11,7 @@ type Props = {
 
 const UserList = ({ role, setId }: Props) => {
 
-    const [currentPage, setCurrentPage] = useState({
+    const [currentPage,] = useState({
         [ROLE_ENUM.OWNER]: 1,
         [ROLE_ENUM.EDITABLE]: 1,
         [ROLE_ENUM.READ_ONLY]: 1,

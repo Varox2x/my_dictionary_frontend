@@ -5,7 +5,6 @@ import SetsView from "./ExtendedMenu/views/setsView/SetsView"
 import { MODE_ENUM, ROLE_ENUM, RoleType } from "../../../global/types"
 import { useDispatchStore, useStore } from "../../../store/StoreProvider"
 import { ACTION_TYPES } from "../../../store/actionTypes"
-import { Link } from "react-router-dom"
 import routerList from "../../../routerList"
 
 const MobileMenu = () => {

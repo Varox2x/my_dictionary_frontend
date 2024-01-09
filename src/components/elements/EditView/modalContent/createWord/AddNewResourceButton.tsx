@@ -1,6 +1,4 @@
 import IconContainer from "../../../../../global/hoc/IconContainer";
-import { WordResoureType } from "../../types"
-import { NewWordType } from "./CreateWord"
 import { IoIosAddCircle } from "react-icons/io";
 
 type Props = {

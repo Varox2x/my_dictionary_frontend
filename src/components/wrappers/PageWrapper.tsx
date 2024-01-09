@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useIsMobile } from "../../global/hooks/useIsMobile";
 import Sidebar from "../elements/Sidebar/Sidebar";
 import * as S from "../elements/global/elements"

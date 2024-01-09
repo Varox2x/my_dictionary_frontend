@@ -1,4 +1,3 @@
-import { ExampleSentenceType } from "../../../../global/types";
 import { useDispatchEditView } from "../Store/EditViewProvider";
 import { ACTION_TYPES } from "../Store/actionTypes";
 import * as S from "../elements"

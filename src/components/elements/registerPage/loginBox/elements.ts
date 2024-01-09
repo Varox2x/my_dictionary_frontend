@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import breakpoints from '../../../settings/css/breakpoints';
 
 export const Container = styled.div`
   margin: auto;

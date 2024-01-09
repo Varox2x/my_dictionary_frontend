@@ -4,7 +4,6 @@ import UserList from "./UserList"
 import * as S from "./elements"
 import { ROLE_ENUM, RoleType } from "../../../../../../global/types"
 import { useParams } from "react-router-dom"
-import Pagination from "./Pagination"
 
 const AccessesBox = () => {
 
