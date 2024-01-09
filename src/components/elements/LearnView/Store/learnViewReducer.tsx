@@ -33,7 +33,8 @@ export const INITIAL_STATE: StateType = {
 }
 
 const rollCard = (direction: DirectionType, state: StateType) => {
-    state = { ...state, cardSide: ENUM_CARD_SIDE.FRONT, previousCardSide: state.cardSide, currentFrontStage: ENUM_STAGES_NAMES.DEFAULT, currentBackStage: ENUM_STAGES_NAMES.DEFAULT }
+    if (state.wordsArray.length == 1) return state
+    state = { ...state, cardSide: ENUM_CARD_SIDE.FRONT, previousCardSide: state.cardSide, currentFrontStage: ENUM_STAGES_NAMES.STAGE_DISABLE, currentBackStage: ENUM_STAGES_NAMES.STAGE_DISABLE }
     switch (direction) {
         case DIRECTION_ENUM.RIGHT:
             return { ...state, currentIndex: state.currentIndex + 1 > state.wordsArray.length - 1 ? 0 : state.currentIndex + 1, enterDirection: DIRECTION_ENUM.LEFT }
@@ -74,8 +75,6 @@ export const learnViewReducer = (state: StateType, action: ActionType): StateTyp
             if (!Object.values(ENUM_STAGES_NAMES).includes(action.payload as StagesNamesType)) {
                 throw new Error(`action.payload wrong in ${ACTION_TYPES.CHANGE_FRONT_STAGE} action`)
             }
-            console.log("setting stage")
-            console.log(action.payload)
             return { ...state, currentFrontStage: action.payload as StagesNamesType }
         case ACTION_TYPES.CHANGE_BACK_STAGE:
             if (!action.payload) {

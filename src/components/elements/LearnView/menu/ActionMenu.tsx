@@ -47,7 +47,7 @@ const ActionMenu = () => {
 
     return (
         <S.ActionMenuWrapper side="right">
-            <ActionMenuButton isDisable={false} stageName={ENUM_STAGES_NAMES.HINT} onClick={() => handleHintButton()} icon={FaRegLightbulb} />
+            <ActionMenuButton isDisable={state.cardSide == ENUM_CARD_SIDE.BACK} stageName={ENUM_STAGES_NAMES.HINT} onClick={() => handleHintButton()} icon={FaRegLightbulb} />
             <ActionMenuButton isDisable={buttonAccessibility(ENUM_CARD_SIDE.FRONT)} stageName={ENUM_STAGES_NAMES.INPUT} onClick={() => handleButton(ENUM_STAGES_NAMES.INPUT)} icon={CiCircleCheck} />
             <ActionMenuButton isDisable={buttonAccessibility(ENUM_CARD_SIDE.BACK) || isExampleSentence()} stageName={ENUM_STAGES_NAMES.EXAMPLE} onClick={() => handleExampleButton()} icon={CiTextAlignCenter} />
         </S.ActionMenuWrapper>

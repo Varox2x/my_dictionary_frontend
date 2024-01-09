@@ -1,14 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import * as S from './elements';
-import { ENUM_STAGES_NAMES, StagesNamesType } from './types';
+import { CardSideType, ENUM_CARD_SIDE, ENUM_STAGES_NAMES, StagesNamesType } from './types';
 
 
 type Props = {
     children: { name: StagesNamesType, component: JSX.Element }[],
-    currentStage: StagesNamesType
+    currentStage: StagesNamesType,
+    cardSide: CardSideType
 };
 
-const Stage = ({ children, currentStage }: Props) => {
+const Stage = ({ children, currentStage, cardSide }: Props) => {
 
 
     function findIndexByName(): number {
@@ -21,6 +22,14 @@ const Stage = ({ children, currentStage }: Props) => {
         throw new Error(`No stage with this name`)
     }
 
+    function calculateY(): number {
+        if (cardSide == ENUM_CARD_SIDE.FRONT) {
+            return findIndexByName() * 300 + -300
+        } else {
+            return findIndexByName() * -300 + 300
+        }
+    }
+
     if (currentStage == ENUM_STAGES_NAMES.STAGE_DISABLE) {
         return null
     }
@@ -29,10 +38,10 @@ const Stage = ({ children, currentStage }: Props) => {
         <AnimatePresence>
             <S.StageWrapper offset={0}>
                 <motion.div style={{ width: "100%", height: "100%" }}
-                    initial={{ x: 0, y: 300 }}
+                    initial={{ x: 0, y: (cardSide == ENUM_CARD_SIDE.FRONT ? -300 : 300) }}
                     animate={{
                         x: 0,
-                        y: findIndexByName() * -300 + 300,
+                        y: calculateY()
                     }}>
                     {children.map(({ component }, index) => {
                         return (

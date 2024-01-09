@@ -38,7 +38,7 @@ const SetsList = ({
                     return < MenuItem icon={<div />} style={{ color: 'rgb(139, 161, 183)' }} onClick={() => navigate(`set/${set.id}`)} key={set.id}  > {set.name}</MenuItem>
                 }
                 )}
-                {!isLoading && hasNextPage && data && setsQueryDataToArray(data).length > 0 && <MenuItem onMouseEnter={async () => await fetchNextPage()} key={"more"}>more...</MenuItem>}
+                {!isLoading && hasNextPage && data && setsQueryDataToArray(data).length > 1 && <MenuItem style={{ color: 'rgb(139, 161, 183)' }} onMouseEnter={async () => await fetchNextPage()} key={"more"}>more...</MenuItem>}
             </Menu>
         </SubMenu>
     )

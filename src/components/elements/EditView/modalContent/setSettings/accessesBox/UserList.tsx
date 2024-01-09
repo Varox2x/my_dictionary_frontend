@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ROLE_ENUM, RoleType } from "../../../../../../global/types"
 import ListElement from "./ListElement"
 import { useGetSetAccesses } from "../../../../../../api/hooks/queries/useGetSetAccesses"
@@ -19,9 +19,6 @@ const UserList = ({ role, setId }: Props) => {
 
     const { data } = useGetSetAccesses(currentPage[role], role, setId)
 
-    useEffect(() => {
-        console.log(data)
-    }, [data])
 
     if (!data?.data) {
         return null
