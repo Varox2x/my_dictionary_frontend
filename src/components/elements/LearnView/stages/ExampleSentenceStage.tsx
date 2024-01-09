@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLearnView } from '../Store/LearnViewProvider'
 import Slider from './exampleSentenceStage/Slider'
 

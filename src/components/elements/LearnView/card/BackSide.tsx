@@ -1,4 +1,3 @@
-import React from 'react'
 import * as S from '../elements';
 import { useLearnView } from '../Store/LearnViewProvider';
 import { stagesComponents } from '../stages/stagesComponents';

@@ -39,7 +39,7 @@ const HintStage = () => {
     const hiddenWords = useMemo(() => formatData(state.wordsArray[state.currentIndex].definitions), [state.wordsArray[state.currentIndex].definitions]);
 
     return (
-        <DefaultView data={hiddenWords} />
+        <DefaultView isrevert={false} data={hiddenWords} />
     )
 }
 
