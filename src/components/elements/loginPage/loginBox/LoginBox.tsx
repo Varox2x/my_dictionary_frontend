@@ -11,6 +11,7 @@ import { login } from '../../../../api/authApi';
 import routerList from '../../../../routerList';
 import authValidate from '../../../../global/helpers/authValidate';
 import AuthRememberMe from '../../global/authRememberMe/AuthRememberMe';
+import LoadingSpinner from '../../../../global/loadingSpinner/LoadingSpinner';
 
 const LoginBox = () => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const LoginBox = () => {
     const [error, setError] = useState<string>(" ")
     const [fieldError, setFieldError] = useState<'password' | 'email' | null>(null)
     const [remamberMe, setRemaberMe] = useState<boolean>(true)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -34,7 +36,9 @@ const LoginBox = () => {
                 setError(validateResult.errorText)
             }
         } else {
+            setIsLoading(true)
             login(formData).then((r) => {
+                setIsLoading(false)
                 if (!remamberMe) {
                     window.addEventListener('beforeunload', function () {
                         localStorage.removeItem('tokens');
@@ -80,8 +84,9 @@ const LoginBox = () => {
                             <IconContainer color='white' size={30} icon={GiPadlock} />
                         </S.Label>
                     </S.Row>
-                    <S.Row $margin='20px 0 20px 0'>
+                    <S.Row $margin={'0'}>
                         <GlobalStyles.AuthErrorParagraph>{error}</GlobalStyles.AuthErrorParagraph>
+                        <LoadingSpinner isWhite={true} isLoading={isLoading} />
                     </S.Row>
                     <S.Row $margin='20px 0 20px 0'>
                         <AuthRememberMe isChecked={remamberMe} setChecked={setRemaberMe} />

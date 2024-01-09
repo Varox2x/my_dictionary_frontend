@@ -21,6 +21,14 @@ export const Wrapper = styled.div`
     }
 `
 
+export const LoadingWrapper = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ModalContainer = styled.div`
     position: fixed;
     left: 10%;

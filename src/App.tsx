@@ -1,5 +1,6 @@
 import './settings/css/reset.css'
 import './settings/css/hamburgerMenuLogo.css'
+import './settings/css/loadingSpinner.css'
 import './settings/css/fonts.css'
 import { Route, Routes } from 'react-router-dom';
 import routerList from './routerList';

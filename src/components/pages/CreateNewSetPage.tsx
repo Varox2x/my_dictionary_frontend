@@ -7,6 +7,7 @@ import { useDispatchStore } from '../../store/StoreProvider';
 import { ACTION_TYPES } from '../../store/actionTypes';
 import { MODE_ENUM } from '../../global/types';
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../../global/loadingSpinner/LoadingSpinner';
 const CreateNewSetPage = () => {
 
     const dispatch = useDispatchStore()
@@ -15,7 +16,7 @@ const CreateNewSetPage = () => {
     const [name, setName] = useState<string>("")
     const [errorContent, setErrorContent] = useState<string>(" ")
     const {
-        mutateAsync,
+        mutateAsync, isLoading
     } = useCreateSet()
 
     useEffect(() => {
@@ -50,8 +51,9 @@ const CreateNewSetPage = () => {
         <S.Wrapper>
             <S.Form onSubmit={(e) => handleSend(e)} >
                 <S.Label>
-                    <S.Input $isText={name.length > 0} type='text' placeholder='set name' onChange={(e) => handleType(e)} value={name} />
-                    <S.Button $isDisabled={disabledButton()} disabled={disabledButton()}><IconContainer size={35} icon={MdCreateNewFolder} color={disabledButton() ? '#CFCFCF' : '#48CAE4'} /></S.Button>
+                    <S.Input $isText={name.length > 0} type='text' placeholder='set name' onChange={(e) => handleType(e)} value={name} disabled={isLoading} />
+                    {!isLoading && <S.Button $isDisabled={disabledButton()} disabled={disabledButton()}><IconContainer size={35} icon={MdCreateNewFolder} color={disabledButton() ? '#CFCFCF' : '#48CAE4'} /></S.Button>}
+                    <LoadingSpinner isLoading={isLoading} isWhite={true} />
                 </S.Label>
                 <S.Error>{errorContent}</S.Error>
             </S.Form>

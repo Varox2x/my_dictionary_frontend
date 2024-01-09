@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import * as S from '../elements/EditView/elements'
+import * as GlobalStyles from '../elements/global/elements'
 import { getSetWords } from '../../api/setApi'
 import { ENUM_POPUP, WordType } from '../../global/types'
 import List from '../elements/EditView/List'
@@ -13,6 +14,7 @@ import MobileListElement from '../elements/EditView/moblieListEmenet/MobileListE
 import { useDispatchStore, useStore } from '../../store/StoreProvider'
 import { ACTION_TYPES } from '../../store/actionTypes'
 import PageButtons from '../elements/EditView/pageButtons/PageButtons'
+import LoadingSpinner from '../../global/loadingSpinner/LoadingSpinner'
 
 type Props = {
     setId: number
@@ -30,6 +32,10 @@ const EditView = ({ setId }: Props) => {
             dispatch({ type: ACTION_TYPES_EDIT.SET_WORDS, payload: data.data })
         }
     }, [data, dispatch, dataUpdatedAt])
+
+    if (isLoading) {
+        return <GlobalStyles.LoadingWrapper ><LoadingSpinner isLoading={true} isWhite={false} /></GlobalStyles.LoadingWrapper>
+    }
 
 
     return (

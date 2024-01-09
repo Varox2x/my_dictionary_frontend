@@ -11,6 +11,7 @@ import { register } from '../../../../api/authApi';
 import routerList from '../../../../routerList';
 import authValidate from '../../../../global/helpers/authValidate';
 import AuthRememberMe from '../../global/authRememberMe/AuthRememberMe';
+import LoadingSpinner from '../../../../global/loadingSpinner/LoadingSpinner';
 
 const RegisterBox = () => {
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ const RegisterBox = () => {
     const [error, setError] = useState<string>(" ")
     const [fieldError, setFieldError] = useState<'password' | 'email' | 'repeatPassword' | null>(null)
     const [remamberMe, setRemaberMe] = useState<boolean>(true)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -40,7 +42,9 @@ const RegisterBox = () => {
                 setError(validateResult.errorText)
             }
         } else {
+            setIsLoading(true)
             register(formData).then(() => {
+                setIsLoading(false)
                 if (!remamberMe) {
                     window.addEventListener('beforeunload', function () {
                         localStorage.removeItem('tokens');
@@ -48,6 +52,7 @@ const RegisterBox = () => {
                 }
                 navigate(`/${routerList.HomeUserPage.url}`)
             }).catch(err => {
+                setIsLoading(false)
                 console.log('err')
                 console.log(err)
                 if (err.message && Array.isArray(err.message) && err.message.length > 0) {
@@ -101,8 +106,9 @@ const RegisterBox = () => {
                         <S.HaveAccount href='#'>Do you have account?</S.HaveAccount>
 
                     </S.Row>
-                    <S.Row $margin='20px 0 20px 0'>
+                    <S.Row >
                         <GlobalStyles.AuthErrorParagraph>{error}</GlobalStyles.AuthErrorParagraph>
+                        <LoadingSpinner isWhite={true} isLoading={isLoading} />
                     </S.Row>
                     <S.Row $margin='20px 0 20px 0'>
                         <GlobalStyles.AuthButton disabled={(formData.email.length == 0) || (formData.password.length == 0)} type="submit">
