@@ -50,7 +50,7 @@ const RegisterBox = () => {
                         localStorage.removeItem('tokens');
                     });
                 }
-                navigate(`/${routerList.HomeUserPage.url}`)
+                navigate(`/${routerList.CreateNewSetPage.url}`)
             }).catch(err => {
                 setIsLoading(false)
                 console.log('err')
@@ -103,7 +103,7 @@ const RegisterBox = () => {
                     </S.Row>
                     <S.Row $margin='20px 0 20px 0'>
                         <AuthRememberMe isChecked={remamberMe} setChecked={setRemaberMe} />
-                        <S.HaveAccount href='#'>Do you have account?</S.HaveAccount>
+                        <S.HaveAccount onClick={() => navigate(`../login`, { replace: true })} href=''>Do you have account?</S.HaveAccount>
 
                     </S.Row>
                     <S.Row >

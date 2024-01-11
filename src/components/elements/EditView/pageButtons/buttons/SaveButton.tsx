@@ -7,6 +7,7 @@ import { getSetWords } from '../../../../../api/setApi'
 import { useUpdateWordsBulk } from '../../../../../api/hooks/mutations/useUpdateWordsBulk'
 import IconContainer from "../../../../../global/hoc/IconContainer"
 import { RiSave2Fill } from "react-icons/ri";
+import { useMemo } from "react"
 
 
 type Props = {
@@ -20,7 +21,10 @@ const SaveButton = ({ setId }: Props) => {
         mutate,
     } = useUpdateWordsBulk({ stateWords: state.words, setId: Number(setId) })
 
-    const handleSave = () => {
+
+
+    //keeps difference between original data and modificated
+    const buildedDiff = useMemo(() => {
         const resourcesToCheck = [...Object.values(ENUM_WORD_RESOURCE)]
         let diff: UpdateWordType[] = []
         data?.data.forEach((word) => {
@@ -37,14 +41,30 @@ const SaveButton = ({ setId }: Props) => {
                 if (isNewValue) return diff = [...diff, wordDiff]
             }
         })
+        return diff;
+    }, [data, state.words]);
+
+    const handleSave = () => {
+        const diff: UpdateWordType[] = buildedDiff
         if (diff.length > 0) {
             mutate({ data: diff, setId })
         }
     }
 
+    const isButtonDisabled = (): boolean => {
+        const diff: UpdateWordType[] = buildedDiff
+        if (diff.length > 0) {
+            return false
+        }
+        return true
+    }
+
     return (
-        <S.Button onClick={() => handleSave()} >
-            <IconContainer color="#33BBCF" icon={RiSave2Fill} />
+        <S.Button $isDisabled={isButtonDisabled()} disabled={isButtonDisabled()} onClick={() => handleSave()} >
+            <S.ButtonText>SAVE</S.ButtonText>
+            <S.IconContainer>
+                <IconContainer color="#33BBCF" icon={RiSave2Fill} />
+            </S.IconContainer>
         </S.Button>
 
     )

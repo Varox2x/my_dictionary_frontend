@@ -16,8 +16,11 @@ const SetSettingsButton = ({ setId }: Props) => {
     const { removable } = useHasPermission(Number(setId))
 
     return (
-        <S.Button disabled={!removable} onClick={() => dispatch({ type: ACTION_TYPES.SET_ACTIVE_POPUP, payload: ENUM_POPUP.SET_SETTINGS })} >
-            <IconContainer color="#33BBCF" icon={IoMdSettings} />
+        <S.Button $isDisabled={!removable} disabled={!removable} onClick={() => dispatch({ type: ACTION_TYPES.SET_ACTIVE_POPUP, payload: ENUM_POPUP.SET_SETTINGS })} >
+            <S.ButtonText>Set Settings</S.ButtonText>
+            <S.IconContainer>
+                <IconContainer color="#33BBCF" icon={IoMdSettings} />
+            </S.IconContainer>
         </S.Button>
     )
 }

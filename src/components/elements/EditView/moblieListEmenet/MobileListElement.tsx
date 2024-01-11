@@ -8,17 +8,16 @@ import { useDispatchEditView, useEditView } from '../Store/EditViewProvider'
 import { ACTION_TYPES } from '../Store/actionTypes'
 import { MdExpandMore } from "react-icons/md";
 import IconContainer from "../../../../global/hoc/IconContainer"
-import { useDeleteWord } from "../../../../api/hooks/mutations/useDeleteWord"
 import { useParams } from "react-router-dom"
+import ButtonsField from "./buttonsField/ButtonsField"
 
 type Props = WordType
 
 
 const MobileListElement = ({
-    id,
+    id: wordId,
 }: Props) => {
 
-    // const [isOpen, setIsOpen] = useState(false)
     const dispatch = useDispatchEditView();
     const state = useEditView()
     const { id: setId } = useParams();
@@ -35,25 +34,22 @@ const MobileListElement = ({
         }
 
     }
-    const {
-        mutate
-    } = useDeleteWord({ id, setId: Number(setId) })
 
     return (
-        <S.SingleElementWrapper onClick={() => handleShowButton(id)} $isOpen={state.currentlyEditingWord == id}>
-            {state.currentlyEditingWord != id && <IconContainer icon={MdExpandMore} style={{ position: 'absolute', right: "10px", top: '15px' }} />}
+        <S.SingleElementWrapper onClick={() => handleShowButton(wordId)} $isOpen={state.currentlyEditingWord == wordId}>
+            {state.currentlyEditingWord != wordId && <IconContainer icon={MdExpandMore} style={{ position: 'absolute', right: "10px", top: '15px' }} />}
             <S.WordsFieldWrapper>
-                <S.Column $isBorder={true} $isOpen={state.currentlyEditingWord == id}>
-                    <ResourceField editComponent={SingleInput} wordId={id} wordResource={ENUM_WORD_RESOURCE.NAMES} />
+                <S.Column $isBorder={true} $isOpen={state.currentlyEditingWord == wordId}>
+                    <ResourceField editComponent={SingleInput} wordId={wordId} wordResource={ENUM_WORD_RESOURCE.NAMES} />
                 </S.Column>
                 <S.Column>
-                    <ResourceField editComponent={SingleInput} wordId={id} wordResource={ENUM_WORD_RESOURCE.DEFINITIONS} />
+                    <ResourceField editComponent={SingleInput} wordId={wordId} wordResource={ENUM_WORD_RESOURCE.DEFINITIONS} />
                 </S.Column>
             </S.WordsFieldWrapper>
             <S.ExampleSentencesFieldWrapper>
-                <ResourceField editComponent={SingleTextArea} wordId={id} wordResource={ENUM_WORD_RESOURCE.EXAMPLE_SENTENCE} />
+                <ResourceField editComponent={SingleTextArea} wordId={wordId} wordResource={ENUM_WORD_RESOURCE.EXAMPLE_SENTENCE} />
             </S.ExampleSentencesFieldWrapper>
-            <S.DeleteButton onClick={() => mutate(id)} >DELETE</S.DeleteButton>
+            <ButtonsField setId={Number(setId)} wordId={wordId} />
         </S.SingleElementWrapper>
     )
 }

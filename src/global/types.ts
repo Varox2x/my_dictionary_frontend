@@ -38,6 +38,8 @@ export type UpdateWordType = {
   id: number;
 } & Partial<WordType>;
 
+export type UpdateSingleWordType = Partial<WordType>;
+
 export type CreateWordType = Partial<WordType>;
 
 export type SetType = {
@@ -80,6 +82,11 @@ export type CreateWordApiArgsType = {
 export type UpdateBulkWordApiArgsType = {
   data: UpdateWordType[];
   setId: number;
+};
+
+export type UpdateSingleWordApiArgsType = {
+  data: UpdateSingleWordType;
+  wordId: number;
 };
 
 export type DeleteSetAccessesApiArgsType = {

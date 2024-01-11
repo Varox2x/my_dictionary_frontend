@@ -88,15 +88,6 @@ export const ExampleSentencesFieldWrapper = styled.div`
   padding-bottom: 20px;
 `;
 
-export const DeleteButton = styled.button`
-  padding: 10px 20px;
-  margin: 20px 0;
-  border: 2px solid #33bbcf;
-  border-radius: 10px;
-  color: #33bbcf;
-  background: transparent;
-`;
-
 export const SingleTextAreWrapper = styled.div`
   width: 100%;
   display: flex;

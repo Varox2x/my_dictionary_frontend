@@ -10,8 +10,11 @@ const CreateNewWordButton = () => {
     const dispatch = useDispatchStore()
 
     return (
-        <S.Button onClick={() => dispatch({ type: ACTION_TYPES.SET_ACTIVE_POPUP, payload: ENUM_POPUP.CREATE_WORD })} >
-            <IconContainer color="#33BBCF" icon={MdFiberNew} />
+        <S.Button $isDisabled={false} onClick={() => dispatch({ type: ACTION_TYPES.SET_ACTIVE_POPUP, payload: ENUM_POPUP.CREATE_WORD })} >
+            <S.ButtonText>Create Word</S.ButtonText>
+            <S.IconContainer>
+                <IconContainer color="#33BBCF" icon={MdFiberNew} />
+            </S.IconContainer>
         </S.Button>
 
     )

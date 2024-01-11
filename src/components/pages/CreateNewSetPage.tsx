@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useCreateSet } from '../../api/hooks/mutations/useCreateSet'
 import * as S from '../elements/createNewSetPage/elements'
 import { MdCreateNewFolder } from "react-icons/md";
@@ -18,11 +18,6 @@ const CreateNewSetPage = () => {
     const {
         mutateAsync, isLoading
     } = useCreateSet()
-
-    useEffect(() => {
-        console.log(location)
-    }, [])
-
 
     const handleSend = async (e: React.SyntheticEvent) => {
         e.preventDefault()
@@ -44,7 +39,7 @@ const CreateNewSetPage = () => {
     }
 
     const disabledButton = (): boolean => {
-        return !(name.length > 4)
+        return !(name.length > 0)
     }
 
     return (

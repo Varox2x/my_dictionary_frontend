@@ -7,6 +7,7 @@ import {
   ResponseDataType,
   RoleType,
   UpdateBulkWordApiArgsType,
+  UpdateSingleWordApiArgsType,
   WordType,
 } from '../global/types';
 import { SetType } from '../global/types';
@@ -36,6 +37,15 @@ export const updateWordsBulk = async ({
   setId,
 }: UpdateBulkWordApiArgsType): Promise<AxiosResponse> => {
   return axiosInstance.patch(`${config.API_URL}/sets/${setId}/words`, { data });
+};
+
+export const updateSingleWord = async ({
+  data,
+  wordId,
+}: UpdateSingleWordApiArgsType): Promise<AxiosResponse> => {
+  return axiosInstance.patch(`${config.API_URL}/sets/words/${wordId}`, {
+    ...data,
+  });
 };
 
 export const createWord = async ({
