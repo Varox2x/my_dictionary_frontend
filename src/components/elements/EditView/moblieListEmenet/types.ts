@@ -11,6 +11,7 @@ export type SingleInputProps = {
   isCurrentlyEditing: boolean;
   index: number;
   resourceRef: RefObject<(HTMLInputElement | HTMLTextAreaElement)[]>;
+  setValidateErrorContent: (err: string) => void;
 };
 
 export type EditComponentType = {
@@ -24,4 +25,5 @@ export type EditComponentType = {
   handleDelete: () => void;
   isCurrentlyEditing: boolean;
   resourceRef: RefObject<(HTMLInputElement | HTMLTextAreaElement)[]>;
+  setValidateErrorContent: (err: string) => void;
 };

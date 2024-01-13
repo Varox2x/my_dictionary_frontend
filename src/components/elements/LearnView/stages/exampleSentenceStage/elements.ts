@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import breakpoints from '../../../../../settings/css/breakpoints';
 
 export const SliderContainer = styled.div<{
   translate: number;
@@ -24,6 +25,17 @@ export const SliderElement = styled.div<{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+`;
+export const Text = styled.p`
+  width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  display: flex;
+  justify-content: center;
+  @media only screen and (min-width: ${breakpoints.sm}px) {
+    line-height: 1.5;
+  }
 `;
 
 export const ArrowWrapper = styled.div`

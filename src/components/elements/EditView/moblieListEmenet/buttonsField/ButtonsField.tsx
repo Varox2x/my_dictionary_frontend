@@ -66,7 +66,7 @@ const ButtonsField = ({ setId, wordId }: Props) => {
 
     return (
         <S.ButtonsFieldWrapper>
-            <S.SaveButton $isDisabled={!checkAreChanges()} disabled={!checkAreChanges()} onClick={() => handleSaveButton()} >Save</S.SaveButton>
+            <S.SaveButton $isDisabled={!checkAreChanges()} disabled={!checkAreChanges()} onClick={() => handleSaveButton()} >SAVE</S.SaveButton>
             <S.DeleteButton onClick={() => mutate(wordId)} >DELETE</S.DeleteButton>
         </S.ButtonsFieldWrapper>
     )

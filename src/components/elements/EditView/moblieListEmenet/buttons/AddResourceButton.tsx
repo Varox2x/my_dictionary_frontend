@@ -10,7 +10,7 @@ type Props = {
 const AddResourceButton = ({ onClick, isVisible }: Props) => {
     return (
         <button style={{ background: 'transparent', border: 'none', marginTop: '10px' }} disabled={!isVisible} onClick={onClick} >
-            {isVisible && <IconContainer icon={IoIosAddCircle} />}
+            {isVisible && <IconContainer color="#3E2265" icon={IoIosAddCircle} />}
         </button>
     )
 }

@@ -35,7 +35,7 @@ const Slider = ({ data }: Props) => {
         <>
             <S.SliderContainer translate={currentIndex * -100}>
                 {data.map((el, i) => {
-                    return <S.SliderElement key={i} translate={i * 100} >{el}</S.SliderElement>
+                    return <S.SliderElement key={i} translate={i * 100} ><S.Text>{el}</S.Text></S.SliderElement>
                 })}
             </S.SliderContainer>
             {data.length > 0 && <S.ArrowWrapper>

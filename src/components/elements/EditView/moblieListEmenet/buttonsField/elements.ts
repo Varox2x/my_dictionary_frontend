@@ -12,18 +12,22 @@ export const SaveButton = styled.button<{ $isDisabled?: boolean }>`
   padding: 10px 20px;
   margin: 20px 0;
   border-radius: 10px;
-  color: rgba(11, 41, 72, ${(props) => (props.$isDisabled ? '0.2' : '1')});
+  transition: 200ms;
+  opacity: ${(props) => (props.$isDisabled ? '0.2' : '1')};
+  color: #3e2265;
   background: transparent;
-  border: 2px solid
-    rgba(11, 41, 72, ${(props) => (props.$isDisabled ? '0.2' : '1')});
+  border: 2px solid #3e2265;
+  letter-spacing: 1px;
+  font-weight: 900;
 `;
 
 export const DeleteButton = styled.button`
   padding: 10px 20px;
   margin: 20px 0;
   border-radius: 10px;
-  color: rgba(11, 41, 72,1);
+  color: #3e2265;
   background: transparent;
-  border: 2px solid
-    rgba(11, 41, 72, 1)});
+  border: 2px solid #3e2265;
+  letter-spacing: 1px;
+  font-weight: 900;
 `;

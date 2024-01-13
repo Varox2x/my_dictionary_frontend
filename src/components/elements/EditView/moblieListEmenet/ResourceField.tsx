@@ -1,10 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import List from '../List';
 import { useDispatchEditView, useEditView } from '../Store/EditViewProvider';
 import { ACTION_TYPES } from '../Store/actionTypes';
 import { WordResoureType } from '../types';
 import AddResourceButton from './buttons/AddResourceButton';
 import { EditComponentType } from './types';
+import * as S from './elements'
 
 type Props = {
     wordResource: WordResoureType,
@@ -16,6 +17,7 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
     const state = useEditView()
 
     const dispatch = useDispatchEditView();
+    const [validateErrorContent, setValidateErrorContent] = useState<string>("")
 
     const resourceData = state.words.find(el => el.id === wordId);
     const resourceRef = useRef<(HTMLInputElement | HTMLTextAreaElement)[]>([]);
@@ -42,7 +44,8 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
                     })
                 }, isCurrentlyEditing: state.currentlyEditingWord == wordId,
                 resourceRef,
-                index: index
+                index: index,
+                setValidateErrorContent
             }
         })
     }
@@ -60,7 +63,6 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
     }
 
     const isAddNewResourceAvaible = (): boolean => {
-        // return !data[wordResource].includes("")
         if (resourceData && resourceData[wordResource].includes("")) return false
         return true
     }
@@ -73,6 +75,7 @@ const ResourceField = ({ wordResource, wordId, editComponent }: Props) => {
             <>
                 <List<EditComponentType> itemComponent={editComponent} items={items} />
                 <AddResourceButton isVisible={isAddNewResourceAvaible()} onClick={(e) => handleAddResourceButton(e)} />
+                <S.ErrorContent>{validateErrorContent}</S.ErrorContent>
             </>
         )
     }

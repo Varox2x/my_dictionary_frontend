@@ -3,8 +3,7 @@ import styled from 'styled-components';
 export const SingleElementWrapper = styled.li<{ $isOpen?: boolean }>`
   width: 100%;
   margin: auto;
-  max-height: ${(props) => (props.$isOpen ? '800px' : '50px')};
-  height: 100%;
+  min-height: 50px;
   position: relative;
   margin: 20px 0;
   border-radius: 10px;
@@ -13,23 +12,16 @@ export const SingleElementWrapper = styled.li<{ $isOpen?: boolean }>`
   flex-direction: column;
   align-items: center;
   padding: 0 20px;
-  transition: 600ms;
+  transition: 1000ms;
   overflow: hidden;
   cursor: pointer;
 
-  background: linear-gradient(
-    153.47deg,
-    rgba(255, 255, 255, 0) -341.94%,
-    #14101d 95.11%
+background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(23,126,137,1) 0%, rgba(36,115,162,1) 43%, rgba(83,77,252,1) 100%);
   );
+background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(96,163,230,1) 0%, rgba(168,233,240,1) 100%);
 
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(165, 118, 214, 1) 0%,
-    rgba(100, 18, 185, 1) 100%
-  );
 
   -webkit-box-shadow: 0px 7px 14px 0px rgba(66, 68, 90, 1);
   -moz-box-shadow: 0px 7px 14px 0px rgba(66, 68, 90, 1);
@@ -98,10 +90,11 @@ export const SingleInput = styled.input`
   width: 80%;
   border: none;
   background: transparent;
-  color: #def9fa;
+  color: #000000;
   &:focus {
-    color: #00f6ff;
+    color: #000000;
   }
+  font-weight: 600;
   transition: 500ms;
   text-align: center;
 `;
@@ -110,11 +103,18 @@ export const SingleTextArea = styled.textarea`
   width: 100%;
   border: none;
   background: transparent;
-  color: #def9fa;
+  color: #222222;
   resize: none;
   &:focus {
-    color: #00f6ff;
+    color: #222222;
   }
   transition: 500ms;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+`;
+
+export const ErrorContent = styled.p`
+  margin-top: 10px;
+  color: red;
   text-align: center;
 `;

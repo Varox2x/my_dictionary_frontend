@@ -3,13 +3,12 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 100%;
   margin: auto;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
-  overflow-y: scroll;
   padding-top: 70px;
   padding-left: 10px;
   padding-right: 10px;
-  scrollbar-width: thin;
+  padding-bottom: 10px;
 `;
 
 export const SingleElementWrapper = styled.li<{ $height?: boolean }>`
@@ -91,7 +90,7 @@ export const WordInputWrapper = styled.div`
   margin-right: 20px;
   &:hover {
     button {
-      color: white;
+      color: black;
       opacity: 100%;
     }
   }
