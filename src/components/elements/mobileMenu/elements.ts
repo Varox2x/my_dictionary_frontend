@@ -73,12 +73,15 @@ export const MenuElementTitle = styled.p<{
   $isActive: boolean;
 }>`
   color: #ffffff;
-  color: ${(props) => (props.$isActive ? '#33bbcf' : '#ffffff')};
+  color: ${(props) => (props.$isActive ? 'rgb(54, 2, 100)' : '#ffffff')};
   text-align: center;
 `;
 
-export const PageTitle = styled.p`
+export const PageTitle = styled.p<{
+  $isActive: boolean;
+}>`
   text-align: center;
   text-decoration: none;
   color: inherit;
+  color: ${(props) => (props.$isActive ? 'rgb(54, 2, 100)' : '#ffffff')};
 `;

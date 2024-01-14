@@ -19,7 +19,7 @@ export const ListElement = styled.li<{
   margin-left: 45px;
   text-align: left;
   text-decoration: none;
-  color: ${(props) => (props.$isActive ? '#33bbcf' : '#ffffff')};
+  color: ${(props) => (props.$isActive ? 'rgb(54, 2, 100)' : '#ffffff')};
   position: relative;
   &:after {
     position: absolute;

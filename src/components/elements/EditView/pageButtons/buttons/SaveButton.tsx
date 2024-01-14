@@ -63,7 +63,7 @@ const SaveButton = ({ setId }: Props) => {
         <S.Button $isDisabled={isButtonDisabled()} disabled={isButtonDisabled()} onClick={() => handleSave()} >
             <S.ButtonText>SAVE</S.ButtonText>
             <S.IconContainer>
-                <IconContainer color="#33BBCF" icon={RiSave2Fill} />
+                <IconContainer color="rgb(54, 2, 100)" icon={RiSave2Fill} />
             </S.IconContainer>
         </S.Button>
 

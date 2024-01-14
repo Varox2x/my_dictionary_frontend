@@ -11,7 +11,7 @@ export const Wrapper = styled.div<{
   $isActive: boolean;
 }>`
   position: absolute;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   left: ${(props) => (props.$isActive ? '0' : '-200%')};
   width: 100%;
   height: 100%;
