@@ -3,6 +3,7 @@
 
 ,,Fishcards" is application created to help you improve your language skills, specifically, learn new words.
 
+![Flashcards](https://github.com/Varox2x/my_dictionary_frontend/assets/95167789/8764a6cf-f742-4744-b94f-fff33b98d21a)
 
 ## Features
 
