@@ -22,12 +22,12 @@ EDITABLE - allows user to edit/add
 READ_ONLY - allows user to only read/learn words (learn mode)
 To grant permissions user has to visit Edit mode then - set settings
 
-## Features
+## TODO
 
 | feauture | Backend | Frontend |
 |------------|------------|------------|
-| level of mastery of expression | [x] | [] |
-| listening to the pronunciation | [] | [] |
+| level of mastery of expression | [x] | [ ] |
+| listening to the pronunciation | [ ] | [ ] |
 
 ## Front-End Tech
 
