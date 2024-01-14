@@ -60,6 +60,7 @@ export const ModalBackground = styled.div`
     bottom: 0;
     left: 0;
     background: rgba(176, 214, 235, 0.28);
+    z-index: 11;
 `
 
 export const ModalTitle = styled.h3`
