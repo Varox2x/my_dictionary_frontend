@@ -1,12 +1,3 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
 # Fishcards
 ## Application to learn English
 
@@ -31,16 +22,12 @@ EDITABLE - allows user to edit/add
 READ_ONLY - allows user to only read/learn words (learn mode)
 To grant permissions user has to visit Edit mode then - set settings
 
+## Features
 
-This text you see here is *actually- written in Markdown! To get a feel
-for Markdown's syntax, type some text into the left window and
-watch the results in the right.
-
-| Nagłówek 1 | Nagłówek 2 | Nagłówek 3 |
+| feauture | Backend | Frontend |
 |------------|------------|------------|
-| Komórka 1,1 | Komórka 1,2 | Komórka 1,3 |
-| Komórka 2,1 | Komórka 2,2 | Komórka 2,3 |
-| Komórka 3,1 | Komórka 3,2 | Komórka 3,3 |
+| level of mastery of expression | [x] | [] |
+| listening to the pronunciation | [] | [] |
 
 ## Front-End Tech
 
@@ -60,67 +47,22 @@ State managmend is based on React Context and React Query. To fetch data there a
 - TypeORM
 
 To authorize users there is JWT (access & refresh token). 
+Project consists of 3 services:
+auth - responsible for authorizations and user support
+accesses -responsible for users access to set (database relation user - access - set), access validation
+word -creating, updating word etc.
+sets - creating, updating set etc.
+
 
 ## Docker
 
-Dillinger is very easy to install and deploy in a Docker container.
+To make working on the backend application convenient, there is a docker. 
 
-By default, the Docker will expose port 8080, so change this within the
-Dockerfile if necessary. When ready, simply use the Dockerfile to
-build the image.
+To start application in docker, visit root folder, then enter belows commends:
 
 ```sh
-cd dillinger
-docker build -t <youruser>/dillinger:${package.json.version} .
+docker-compose build
+docker-compose up
 ```
 
-This will create the dillinger image and pull in the necessary dependencies.
-Be sure to swap out `${package.json.version}` with the actual
-version of Dillinger.
-
-Once done, run the Docker image and map the port to whatever you wish on
-your host. In this example, we simply map port 8000 of the host to
-port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
-
-```sh
-docker run -d -p 8000:8080 --restart=always --cap-add=SYS_ADMIN --name=dillinger <youruser>/dillinger:${package.json.version}
-```
-
-> Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
-
-Verify the deployment by navigating to your server address in
-your preferred browser.
-
-```sh
-127.0.0.1:8000
-```
-
-## License
-
-MIT
-
-**Free Software, Hell Yeah!**
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
-
+Fill the variables in the .env file before running, if the variables don't match, the application will notify you when you run it.By default backend application is running on port 3000.
