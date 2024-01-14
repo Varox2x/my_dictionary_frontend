@@ -36,6 +36,12 @@ This text you see here is *actually- written in Markdown! To get a feel
 for Markdown's syntax, type some text into the left window and
 watch the results in the right.
 
+| Nagłówek 1 | Nagłówek 2 | Nagłówek 3 |
+|------------|------------|------------|
+| Komórka 1,1 | Komórka 1,2 | Komórka 1,3 |
+| Komórka 2,1 | Komórka 2,2 | Komórka 2,3 |
+| Komórka 3,1 | Komórka 3,2 | Komórka 3,3 |
+
 ## Front-End Tech
 
 - React & Typescript
