@@ -8,26 +8,26 @@
 ## Features
 
 - Learn Mode:
-Page view intended for learning, allows user to scroll through the tabs. Every card consist of three things: name (written word in a language you know), definition (its definition you want to learn), example sentenes (example sentences in which you used the word). To make the application scallable, there are created feauters called ,,stages". Every stage must be associated to one of the side (Front - there is name, Back - there is definition). Stages are intended for actions for that side of the card. They can be  reflected in the upper right corner (icons), if u want to make special stagfe appear, just click special icon - their availability depends on the page that is revealed. 
-Bulb icon - hint stage - user can see some words of definition word.
-Text - text stage - when user click this icon, appears input when he can check spelling.
-Example sentence - shows an example sentence entered for a given word.
-
+Page view intended for learning, allows user to scroll through the tabs. Every card consists of three items: name (written word in a language you know), definition (foreign language equivalent), example sentences (example sentences in which you use the word). To make the application scalable, there are created features called ,,stages". Every stage must be related to one of the side (Front - there is a name, Back - there is a definition). Stages are intended for actions for that particular side of the card. Their icons are in the right upper corener, if you want to make certain stage appear, just click an relevant icon - their availability depends on the revealed.
+<br>The bulb icon -  a user can see several letters of definition word.
+<br>The tick icon -  when user clicks this icon, they can practise spelling.
+<br>The test icon - shows example sentences.
+<br>
 - Edit Mode
-This functionality allows user to add new words or edit existing ones
+This functionality allows user to add new words or edit existing ones.
 
 - Permissions
-There are 3 types of a connection between the set and the users:
-OWNER - allows user to edit/add words, grand permissions too other users, delete set
-EDITABLE - allows user to edit/add
-READ_ONLY - allows user to only read/learn words (learn mode)
-To grant permissions user has to visit Edit mode then - set settings
+There are 3 types of a connection between the set and users:
+OWNER - allows a user to edit/add words, grant permission to other users and delete set.
+EDITABLE - allows a user to edit/add words only.
+READ_ONLY - allows a user only to read/learn words (learn mode)
+(To grant permission a user has to enter Edit mode and then enter set settings)
 
-## TODO
+## TO DO
 
-| feauture | Backend | Frontend |
+| Features | Backend | Frontend |
 |------------|------------|------------|
-| level of mastery of expression | [x] | [ ] |
+| level of knowlage of word | [x] | [ ] |
 | listening to the pronunciation | [ ] | [ ] |
 
 ## Front-End Tech
@@ -39,7 +39,7 @@ To grant permissions user has to visit Edit mode then - set settings
 - React Router
 - Framer Motion
 
-State managmend is based on React Context and React Query. To fetch data there are custom hooks (based on React Query hooks) and Axios. Sidebar on desktop is supported by ,,react-pro-sidebar". To create animation has been used Framer Motion.
+State managmend is based on React Context and React Query. To fetch data there are custom hooks (based on React Query hooks and Axios). Sidebar on desktop is supported by ,,react-pro-sidebar". To create animation Framer Motion has been used.
 
 ## Back-End Tech
 
@@ -66,4 +66,4 @@ docker-compose build
 docker-compose up
 ```
 
-Fill the variables in the .env file before running, if the variables don't match, the application will notify you when you run it.By default backend application is running on port 3000.
+Fill the variables in the .env file before running, if the variables don't match, the application will notify you when you run it. By default backend application is running on port 3000.
