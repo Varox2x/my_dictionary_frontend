@@ -26,7 +26,7 @@ const SetsList = ({
     const { data, isLoading, hasNextPage, fetchNextPage } = useGetInfinite<SetType[]>(getCurrentUserSets, role);
     const { id: setId } = useParams();
 
-    const handleSetMenuItem = async (setId: string) => {
+    const handleSetMenuItem = async (setId: number) => {
         if (role == ROLE_ENUM.READ_ONLY) {
             await dispatch({
                 type: ACTION_TYPES.CHANGE_MODE, payload: MODE_ENUM.LEARN
