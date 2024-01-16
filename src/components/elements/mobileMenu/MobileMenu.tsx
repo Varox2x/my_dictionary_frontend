@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ExtendedMenu from "./ExtendedMenu/ExtendedMenu"
 import * as S from "./elements"
 import SetsView from "./ExtendedMenu/views/setsView/SetsView"
@@ -13,16 +13,10 @@ const MobileMenu = () => {
     const [isMenuExtanded, setIsMenuExtanded] = useState<boolean>(false)
     const [role, setRole] = useState<RoleType>(ROLE_ENUM.OWNER)
     const [currentIndex,] = useState(0)
-    let location = useLocation()
+    const location = useLocation()
 
     const dispatch = useDispatchStore()
     const { isMobileMenuOpen, currentMode } = useStore()
-
-    useEffect(() => {
-        console.log('page')
-        console.log(location)
-        console.log(routerList.CreateNewSetPage.url)
-    }, [location])
 
     const isCreateNewSetPageOpen = (): boolean => {
         return location.pathname == `/${routerList.CreateNewSetPage.url}`
