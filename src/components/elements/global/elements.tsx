@@ -39,6 +39,9 @@ export const ModalContainer = styled.div`
     right: 30%;
     top: 20%;
     }
+    -webkit-box-shadow: 0px 0px 48px 0px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 48px 0px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 48px 0px rgba(66, 68, 90, 1);
 `
 
 export const ModalWrapper = styled.div`

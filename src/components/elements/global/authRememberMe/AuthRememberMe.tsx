@@ -17,7 +17,7 @@ const AuthRememberMe = ({ isChecked, setChecked }: Props) => {
                 checked={isChecked}
                 onChange={handleCheckboxChange}
             />
-            <S.Title onClick={handleCheckboxChange} >Remamber me</S.Title>
+            <S.Title onClick={handleCheckboxChange} >Remember me</S.Title>
 
         </S.Wrapper>
     )

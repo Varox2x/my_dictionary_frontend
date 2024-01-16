@@ -40,7 +40,6 @@ const ActionMenuButton = ({ icon, onClick, stageName, isDisable }: Props) => {
         <div style={{ position: 'relative' }}>
             <S.Button disabled={isDisable} onClick={(e) => handleClick(e)}>
                 <IconContainer size={40} color={isDisable ? 'white' : isActive() ? 'rgba(54, 2, 100, 1)' : 'rgba(0, 0, 0, 0.19)'} icon={icon} />
-                {/* <S.Icon $isDisable={isDisable} $isActive={isActive()} src={icon} /> */}
             </S.Button>
         </div>
 

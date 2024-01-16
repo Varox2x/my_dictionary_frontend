@@ -41,8 +41,13 @@ const SaveButton = ({ setId }: Props) => {
                 if (isNewValue) return diff = [...diff, wordDiff]
             }
         })
+        console.log(diff)
         return diff;
     }, [data, state.words]);
+
+    const checkAreChanges = () => {
+        return buildedDiff.length > 0
+    }
 
     const handleSave = () => {
         const diff: UpdateWordType[] = buildedDiff
@@ -51,16 +56,10 @@ const SaveButton = ({ setId }: Props) => {
         }
     }
 
-    const isButtonDisabled = (): boolean => {
-        const diff: UpdateWordType[] = buildedDiff
-        if (diff.length > 0) {
-            return false
-        }
-        return true
-    }
+
 
     return (
-        <S.Button $isDisabled={isButtonDisabled()} disabled={isButtonDisabled()} onClick={() => handleSave()} >
+        <S.Button $isDisabled={!checkAreChanges()} disabled={!checkAreChanges()} onClick={() => handleSave()} >
             <S.ButtonText>SAVE</S.ButtonText>
             <S.IconContainer>
                 <IconContainer color="rgb(54, 2, 100)" icon={RiSave2Fill} />

@@ -223,7 +223,7 @@ export const Input = styled.input`
   width: 70%;
   border: none;
   background: transparent;
-  border-bottom: 2px solid blue;
+  border-bottom: 2px solid rgb(11, 41, 72);
   text-align: center;
   color: #030507;
 `;
