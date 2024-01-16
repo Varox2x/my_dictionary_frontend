@@ -12,7 +12,7 @@ Page view intended for learning, allows user to scroll through the tabs. Every c
 <br>The bulb icon -  a user can see several letters of definition word.
 <br>The tick icon -  when user clicks this icon, they can practise spelling.
 <br>The test icon - shows example sentences.
-<br>
+
 - Edit Mode
 This functionality allows user to add new words or edit existing ones.
 
