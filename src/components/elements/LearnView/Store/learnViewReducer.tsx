@@ -3,8 +3,21 @@ import { CardSideType, DIRECTION_ENUM, DirectionType, ENUM_CARD_SIDE, ENUM_STAGE
 import { ACTION_TYPES } from "./actionTypes";
 
 export type ActionType = {
-    type: ReducerActionType,
-    payload?: DirectionType | number | StagesNamesType | WordType[]
+    type: typeof ACTION_TYPES.REVERT_CARD,
+} | {
+    type: typeof ACTION_TYPES.SHUFFLE
+} | {
+    type: typeof ACTION_TYPES.ROLL_CARD,
+    payload: DirectionType
+} | {
+    type: typeof ACTION_TYPES.CHANGE_FRONT_STAGE,
+    payload: StagesNamesType
+} | {
+    type: typeof ACTION_TYPES.CHANGE_BACK_STAGE,
+    payload: StagesNamesType
+} | {
+    type: typeof ACTION_TYPES.SET_WORDS,
+    payload: WordType[]
 }
 
 export type ReducerActionType = keyof typeof ACTION_TYPES
@@ -67,28 +80,28 @@ export const learnViewReducer = (state: StateType, action: ActionType): StateTyp
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.ROLL_CARD} action`)
             }
-            return rollCard(action.payload as DirectionType, state)
+            return rollCard(action.payload, state)
         case ACTION_TYPES.CHANGE_FRONT_STAGE:
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.CHANGE_FRONT_STAGE} action`)
             }
-            if (!Object.values(ENUM_STAGES_NAMES).includes(action.payload as StagesNamesType)) {
+            if (!Object.values(ENUM_STAGES_NAMES).includes(action.payload)) {
                 throw new Error(`action.payload wrong in ${ACTION_TYPES.CHANGE_FRONT_STAGE} action`)
             }
-            return { ...state, currentFrontStage: action.payload as StagesNamesType }
+            return { ...state, currentFrontStage: action.payload }
         case ACTION_TYPES.CHANGE_BACK_STAGE:
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.CHANGE_BACK_STAGE} action`)
             }
-            if (!Object.values(ENUM_STAGES_NAMES).includes(action.payload as StagesNamesType)) {
+            if (!Object.values(ENUM_STAGES_NAMES).includes(action.payload)) {
                 throw new Error(`action.payload wrong in ${ACTION_TYPES.CHANGE_BACK_STAGE} action`)
             }
-            return { ...state, currentBackStage: action.payload as StagesNamesType }
+            return { ...state, currentBackStage: action.payload }
         case ACTION_TYPES.SET_WORDS:
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.SET_WORDS} action`)
             }
-            return { ...state, wordsArray: action.payload as WordType[], currentIndex: 0 }
+            return { ...state, wordsArray: action.payload, currentIndex: 0 }
         default:
             return state;
     }

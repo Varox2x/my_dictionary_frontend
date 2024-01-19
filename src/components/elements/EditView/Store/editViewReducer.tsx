@@ -3,8 +3,28 @@ import { CreateWordResourceType, DeleteWordResourceType, ENUM_WORD_RESOURCE, Upd
 import { ACTION_TYPES } from "./actionTypes";
 
 export type ActionType = {
-    type: ReducerActionType,
-    payload?: UpdateWordType | WordType[] | UpdateWordResourceType | CurrentlyEditingWordType
+    type: typeof ACTION_TYPES.UPDATE_WORD,
+    payload: UpdateWordType
+} |
+{
+    type: typeof ACTION_TYPES.SET_WORDS,
+    payload: WordType[]
+} |
+{
+    type: typeof ACTION_TYPES.UPDATE_WORD_RESOURCE,
+    payload: UpdateWordResourceType
+} |
+{
+    type: typeof ACTION_TYPES.CREATE_WORD_RESOURCE,
+    payload: CreateWordResourceType
+} |
+{
+    type: typeof ACTION_TYPES.DELETE_WORD_RESOURCE,
+    payload: DeleteWordResourceType
+} |
+{
+    type: typeof ACTION_TYPES.SET_CURRENTLY_EDITING_WORD,
+    payload: CurrentlyEditingWordType
 }
 
 export type ReducerActionType = keyof typeof ACTION_TYPES
@@ -84,32 +104,32 @@ export const editViewReducer = (state: StateType, action: ActionType): StateType
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.UPDATE_WORD} action`)
             }
-            return { ...state, words: updateWord(state, action.payload as UpdateWordType) };
+            return { ...state, words: updateWord(state, action.payload) };
         case ACTION_TYPES.SET_WORDS:
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.UPDATE_WORD} action`)
             }
-            return { ...state, words: action.payload as WordType[] };
+            return { ...state, words: action.payload };
         case ACTION_TYPES.UPDATE_WORD_RESOURCE:
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.UPDATE_WORD_RESOURCE} action`)
             }
-            return { ...state, words: updateWordResource({ ...action.payload as UpdateWordResourceType, state }) };
+            return { ...state, words: updateWordResource({ ...action.payload, state }) };
         case ACTION_TYPES.CREATE_WORD_RESOURCE:
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.CREATE_WORD_RESOURCE} action`)
             }
-            return { ...state, words: createWordResource({ ...action.payload as CreateWordResourceType, state }) };
+            return { ...state, words: createWordResource({ ...action.payload, state }) };
         case ACTION_TYPES.DELETE_WORD_RESOURCE:
             if (!action.payload) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.DELETE_WORD_RESOURCE} action`)
             }
-            return { ...state, words: deleteWordResource({ ...action.payload as DeleteWordResourceType, state }) };
+            return { ...state, words: deleteWordResource({ ...action.payload, state }) };
         case ACTION_TYPES.SET_CURRENTLY_EDITING_WORD:
             if (!action.payload && action.payload !== false) {
                 throw new Error(`action.payload missing in ${ACTION_TYPES.SET_CURRENTLY_EDITING_WORD} action`)
             }
-            return { ...state, currentlyEditingWord: action.payload as CurrentlyEditingWordType };
+            return { ...state, currentlyEditingWord: action.payload };
         default:
             return state;
     }
