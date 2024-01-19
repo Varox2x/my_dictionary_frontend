@@ -1,3 +1,4 @@
+
 type StyleProps = {
     color?: string;
     fontSize?: string;
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const IconContainer = ({ icon: Icon, style, color, size }: Props) => {
+
+
     return (
         <div style={{ ...style, display: "flex", justifyContent: 'center', alignItems: 'center', color: color || 'white', fontSize: `${size}px` || '20px', transition: '500ms' }}>
             <Icon />

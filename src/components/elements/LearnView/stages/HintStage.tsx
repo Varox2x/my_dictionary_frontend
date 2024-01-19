@@ -19,7 +19,7 @@ const replaceHalfWithUnderscore = (word: string) => {
         }
     }
     indicesToReplace.forEach((index) => {
-        wordArray[index] = '_';
+        wordArray[index] = '_ ';
     });
     return wordArray.join('');
 }
