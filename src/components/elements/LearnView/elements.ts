@@ -232,3 +232,7 @@ export const CheckButton = styled.button`
   background: transparent;
   border: none;
 `;
+
+export const EmptySetWarning = styled.p`
+  cursor: pointer;
+`;

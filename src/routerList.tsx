@@ -1,14 +1,16 @@
-import { FC } from "react";
-import LoginPage from "./components/pages/LoginPage";
-import RegisterPage from "./components/pages/RegisterPage";
-import SetPage from "./components/pages/SetPage";
-import HomeUserPage from "./components/pages/HomeUserPage";
-import SettingsPage from "./components/pages/SettingsPage";
-import CreateNewSetPage from "./components/pages/CreateNewSetPage";
+import { ReactNode } from "react";
+import { lazy } from "react";
+
+const LoginPage = lazy(() => import("./components/pages/LoginPage"))
+const RegisterPage = lazy(() => import("./components/pages/RegisterPage"))
+const SetPage = lazy(() => import("./components/pages/SetPage"))
+const HomeUserPage = lazy(() => import("./components/pages/HomeUserPage"))
+const SettingsPage = lazy(() => import("./components/pages/SettingsPage"))
+const CreateNewSetPage = lazy(() => import("./components/pages/CreateNewSetPage"))
 
 export type RouterListElementType = {
   url: string;
-  component: FC;
+  component: ReactNode;
   isPublic: boolean;
 };
 
@@ -19,32 +21,32 @@ export type RouterList = {
 const routerList: RouterList = {
   LoginPage: {
     url: "login",
-    component: LoginPage,
+    component: <LoginPage />,
     isPublic: true,
   },
   RegisterPage: {
     url: "register",
-    component: RegisterPage,
+    component: <RegisterPage />,
     isPublic: true,
   },
   SetPage: {
     url: "set/:id",
-    component: SetPage,
+    component: <SetPage />,
     isPublic: false,
   },
   HomeUserPage: {
     url: "home",
-    component: HomeUserPage,
+    component: <HomeUserPage />,
     isPublic: false,
   },
   SettingsPage: {
     url: "settings",
-    component: SettingsPage,
+    component: <SettingsPage />,
     isPublic: false,
   },
   CreateNewSetPage: {
     url: "newSet",
-    component: CreateNewSetPage,
+    component: <CreateNewSetPage />,
     isPublic: false,
   },
 };

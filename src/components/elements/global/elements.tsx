@@ -107,3 +107,11 @@ export const AuthPageContainer = styled.div`
     display: flex;
     background-image: url(${AuthBackground});
 `
+
+export const FullPageWrapper = styled.div`
+    width: 100%; 
+    height: 100vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+`

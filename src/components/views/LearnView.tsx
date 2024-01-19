@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Card from '../elements/LearnView/Card'
 import CardEscape from '../elements/LearnView/CardEscape'
 import CardSpaceContainer from '../elements/LearnView/CardSpaceContainer'
@@ -14,21 +14,25 @@ import { getSetWords } from '../../api/setApi'
 import { useGetSetWords } from '../../api/hooks/queries/useGetSetWords'
 import SetActionMenu from '../elements/LearnView/menu/SetActionMenu'
 import LoadingSpinner from '../../global/loadingSpinner/LoadingSpinner'
+import EmptySet from '../elements/LearnView/EmptySet'
 
 type Props = {
     setId: number
 }
-
 
 const LearnView = ({ setId }: Props) => {
 
     const dispatch = useDispatchLearnView();
     const state = useLearnView()
     const { data, isLoading, dataUpdatedAt } = useGetSetWords<WordType[]>(getSetWords, 1, setId)
+    const [isDataEmpty, setIsDataEmpty] = useState<boolean>(false)
 
     useEffect(() => {
         if (data?.data) {
             dispatch({ type: ACTION_TYPES.SET_WORDS, payload: data.data })
+            if (data.data.length == 0) {
+                setIsDataEmpty(true)
+            }
         }
     }, [data, dispatch, dataUpdatedAt])
 
@@ -36,9 +40,16 @@ const LearnView = ({ setId }: Props) => {
         return <GlobalStyles.LoadingWrapper ><LoadingSpinner isLoading={true} isWhite={false} /></GlobalStyles.LoadingWrapper>
     }
 
-    if (state.wordsArray.length == 0) {
-        return <p>empty set - visit edit to add word</p>
+
+
+    if (isDataEmpty) {
+        return <EmptySet />
     }
+
+    if (state.wordsArray.length == 0) {
+        return <></>
+    }
+
 
     return (
         <S.Wrapper>

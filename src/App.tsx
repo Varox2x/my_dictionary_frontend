@@ -5,6 +5,8 @@ import './settings/css/fonts.css'
 import { Navigate, Route, Routes } from 'react-router-dom';
 import routerList from './routerList';
 import PrivateWrapper from './components/wrappers/PrivateWrapper';
+import LoadingPage from './components/pages/LoadingPage';
+import { Suspense } from 'react';
 
 function App() {
   return (
@@ -16,19 +18,27 @@ function App() {
               <Route
                 key={index}
                 path={routerList[key].url}
-                Component={routerList[key].component}
+                element={<Suspense fallback={<LoadingPage />}>
+                  {routerList[key].component}
+                </Suspense>
+                }
               />
             );
           }
         })}
-        <Route element={<PrivateWrapper />}>
+        <Route element={<Suspense fallback={<LoadingPage />}>
+          <PrivateWrapper />
+        </Suspense>}>
           {Object.keys(routerList).map((key, index) => {
             if (!routerList[key].isPublic) {
               return (
                 <Route
                   key={index}
                   path={routerList[key].url}
-                  Component={routerList[key].component}
+                  element={<Suspense fallback={<LoadingPage />}>
+                    {routerList[key].component}
+                  </Suspense>
+                  }
                 />
               );
             }
