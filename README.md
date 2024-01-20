@@ -20,10 +20,10 @@ This functionality allows user to add new words or edit existing ones.
 
 - Permissions
 There are 3 types of a connection between the set and users:
-OWNER - allows a user to edit/add words, grant permission to other users and delete set.
-EDITABLE - allows a user to edit/add words only.
-READ_ONLY - allows a user only to read/learn words (learn mode)
-(To grant permission a user has to enter Edit mode and then enter set settings)
+<br> OWNER - allows a user to edit/add words, grant permission to other users and delete set.
+<br> EDITABLE - allows a user to edit/add words only.
+<br> READ_ONLY - allows a user only to read/learn words (learn mode)
+<br> (To grant permission a user has to enter Edit mode and then enter set settings)
 
 ## TO DO
 
@@ -56,10 +56,10 @@ State managmend is based on React Context and React Query. To fetch data there a
 
 To authorize users there is JWT (access & refresh token). 
 Project consists of 3 services:
-auth - responsible for authorizations and user support
-accesses -responsible for users access to set (database relation user - access - set), access validation
-word -creating, updating word etc.
-sets - creating, updating set etc.
+<br> auth - responsible for authorizations and user support
+<br> accesses -responsible for users access to set (database relation user - access - set), access validation
+<br> word -creating, updating word etc.
+<br> sets - creating, updating set etc.
 
 
 ## Docker
