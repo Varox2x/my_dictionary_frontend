@@ -2,8 +2,8 @@
 ## Application to learn English
 
 ,,Fishcards" is application created to help you improve your language skills, specifically, learn new words.
-Visit [Fishcards](https://flashcards-kcc4.onrender.com/register)
-Visit [backand repo](https://github.com/Varox2x/my_dictionary_backend/tree/master)
+<br>Visit [Fishcards](https://flashcards-kcc4.onrender.com/register)
+<br>Visit [backand repo](https://github.com/Varox2x/my_dictionary_backend/tree/master)
 
 ![Fiszky](https://github.com/Varox2x/my_dictionary_frontend/assets/95167789/e8b7fcbb-8304-42a6-b421-d95f2b5f584a)
 
