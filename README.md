@@ -29,6 +29,11 @@ READ_ONLY - allows a user only to read/learn words (learn mode)
 |------------|------------|------------|
 | level of knowlage of word | [x] | [ ] |
 | listening to the pronunciation | [ ] | [ ] |
+| Sentry | [ ] | [ ] |
+| listening to the pronunciation | [ ] | [ ] |
+| mailer | [ ] | [ ] |
+| implement user tutorial | [ ] | [ ] |
+| tests | [ ] | [ ] |
 
 ## Front-End Tech
 
