@@ -10,17 +10,17 @@
 ## Features
 
 - Learn Mode:
-Page view intended for learning, allows user to scroll through the tabs. Every card consists of three items: name (written word in a language you know), definition (foreign language equivalent), example sentences (example sentences in which you use the word). To make the application scalable, there are created features called ,,stages". Every stage must be related to one of the side (Front - there is a name, Back - there is a definition). Stages are intended for actions for that particular side of the card. Their icons are in the right upper corener, if you want to make certain stage appear, just click an relevant icon - their availability depends on the revealed.
+Page view intended for learning, allows a user to scroll through the tabs. Every card consists of three items: name (written word in a language you know), definition (foreign language equivalent), example sentences (example sentences in which you use the word). To make the application scalable, there are created features called ,,stages". Every stage must be related to one of the side (Front - there is a name, Back - there is a definition). Stages are intended for actions for that particular side of the card. Their icons are in the right upper corener, if you want to make a certain stage appear, just click a relevant icon - their availability depends on the revealed site.
 <br>The bulb icon -  a user can see several letters of definition word.
-<br>The tick icon -  when user clicks this icon, they can practise spelling.
-<br>The test icon - shows example sentences.
+<br>The tick icon -  when a user clicks this icon, they can practise spelling.
+<br>The text icon - shows example sentences.
 
 - Edit Mode
-This functionality allows user to add new words or edit existing ones.
+This function allows a user to add new words or edit existing ones.
 
 - Permissions
 There are 3 types of a connection between the set and users:
-<br> OWNER - allows a user to edit/add words, grant permission to other users and delete set.
+<br> OWNER - allows a user to edit/add words, grant permission to other users and delete a set.
 <br> EDITABLE - allows a user to edit/add words only.
 <br> READ_ONLY - allows a user only to read/learn words (learn mode)
 <br> (To grant permission a user has to enter Edit mode and then enter set settings)
